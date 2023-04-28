@@ -1,0 +1,40 @@
+{
+    // 共享设置.
+    "settings": {
+        "react": {
+            "version": "detect" // 自动检测React的版本.
+        }
+    },
+    // 扩展.
+    "extends": [
+        "eslint:recommended", // 核心规则.
+        "plugin:eslint-plugin-react/recommended" // React规则.
+    ],
+    // 环境选项.
+    "env": {
+        "browser": true,
+        "es6": true // 使用ES6语法.
+    },
+    // 解析器选项.
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module" // 设置为ESM模块.
+    },
+    // 规则.
+    "rules": {
+        "indent": ["warn", 4], // 缩进4个空格.
+        "linebreak-style": ["error", "unix"], // 使用Unix换行格式.
+        "quotes": ["error", "single"], // 使用单引号.
+        "semi": ["error", "always"] // 使用换行符.
+    },
+    // 插件.
+    "plugins": [
+        "eslint-plugin-react"
+    ],
+    // glob模式.
+    "overrides": [
+        {
+            "files": ["*.jsx"] // 指定jsx扩展名的目标文件.
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+.DS_store
+.idea/
+# 忽略模块.
+node_modules/
+package-lock.json

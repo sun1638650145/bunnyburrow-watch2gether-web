@@ -1,0 +1,27 @@
+{
+    "name": "watch2gether",
+    "version": "0.0.1-alpha.0",
+    "description": "一起看电影",
+    "author": {
+        "name": "Steve R. Sun",
+        "email": "s1638650145@gmail.com"
+    },
+    "scripts": {
+        "lint": "npx eslint src",
+        "start": "react-scripts start"
+    },
+    "dependencies": {
+        "prop-types": "15.8.1",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-scripts": "5.0.1",
+        "video.js": "8.3.0"
+    },
+    "devDependencies": {
+        "eslint": "8.39.0",
+        "eslint-plugin-react": "7.32.2"
+    },
+    "browserslist": [
+        "defaults and supports es6-module"
+    ]
+}
