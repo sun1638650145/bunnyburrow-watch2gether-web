@@ -61,15 +61,19 @@ function VideoJSWrapper() {
 /**
  * VideoPlayer组件, 播放流媒体视频, 同时创建WebSocket客户端连接和其他用户同步视频播放状态.
  * @param {Object} sources - 流媒体视频的URL和媒体类型(MIME types).
+ * @param {String} ws_url - WebSocket服务器的URL.
  * @returns {JSX.Element}
  * @constructor
  * @example
- * <VideoPlayer sources={{
- *     src: 'https://example.com/video/video_name/',
- *     type: 'application/x-mpegURL'
- * }}/>
+ * <VideoPlayer
+ *     sources={{
+ *         src: 'https://example.com/video/video_name/',
+ *         type: 'application/x-mpegURL'
+ *     }}
+ *     ws_url={'wss://example.com/ws/'}
+ * />
  */
-export default function VideoPlayer({sources}) {
+export default function VideoPlayer({sources, ws_url}) {
     const playerRef = useRef(null);
     const websocketRef = useRef(null);
 
@@ -79,7 +83,7 @@ export default function VideoPlayer({sources}) {
      */
     function handlePlayerReady(player) {
         playerRef.current = player;
-        const websocket = websocketRef.current = new WebSocket('ws://192.168.31.147:8000/ws/');
+        const websocket = websocketRef.current = new WebSocket(ws_url);
 
         // 初次加载视频时的大播放按钮.
         player.bigPlayButton.on(['click', 'touchend'], () => {
@@ -157,5 +161,6 @@ export default function VideoPlayer({sources}) {
 }
 
 VideoPlayer.propTypes = {
-    sources: PropTypes.object.isRequired
+    sources: PropTypes.object.isRequired,
+    ws_url: PropTypes.string.isRequired
 };
