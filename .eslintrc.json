@@ -24,6 +24,7 @@
     "rules": {
         "indent": ["warn", 4], // 缩进4个空格.
         "linebreak-style": ["error", "unix"], // 使用Unix换行格式.
+        "max-len": ["error", 80], // 每行80个字符.
         "quotes": ["error", "single"], // 使用单引号.
         "semi": ["error", "always"] // 使用换行符.
     },

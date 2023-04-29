@@ -5,9 +5,9 @@ import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
 // 传递播放器事件回调函数.
-const readyContext = createContext(() => {});
+const ReadyContext = createContext(() => {});
 // 传递流媒体视频源.
-const sourcesContext = createContext({
+const SourcesContext = createContext({
     src: '',
     type: ''
 });
@@ -19,8 +19,8 @@ function VideoJSWrapper() {
     const playerRef = useRef(null);
     const videoRef = useRef(null);
 
-    const onReady = useContext(readyContext);
-    const sources = useContext(sourcesContext);
+    const onReady = useContext(ReadyContext);
+    const sources = useContext(SourcesContext);
 
     useEffect(() => {
         // 确保播放器只初始化一次.
@@ -78,7 +78,8 @@ export default function VideoPlayer({sources, ws_url}) {
     const websocketRef = useRef(null);
 
     /**
-     * 当播放器初始化完成, 用于处理播放器事件回调函数: 播放/暂停操作, 修改播放倍速和播放进度.
+     * 当播放器初始化完成, 用于处理播放器事件回调函数: 播放/暂停操作, 修改播放倍速和播放进度,
+     * 并且接收其他用户发送的同步视频播放状态.
      * @param {Player} player - Video.js播放器实例.
      */
     function handlePlayerReady(player) {
@@ -111,6 +112,10 @@ export default function VideoPlayer({sources, ws_url}) {
             });
         });
 
+        /**
+         * 从WebSocket服务器接收其他用户发送的同步视频播放状态.
+         * @param {MessageEvent} e - 信息事件.
+         */
         websocket.onmessage = (e) => {
             const msg = JSON.parse(e.data)['msg'];
 
@@ -145,18 +150,18 @@ export default function VideoPlayer({sources, ws_url}) {
         } else if (msg === 'pause') {
             console.log('客户端发送: 暂停');
         } else if (msg.playbackRate) {
-            console.log(`客户端发送: ${msg.playbackRate}x 倍速`);
+            console.log(`客户端发送: ${msg.playbackRate}x 倍速1234567890-234567890`);
         } else if (msg.newProgress) {
             console.log(`客户端发送: 更新进度到 ${msg.newProgress} 秒`);
         }
     }
 
     return (
-        <sourcesContext.Provider value={sources}>
-            <readyContext.Provider value={handlePlayerReady}>
+        <SourcesContext.Provider value={sources}>
+            <ReadyContext.Provider value={handlePlayerReady}>
                 <VideoJSWrapper/>
-            </readyContext.Provider>
-        </sourcesContext.Provider>
+            </ReadyContext.Provider>
+        </SourcesContext.Provider>
     );
 }
 
