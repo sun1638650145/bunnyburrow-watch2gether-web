@@ -150,7 +150,7 @@ export default function VideoPlayer({sources, ws_url}) {
         } else if (msg === 'pause') {
             console.log('客户端发送: 暂停');
         } else if (msg.playbackRate) {
-            console.log(`客户端发送: ${msg.playbackRate}x 倍速1234567890-234567890`);
+            console.log(`客户端发送: ${msg.playbackRate}x 倍速`);
         } else if (msg.newProgress) {
             console.log(`客户端发送: 更新进度到 ${msg.newProgress} 秒`);
         }
