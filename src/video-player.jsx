@@ -4,6 +4,8 @@ import videojs from 'video.js';
 
 import 'video.js/dist/video-js.css';
 
+import {sendMessage} from './websocket.jsx';
+
 // 传递播放器事件回调函数.
 const ReadyContext = createContext(() => {});
 // 传递流媒体视频源.
@@ -88,14 +90,14 @@ export default function VideoPlayer({sources, ws_url}) {
 
         // 初次加载视频时的大播放按钮.
         player.bigPlayButton.on(['click', 'touchend'], () => {
-            sendMessage(websocket, 'play');
+            sendMessage(websocket, 'play', 'command');
         });
         // 播放/暂停按钮.
         player.controlBar.playToggle.on(['click', 'touchend'], () => {
             if (player.paused()) {
-                sendMessage(websocket, 'pause');
+                sendMessage(websocket, 'pause', 'command');
             } else {
-                sendMessage(websocket, 'play');
+                sendMessage(websocket, 'play', 'command');
             }
         });
         // 倍速按钮.
@@ -103,13 +105,13 @@ export default function VideoPlayer({sources, ws_url}) {
         player.on('ratechange', () => {
             sendMessage(websocket, {
                 'playbackRate': player.playbackRate()
-            });
+            }, 'command');
         });
         // 进度条.
         player.controlBar.progressControl.seekBar.on('click', () => {
             sendMessage(websocket, {
                 'newProgress': player.currentTime()
-            });
+            }, 'command');
         });
 
         /**
@@ -117,43 +119,25 @@ export default function VideoPlayer({sources, ws_url}) {
          * @param {MessageEvent} e - 信息事件.
          */
         websocket.onmessage = (e) => {
-            const msg = JSON.parse(e.data)['msg'];
+            const data = JSON.parse(e.data)['data'];
+            const type = JSON.parse(e.data)['type'];
 
-            if (msg === 'play') {
-                player.play().then();
-                console.log('收到服务器: 开始');
-            } else if (msg === 'pause') {
-                player.pause();
-                console.log('收到服务器: 暂停');
-            } else if (msg.playbackRate) {
-                player.playbackRate(msg.playbackRate);
-                console.log(`收到服务器: ${msg.playbackRate}x 倍速`);
-            } else if (msg.newProgress) {
-                player.currentTime(msg.newProgress);
-                console.log(`收到服务器: 更新进度到 ${msg.newProgress} 秒`);
+            if (type === 'command') {
+                if (data === 'play') {
+                    player.play().then();
+                    console.log('收到服务器: 开始');
+                } else if (data === 'pause') {
+                    player.pause();
+                    console.log('收到服务器: 暂停');
+                } else if (data.playbackRate) {
+                    player.playbackRate(data.playbackRate);
+                    console.log(`收到服务器: ${data.playbackRate}x 倍速`);
+                } else if (data.newProgress) {
+                    player.currentTime(data.newProgress);
+                    console.log(`收到服务器: 更新进度到 ${data.newProgress.toFixed()} 秒`);
+                }
             }
         };
-    }
-
-    /**
-     * 发送信息给WebSocket服务器.
-     * @param {WebSocket} websocket - 一个websocket客户端链接.
-     * @param {String|Object} msg - 发送的信息: 播放/暂停操作, 修改播放倍速和播放进度.
-     */
-    function sendMessage(websocket, msg) {
-        websocket.send(JSON.stringify({
-            'msg': msg
-        }));
-
-        if (msg === 'play') {
-            console.log('客户端发送: 开始');
-        } else if (msg === 'pause') {
-            console.log('客户端发送: 暂停');
-        } else if (msg.playbackRate) {
-            console.log(`客户端发送: ${msg.playbackRate}x 倍速`);
-        } else if (msg.newProgress) {
-            console.log(`客户端发送: 更新进度到 ${msg.newProgress} 秒`);
-        }
     }
 
     return (
