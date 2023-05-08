@@ -4,8 +4,6 @@ import videojs from 'video.js';
 
 import 'video.js/dist/video-js.css';
 
-import {sendMessage} from './websocket.jsx';
-
 // 传递播放器事件回调函数.
 const ReadyContext = createContext(() => {});
 // 传递流媒体视频源.
@@ -63,7 +61,7 @@ function VideoJSWrapper() {
 /**
  * VideoPlayer组件, 播放流媒体视频, 同时创建WebSocket客户端连接和其他用户同步视频播放状态.
  * @param {Object} sources - 流媒体视频的URL和媒体类型(MIME types).
- * @param {String} ws_url - WebSocket服务器的URL.
+ * @param {WebSocketClient} websocket - WebSocket客户端.
  * @returns {JSX.Element}
  * @constructor
  * @example
@@ -72,12 +70,11 @@ function VideoJSWrapper() {
  *         src: 'https://example.com/video/video_name/',
  *         type: 'application/x-mpegURL'
  *     }}
- *     ws_url={'wss://example.com/ws/'}
+ *     ws_url={new WebSocketClient('wss://example.com/ws/')}
  * />
  */
-export default function VideoPlayer({sources, ws_url}) {
+export default function VideoPlayer({sources, websocket}) {
     const playerRef = useRef(null);
-    const websocketRef = useRef(null);
 
     /**
      * 当播放器初始化完成, 用于处理播放器事件回调函数: 播放/暂停操作, 修改播放倍速和播放进度,
@@ -86,58 +83,33 @@ export default function VideoPlayer({sources, ws_url}) {
      */
     function handlePlayerReady(player) {
         playerRef.current = player;
-        const websocket = websocketRef.current = new WebSocket(ws_url);
+        websocket.initPlayer(player); // 初始化Video.js播放器.
 
         // 初次加载视频时的大播放按钮.
         player.bigPlayButton.on(['click', 'touchend'], () => {
-            sendMessage(websocket, 'play', 'command');
+            websocket.sendMessage('play', 'command');
         });
         // 播放/暂停按钮.
         player.controlBar.playToggle.on(['click', 'touchend'], () => {
             if (player.paused()) {
-                sendMessage(websocket, 'pause', 'command');
+                websocket.sendMessage('pause', 'command');
             } else {
-                sendMessage(websocket, 'play', 'command');
+                websocket.sendMessage('play', 'command');
             }
         });
         // 倍速按钮.
         // TODO(Steve): 通过事件触发修改播放倍速会导致发送两次信息.
         player.on('ratechange', () => {
-            sendMessage(websocket, {
+            websocket.sendMessage({
                 'playbackRate': player.playbackRate()
             }, 'command');
         });
         // 进度条.
         player.controlBar.progressControl.seekBar.on('click', () => {
-            sendMessage(websocket, {
+            websocket.sendMessage({
                 'newProgress': player.currentTime()
             }, 'command');
         });
-
-        /**
-         * 从WebSocket服务器接收其他用户发送的同步视频播放状态.
-         * @param {MessageEvent} e - 信息事件.
-         */
-        websocket.onmessage = (e) => {
-            const data = JSON.parse(e.data)['data'];
-            const type = JSON.parse(e.data)['type'];
-
-            if (type === 'command') {
-                if (data === 'play') {
-                    player.play().then();
-                    console.log('收到服务器: 开始');
-                } else if (data === 'pause') {
-                    player.pause();
-                    console.log('收到服务器: 暂停');
-                } else if (data.playbackRate) {
-                    player.playbackRate(data.playbackRate);
-                    console.log(`收到服务器: ${data.playbackRate}x 倍速`);
-                } else if (data.newProgress) {
-                    player.currentTime(data.newProgress);
-                    console.log(`收到服务器: 更新进度到 ${data.newProgress.toFixed()} 秒`);
-                }
-            }
-        };
     }
 
     return (
@@ -151,5 +123,5 @@ export default function VideoPlayer({sources, ws_url}) {
 
 VideoPlayer.propTypes = {
     sources: PropTypes.object.isRequired,
-    ws_url: PropTypes.string.isRequired
+    websocket: PropTypes.object.isRequired
 };
