@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import React, {createContext, useContext, useEffect, useRef} from 'react';
 import videojs from 'video.js';
 
-import 'video.js/dist/video-js.css';
 import WebSocketClient from './websocket.js';
+
+import 'video.js/dist/video-js.css';
 
 // 传递播放器事件回调函数.
 const ReadyContext = createContext(() => {});

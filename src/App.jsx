@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ChatRoom from './chat-room.jsx';
 import VideoPlayer from './video-player.jsx';
 import WebSocketClient from './websocket.js';
 
@@ -11,6 +12,9 @@ export default function App() {
     const websocket = new WebSocketClient('ws://192.168.31.147:8000/ws/');
 
     return (
-        <VideoPlayer sources={sources} websocket={websocket}/>
+        <div>
+            <VideoPlayer sources={sources} websocket={websocket}/>
+            <ChatRoom websocket={websocket}/>
+        </div>
     );
 }
