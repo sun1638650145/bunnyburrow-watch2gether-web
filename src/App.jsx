@@ -1,7 +1,7 @@
 import React from 'react';
 
 import VideoPlayer from './video-player.jsx';
-import WebSocketClient from './websocket.jsx';
+import WebSocketClient from './websocket.js';
 
 export default function App() {
     const sources = {

@@ -3,6 +3,7 @@ import React, {createContext, useContext, useEffect, useRef} from 'react';
 import videojs from 'video.js';
 
 import 'video.js/dist/video-js.css';
+import WebSocketClient from './websocket.js';
 
 // 传递播放器事件回调函数.
 const ReadyContext = createContext(() => {});
@@ -41,7 +42,7 @@ function VideoJSWrapper() {
         }
     }, []);
 
-    // 卸载播放器.
+    // 卸载Video.js播放器.
     useEffect(() => {
         const player = playerRef.current;
 
@@ -59,7 +60,7 @@ function VideoJSWrapper() {
 }
 
 /**
- * VideoPlayer组件, 播放流媒体视频, 同时创建WebSocket客户端连接和其他用户同步视频播放状态.
+ * VideoPlayer组件, 播放流媒体视频, 与其他用户同步视频播放状态.
  * @param {Object} sources - 流媒体视频的URL和媒体类型(MIME types).
  * @param {WebSocketClient} websocket - WebSocket客户端.
  * @returns {JSX.Element}
@@ -70,20 +71,19 @@ function VideoJSWrapper() {
  *         src: 'https://example.com/video/video_name/',
  *         type: 'application/x-mpegURL'
  *     }}
- *     ws_url={new WebSocketClient('wss://example.com/ws/')}
+ *     websocket={new WebSocketClient('wss://example.com/ws/')}
  * />
  */
 export default function VideoPlayer({sources, websocket}) {
     const playerRef = useRef(null);
 
     /**
-     * 当播放器初始化完成, 用于处理播放器事件回调函数: 播放/暂停操作, 修改播放倍速和播放进度,
-     * 并且接收其他用户发送的同步视频播放状态.
+     * 当播放器初始化完成, 用于处理播放器事件回调函数: 播放/暂停操作, 修改播放倍速和播放进度.
      * @param {Player} player - Video.js播放器实例.
      */
     function handlePlayerReady(player) {
         playerRef.current = player;
-        websocket.initPlayer(player); // 初始化Video.js播放器.
+        websocket.initPlayer(player); // WebSocket客户端初始化Video.js播放器.
 
         // 初次加载视频时的大播放按钮.
         player.bigPlayButton.on(['click', 'touchend'], () => {
@@ -123,5 +123,5 @@ export default function VideoPlayer({sources, websocket}) {
 
 VideoPlayer.propTypes = {
     sources: PropTypes.object.isRequired,
-    websocket: PropTypes.object.isRequired
+    websocket: PropTypes.instanceOf(WebSocketClient).isRequired
 };

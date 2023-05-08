@@ -26,11 +26,11 @@ export default class WebSocketClient {
 
     /**
      * 处理WebSocket服务器的消息.
-     * @param {MessageEvent} e - WebSocket的onmessage事件对象.
+     * @param {MessageEvent} event - WebSocket的onmessage事件对象.
      */
-    onMessage(e) {
-        const data = JSON.parse(e.data)['data'];
-        const type = JSON.parse(e.data)['type'];
+    onMessage(event) {
+        const data = JSON.parse(event.data)['data'];
+        const type = JSON.parse(event.data)['type'];
 
         if (this.player && type === 'command') {
             if (data === 'play') {
