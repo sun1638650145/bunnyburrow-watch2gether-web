@@ -42,8 +42,8 @@ export default class WebSocketClient {
             }
         } else if (this.chatListHandler && type === 'chat') { // 判断聊天内容处理函数是否设置.
             // 显示聊天内容.
-            console.log(`收到服务器: '${data}'.`);
             this.chatListHandler(data);
+            console.log(`收到服务器: '${data}'.`);
         }
     }
 
