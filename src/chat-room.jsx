@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {useEffect, useState} from 'react';
+import {useImmer} from 'use-immer';
 
 import WebSocketClient from './websocket.js';
 
@@ -15,7 +16,7 @@ export default function ChatRoom({websocket}) {
     // 聊天输入框内容.
     const [chatContent, setChatContent] = useState('');
     // 聊天内容列表.
-    const [chatList, setChatList] = useState([]);
+    const [chatList, updateChatList] = useImmer([]);
 
     /**
      * 处理聊天表单的提交.
@@ -26,7 +27,9 @@ export default function ChatRoom({websocket}) {
 
         websocket.sendMessage(chatContent, 'chat');
         setChatContent('');
-        setChatList(chatList => [...chatList, chatContent]); // 同时在本侧显示.
+        updateChatList(draft => {
+            draft.push(chatContent); // 同时在本侧显示.
+        });
     }
 
     /**
@@ -40,7 +43,9 @@ export default function ChatRoom({websocket}) {
     // 将新消息添加到聊天内容列表chatList中.
     useEffect(() => {
         websocket.setChatListHandler(chatContent => {
-            setChatList(chatList => [...chatList, chatContent]);
+            updateChatList(draft => {
+                draft.push(chatContent);
+            });
         });
     }, [chatList]);
 
