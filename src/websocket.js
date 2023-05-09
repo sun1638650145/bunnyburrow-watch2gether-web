@@ -13,15 +13,8 @@ export default class WebSocketClient {
         this.websocket = new WebSocket(url);
         this.websocket.onmessage = this.onMessage.bind(this);
 
+        this.chatListHandler = null;
         this.player = null;
-    }
-
-    /**
-     * 初始化Video.js播放器.
-     * @param {Player} player - Video.js播放器实例.
-     */
-    initPlayer(player) {
-        this.player = player;
     }
 
     /**
@@ -32,7 +25,7 @@ export default class WebSocketClient {
         const data = JSON.parse(event.data)['data'];
         const type = JSON.parse(event.data)['type'];
 
-        if (this.player && type === 'command') { // 需要判断Video.js播放器是否初始化.
+        if (this.player && type === 'command') { // 判断Video.js播放器是否设置.
             // 处理控制命令.
             if (data === 'play') {
                 this.player.play().then();
@@ -47,9 +40,10 @@ export default class WebSocketClient {
                 this.player.currentTime(data.newProgress);
                 console.log(`收到服务器: 更新进度到 ${data.newProgress.toFixed()} 秒`);
             }
-        } else if (type === 'chat') {
+        } else if (this.chatListHandler && type === 'chat') { // 判断聊天内容处理函数是否设置.
             // 显示聊天内容.
             console.log(`收到服务器: '${data}'.`);
+            this.chatListHandler(data);
         }
     }
 
@@ -79,5 +73,21 @@ export default class WebSocketClient {
             // 发送聊天内容.
             console.log(`客户端发送: '${data}'.`);
         }
+    }
+
+    /**
+     * 设置更新聊天内容处理函数.
+     * @param {function} handler - 聊天内容处理函数.
+     */
+    setChatListHandler(handler) {
+        this.chatListHandler = handler;
+    }
+
+    /**
+     * 设置Video.js播放器.
+     * @param {Player} player - Video.js播放器实例.
+     */
+    setPlayer(player) {
+        this.player = player;
     }
 }

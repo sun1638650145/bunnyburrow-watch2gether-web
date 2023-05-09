@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import WebSocketClient from './websocket.js';
 
@@ -9,13 +9,13 @@ import WebSocketClient from './websocket.js';
  * @returns {JSX.Element}
  * @constructor
  * @example
- * <ChatRoom
- *     websocket={new WebSocketClient('wss://example.com/ws/')}
- * />
+ * <ChatRoom websocket={new WebSocketClient('wss://example.com/ws/')}/>
  */
 export default function ChatRoom({websocket}) {
     // 聊天输入框内容.
     const [chatContent, setChatContent] = useState('');
+    // 聊天内容列表.
+    const [chatList, setChatList] = useState([]);
 
     /**
      * 处理聊天表单的提交.
@@ -26,6 +26,7 @@ export default function ChatRoom({websocket}) {
 
         websocket.sendMessage(chatContent, 'chat');
         setChatContent('');
+        setChatList(chatList => [...chatList, chatContent]); // 同时在本侧显示.
     }
 
     /**
@@ -36,14 +37,28 @@ export default function ChatRoom({websocket}) {
         setChatContent(e.target.value);
     }
 
+    // 将新消息添加到聊天内容列表chatList中.
+    useEffect(() => {
+        websocket.setChatListHandler(chatContent => {
+            setChatList(chatList => [...chatList, chatContent]);
+        });
+    }, [chatList]);
+
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                value={chatContent}
-                onChange={handleChatContentChange}
-            />
-            <button>发送</button>
-        </form>
+        <div id='chat-room'>
+            <ul>
+                {chatList.map((chatContent, idx) =>
+                    <li key={idx}>{chatContent}</li>
+                )}
+            </ul>
+            <form onSubmit={handleSubmit}>
+                <input
+                    value={chatContent}
+                    onChange={handleChatContentChange}
+                />
+                <button>发送</button>
+            </form>
+        </div>
     );
 }
 
