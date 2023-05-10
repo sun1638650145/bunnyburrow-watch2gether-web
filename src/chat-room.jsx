@@ -13,38 +13,38 @@ import WebSocketClient from './websocket.js';
  * <ChatRoom websocket={new WebSocketClient('wss://example.com/ws/')}/>
  */
 export default function ChatRoom({websocket}) {
-    // 聊天输入框内容.
-    const [chatContent, setChatContent] = useState('');
     // 聊天内容列表.
     const [chatList, updateChatList] = useImmer([]);
+    // 聊天输入框内容.
+    const [inputContent, setInputContent] = useState('');
+
+    /**
+     * 处理聊天输入框值的变化.
+     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
+     */
+    function handleChatContentChange(e) {
+        setInputContent(e.target.value);
+    }
 
     /**
      * 处理聊天表单的提交.
-     * @param {Event} e - 表单提交事件.
+     * @param {FormEvent} e - 表单提交事件.
      */
     function handleSubmit(e) {
         e.preventDefault();
 
-        websocket.sendMessage(chatContent, 'chat');
-        setChatContent('');
+        websocket.sendMessage(inputContent, 'chat');
+        setInputContent('');
         updateChatList(draft => {
-            draft.push(chatContent); // 同时在本侧显示.
+            draft.push(inputContent); // 同时在本侧显示.
         });
-    }
-
-    /**
-     * 处理聊天输入框值的变化.
-     * @param {Event} e - 输入框变化事件.
-     */
-    function handleChatContentChange(e) {
-        setChatContent(e.target.value);
     }
 
     // 将新消息添加到聊天内容列表chatList中.
     useEffect(() => {
-        websocket.setChatListHandler(chatContent => {
+        websocket.setChatListHandler(inputContent => {
             updateChatList(draft => {
-                draft.push(chatContent);
+                draft.push(inputContent);
             });
         });
     }, [chatList]);
@@ -52,13 +52,13 @@ export default function ChatRoom({websocket}) {
     return (
         <div id='chat-room'>
             <ul>
-                {chatList.map((chatContent, idx) =>
-                    <li key={idx}>{chatContent}</li>
+                {chatList.map((inputContent, idx) =>
+                    <li key={idx}>{inputContent}</li>
                 )}
             </ul>
             <form onSubmit={handleSubmit}>
                 <input
-                    value={chatContent}
+                    value={inputContent}
                     onChange={handleChatContentChange}
                 />
                 <button>发送</button>
