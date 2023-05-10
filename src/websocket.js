@@ -43,7 +43,7 @@ export default class WebSocketClient {
         } else if (this.chatListHandler && type === 'chat') { // 判断聊天内容处理函数是否设置.
             // 显示聊天内容.
             this.chatListHandler(data);
-            console.log(`收到服务器: '${data}'.`);
+            console.log(`用户${data.username}: '${data.content}'.`);
         }
     }
 
@@ -71,7 +71,7 @@ export default class WebSocketClient {
             }
         } else if (type === 'chat') {
             // 发送聊天内容.
-            console.log(`客户端发送: '${data}'.`);
+            console.log(`用户${data.username}发送: '${data.content}'.`);
         }
     }
 
