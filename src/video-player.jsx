@@ -1,18 +1,11 @@
 import PropTypes from 'prop-types';
-import React, {createContext, useContext, useEffect, useRef} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import videojs from 'video.js';
 
+import {ReadyContext, SourcesContext} from './contexts.js';
 import WebSocketClient from './websocket.js';
 
 import 'video.js/dist/video-js.css';
-
-// 传递播放器事件回调函数.
-const ReadyContext = createContext(() => {});
-// 传递流媒体视频源.
-const SourcesContext = createContext({
-    src: '',
-    type: ''
-});
 
 /**
  * 封装VideoJS播放器.
