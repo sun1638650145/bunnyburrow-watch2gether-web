@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useImmer} from 'use-immer';
 
+import {UserContext} from './contexts.js';
 import WebSocketClient from './websocket.js';
 
 /**
@@ -20,9 +21,8 @@ export default function ChatRoom({websocket}) {
         username: '',
         content: ''
     });
-    // 昵称和判断是否有昵称.
-    const [userName, setUserName] = useState('');
-    const [hasUserName, setHasUserName] = useState(false);
+    // 用户信息.
+    const user = useContext(UserContext);
 
     /**
      * 处理聊天输入框值的变化.
@@ -30,7 +30,7 @@ export default function ChatRoom({websocket}) {
      */
     function handleChatContentChange(e) {
         setInputContent({
-            username: userName,
+            username: user.name,
             content: e.target.value
         });
     }
@@ -59,36 +59,21 @@ export default function ChatRoom({websocket}) {
     }, [chatList]);
 
     return (
-        <div id='chat-room'>
-            {hasUserName ? (
-                <div>
-                    <ul>
-                        {chatList.map((inputContent, idx) =>
-                            <li key={idx}>
-                                {inputContent.username}: {inputContent.content}
-                            </li>
-                        )}
-                    </ul>
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            value={inputContent.content}
-                            onChange={handleChatContentChange}
-                        />
-                        <button>发送</button>
-                    </form>
-                </div>
-            ): (
-                <div>
-                    <input
-                        value={userName}
-                        onChange={e => {
-                            setUserName(e.target.value);
-                        }}
-                        placeholder='请输入昵称'
-                    />
-                    <button onClick={() => setHasUserName(true)}>保存</button>
-                </div>
-            )}
+        <div className='chat-room'>
+            <ul>
+                {chatList.map((inputContent, idx) =>
+                    <li key={idx}>
+                        {inputContent.username}: {inputContent.content}
+                    </li>
+                )}
+            </ul>
+            <form onSubmit={handleSubmit}>
+                <input
+                    value={inputContent.content}
+                    onChange={handleChatContentChange}
+                />
+                <button>发送</button>
+            </form>
         </div>
     );
 }

@@ -7,3 +7,7 @@ export const SourcesContext = createContext({
     src: '',
     type: ''
 });
+// 传递登录的用户信息.
+export const UserContext = createContext({
+    name: ''
+});
