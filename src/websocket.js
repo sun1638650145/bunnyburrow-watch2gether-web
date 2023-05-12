@@ -27,18 +27,21 @@ export default class WebSocketClient {
 
         if (this.player && type === 'command') { // 判断Video.js播放器是否设置.
             // 处理控制命令.
-            if (data === 'play') {
+            if (data.command === 'play') {
                 this.player.play().then();
-                console.log('收到服务器: 开始');
-            } else if (data === 'pause') {
+                console.log(`%c收到用户${data.user.name}: 开始`, 'color: red');
+            } else if (data.command === 'pause') {
                 this.player.pause();
-                console.log('收到服务器: 暂停');
-            } else if (data.playbackRate) {
-                this.player.playbackRate(data.playbackRate);
-                console.log(`收到服务器: ${data.playbackRate}x 倍速`);
-            } else if (data.newProgress) {
-                this.player.currentTime(data.newProgress);
-                console.log(`收到服务器: 更新进度到 ${data.newProgress.toFixed()} 秒`);
+                console.log(`%c收到用户${data.user.name}: 暂停`, 'color: red');
+            } else if (data.command.playbackRate) {
+                this.player.playbackRate(data.command.playbackRate);
+                console.log(`%c收到用户${data.user.name}: ` +
+                    `${data.command.playbackRate}x 倍速`, 'color: red');
+            } else if (data.command.newProgress) {
+                this.player.currentTime(data.command.newProgress);
+                console.log(`%c收到用户${data.user.name}: ` +
+                    `更新进度到 ${data.command.newProgress.toFixed()} 秒`,
+                'color: red');
             }
         } else if (this.chatListHandler && type === 'chat') { // 判断聊天内容处理函数是否设置.
             // 显示聊天内容.
@@ -49,7 +52,7 @@ export default class WebSocketClient {
 
     /**
      * 向WebSocket服务器发送消息.
-     * @param {string|Object} data - 发送的数据.
+     * @param {Object} data - 发送的数据.
      * @param {string} type - 数据类型.
      */
     sendMessage(data, type) {
@@ -60,14 +63,17 @@ export default class WebSocketClient {
 
         if (type === 'command') {
             // 发送控制命令: 播放/暂停操作, 修改播放倍速和播放进度.
-            if (data === 'play') {
-                console.log('客户端发送: 开始');
-            } else if (data === 'pause') {
-                console.log('客户端发送: 暂停');
-            } else if (data.playbackRate) {
-                console.log(`客户端发送: ${data.playbackRate}x 倍速`);
-            } else if (data.newProgress) {
-                console.log(`客户端发送: 更新进度到 ${data.newProgress.toFixed()} 秒`);
+            if (data.command === 'play') {
+                console.log(`%c用户${data.user.name}发送: 开始`, 'color: red');
+            } else if (data.command === 'pause') {
+                console.log(`%c用户${data.user.name}发送: 暂停`, 'color: red');
+            } else if (data.command.playbackRate) {
+                console.log(`%c用户${data.user.name}发送: ` +
+                    `${data.command.playbackRate}x 倍速`, 'color: red');
+            } else if (data.command.newProgress) {
+                console.log(`%c用户${data.user.name}发送: ` +
+                    `更新进度到 ${data.command.newProgress.toFixed()} 秒`,
+                'color: red');
             }
         } else if (type === 'chat') {
             // 发送聊天内容.

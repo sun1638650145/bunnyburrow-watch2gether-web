@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {useContext, useEffect, useRef} from 'react';
 import videojs from 'video.js';
 
-import {ReadyContext, SourcesContext} from '../contexts.js';
+import {ReadyContext, SourcesContext, UserContext} from '../contexts.js';
 import WebSocketClient from '../websocket.js';
 
 import 'video.js/dist/video-js.css';
@@ -70,6 +70,8 @@ function VideoJSWrapper() {
  */
 export default function VideoPlayer({sources, websocket}) {
     const playerRef = useRef(null);
+    // 用户信息.
+    const user = useContext(UserContext);
 
     /**
      * 当播放器初始化完成, 用于处理播放器事件回调函数: 播放/暂停操作, 修改播放倍速和播放进度.
@@ -81,27 +83,42 @@ export default function VideoPlayer({sources, websocket}) {
 
         // 初次加载视频时的大播放按钮.
         player.bigPlayButton.on(['click', 'touchend'], () => {
-            websocket.sendMessage('play', 'command');
+            websocket.sendMessage({
+                user: user,
+                command: 'play'
+            }, 'command');
         });
         // 播放/暂停按钮.
         player.controlBar.playToggle.on(['click', 'touchend'], () => {
             if (player.paused()) {
-                websocket.sendMessage('pause', 'command');
+                websocket.sendMessage({
+                    user: user,
+                    command: 'pause'
+                }, 'command');
             } else {
-                websocket.sendMessage('play', 'command');
+                websocket.sendMessage({
+                    user: user,
+                    command: 'play'
+                }, 'command');
             }
         });
         // 倍速按钮.
         // TODO(Steve): 通过事件触发修改播放倍速会导致发送两次信息.
         player.on('ratechange', () => {
             websocket.sendMessage({
-                'playbackRate': player.playbackRate()
+                user: user,
+                command: {
+                    playbackRate: player.playbackRate()
+                }
             }, 'command');
         });
         // 进度条.
         player.controlBar.progressControl.seekBar.on('click', () => {
             websocket.sendMessage({
-                'newProgress': player.currentTime()
+                user: user,
+                command: {
+                    newProgress: player.currentTime()
+                }
             }, 'command');
         });
     }
