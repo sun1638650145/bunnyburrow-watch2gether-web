@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {useImmer} from 'use-immer';
 
 import {UserContext} from '../contexts.js';
@@ -17,21 +17,19 @@ export default function ChatRoom({websocket}) {
     // 聊天内容列表.
     const [chatList, updateChatList] = useImmer([]);
     // 聊天输入框内容.
-    const [inputContent, setInputContent] = useState({
-        username: '',
+    const user = useContext(UserContext);
+    const [inputContent, updateInputContent] = useImmer({
+        user: user, // 直接传入用户信息.
         content: ''
     });
-    // 用户信息.
-    const user = useContext(UserContext);
 
     /**
      * 处理聊天输入框值的变化.
      * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
      */
     function handleChatContentChange(e) {
-        setInputContent({
-            username: user.name,
-            content: e.target.value
+        updateInputContent(draft => {
+            draft.content = e.target.value;
         });
     }
 
@@ -43,7 +41,9 @@ export default function ChatRoom({websocket}) {
         e.preventDefault();
 
         websocket.sendMessage(inputContent, 'chat');
-        setInputContent({username: '', content: ''});
+        updateInputContent(draft => {
+            draft.content = '';
+        });
         updateChatList(draft => {
             draft.push(inputContent); // 同时在本侧显示.
         });
@@ -63,7 +63,7 @@ export default function ChatRoom({websocket}) {
             <ul>
                 {chatList.map((inputContent, idx) =>
                     <li key={idx}>
-                        {inputContent.username}: {inputContent.content}
+                        {inputContent.user.name}: {inputContent.content}
                     </li>
                 )}
             </ul>
