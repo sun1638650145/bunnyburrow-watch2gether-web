@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
 // 使用的相关组件.
-import ChatRoom from './chat-room.jsx';
-import LoginPage from './login-page.jsx';
-import VideoPlayer from './video-player.jsx';
+import ChatRoom from './components/chat-room.jsx';
+import LoginPage from './components/login-page.jsx';
+import VideoPlayer from './components/video-player.jsx';
 
 import {UserContext} from './contexts.js';
 import WebSocketClient from './websocket.js';

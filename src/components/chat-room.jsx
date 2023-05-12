@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React, {useContext, useEffect, useState} from 'react';
 import {useImmer} from 'use-immer';
 
-import {UserContext} from './contexts.js';
-import WebSocketClient from './websocket.js';
+import {UserContext} from '../contexts.js';
+import WebSocketClient from '../websocket.js';
 
 /**
  * ChatRoom组件, 显示, 发送和接收用户聊天内容.
