@@ -60,13 +60,13 @@ export default function ChatRoom({websocket}) {
 
     return (
         <div className='chat-room'>
-            <ul>
+            <ol>
                 {chatList.map((inputContent, idx) =>
                     <li key={idx}>
                         {inputContent.user.name}: {inputContent.content}
                     </li>
                 )}
-            </ul>
+            </ol>
             <form onSubmit={handleSubmit}>
                 <input
                     value={inputContent.content}
