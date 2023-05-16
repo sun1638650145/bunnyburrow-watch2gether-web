@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import '../styles/login-page.css';
+
 /**
  * LoginPage组件, 用于渲染登录页面.
  * @param {Object} user - 登录用户信息.
