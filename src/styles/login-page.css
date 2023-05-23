@@ -1,4 +1,47 @@
+/* 处理基本元素样式. */
 html {
     /* 背景颜色. */
     background-color: #1A1D29;
+}
+
+/* 处理login-input表单输入元素. */
+.login-input {
+    /* 背景颜色. */
+    background-color: rgba(249, 249, 249, 0.1);
+    /* 外边框. */
+    border: none;
+    /* 文本颜色值. */
+    color: #F9F9F9;
+    /* 字体速记属性: 字体大小 字体(无衬线) */
+    font: 15px Helvetica, sans-serif;
+    /* 外边框圆角. */
+    border-radius: 5px;
+    /* 元素高度. */
+    height: 50px;
+    /* 外边距. */
+    margin: 10px;
+    /* 元素宽度. */
+    width: 350px;
+}
+
+/* 处理login-button按钮元素. */
+.login-button {
+    /* 背景颜色. */
+    background-color: #0682F0;
+    /* 外边框. */
+    border: none;
+    /* 外边框圆角. */
+    border-radius: 5px;
+    /* 文本颜色值. */
+    color: #F9F9F9;
+    /* 字体速记属性: 字体粗细 字体大小 字体(无衬线) */
+    font: bold 18px Helvetica, sans-serif;
+    /* 元素高度. */
+    height: 50px;
+    /* 文本字符间距. */
+    letter-spacing: 5px;
+    /* 外边距. */
+    margin: 10px;
+    /* 元素宽度. */
+    width: 350px;
 }

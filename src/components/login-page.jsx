@@ -21,11 +21,15 @@ export default function LoginPage({user, onUserChange, onIsLoggedInClick}) {
     return (
         <div className='login'>
             <input
+                className='login-input'
                 value={user.name}
                 onChange={onUserChange}
                 placeholder='请输入昵称'
             />
-            <button onClick={onIsLoggedInClick}>加入</button>
+            <button
+                className='login-button'
+                onClick={onIsLoggedInClick}
+            >加入</button>
         </div>
     );
 }
