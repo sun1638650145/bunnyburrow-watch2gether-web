@@ -24,6 +24,14 @@ html {
     width: 350px;
 }
 
+/* 处理login-input表单输入元素获得焦点时的效果. */
+.login-input:focus {
+    /* 外边框速记属性: 边框宽度 边框样式 边框颜色 */
+    border: 1px solid #F9F9F933;
+    /* 轮廓. */
+    outline: none;
+}
+
 /* 处理login-button按钮元素. */
 .login-button {
     /* 背景颜色. */
@@ -44,4 +52,10 @@ html {
     margin: 10px;
     /* 元素宽度. */
     width: 350px;
+}
+
+/* 处理用户悬停login-button按钮时的效果. */
+.login-button:hover {
+    /* 滤镜: 110%亮度. */
+    filter: brightness(110%);
 }
