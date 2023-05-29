@@ -4,6 +4,16 @@ html {
     background-color: #1A1D29;
 }
 
+/* 处理标题元素样式. */
+h1 {
+    /* 文本颜色值. */
+    color: #F9F9F9;
+    /* 字体速记属性: 字体粗细 字体大小 字体(无衬线) */
+    font: bolder 24px Helvetica, sans-serif;
+    /* 外边距. */
+    margin: 10px;
+}
+
 /* 处理login-input表单输入元素. */
 .login-input {
     /* 背景颜色. */
@@ -28,6 +38,14 @@ html {
 .login-input:focus {
     /* 外边框速记属性: 边框宽度 边框样式 边框颜色 */
     border: 1px solid #F9F9F933;
+    /* 轮廓. */
+    outline: none;
+}
+
+/* 处理login-input表单输入错误时的效果. */
+.login-input.error {
+    /* 外边框速记属性: 边框宽度 边框样式 边框颜色 */
+    border: 1px solid #FF554C;
     /* 轮廓. */
     outline: none;
 }
@@ -58,4 +76,14 @@ html {
 .login-button:hover {
     /* 滤镜: 110%亮度. */
     filter: brightness(110%);
+}
+
+/* 处理登录错误信息. */
+.login-error-message {
+    /* 文本颜色值. */
+    color: #FF554C;
+    /* 字体速记属性: 字体大小 字体(无衬线) */
+    font: 12px Helvetica, sans-serif;
+    /* 左外边距. */
+    margin-left: 10px;
 }

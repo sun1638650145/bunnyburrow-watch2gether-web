@@ -36,12 +36,12 @@ export default function LoginPage({user, onUserChange, onIsLoggedInClick}) {
         <div className='login'>
             <h1>加入一起看电影</h1>
             <input
-                className='login-input'
+                className={`login-input ${loginError? 'error': ''}`}
                 value={user.name}
                 onChange={onUserChange}
                 placeholder='请输入昵称'
             />
-            {loginError && <div>
+            {loginError && <div className='login-error-message'>
                 昵称不能为空, 请输入昵称并重试.
             </div>}
             <button
