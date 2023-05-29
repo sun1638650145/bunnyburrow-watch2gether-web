@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {useState} from 'react';
 
 import '../styles/login-page.css';
 
@@ -18,18 +18,38 @@ import '../styles/login-page.css';
  * />
  */
 export default function LoginPage({user, onUserChange, onIsLoggedInClick}) {
+    // 登录错误.
+    const [loginError, setLoginError] = useState(false);
+
+    /**
+     * 处理登录事件, 判断用户信息是否合法.
+     */
+    function handleClick() {
+        if (user.name.trim() === '') {
+            setLoginError(true);
+        } else {
+            onIsLoggedInClick();
+        }
+    }
+
     return (
         <div className='login'>
+            <h1>加入一起看电影</h1>
             <input
                 className='login-input'
                 value={user.name}
                 onChange={onUserChange}
                 placeholder='请输入昵称'
             />
+            {loginError && <div>
+                昵称不能为空, 请输入昵称并重试.
+            </div>}
             <button
                 className='login-button'
-                onClick={onIsLoggedInClick}
-            >加入</button>
+                onClick={handleClick}
+            >
+                加入
+            </button>
         </div>
     );
 }
