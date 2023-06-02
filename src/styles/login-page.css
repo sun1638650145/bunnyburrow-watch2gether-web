@@ -18,25 +18,25 @@ h1 {
 .login-input {
     /* 背景颜色. */
     background-color: rgba(249, 249, 249, 0.1);
-    /* 外边框. */
+    /* 边框. */
     border: none;
     /* 文本颜色值. */
     color: #F9F9F9;
     /* 字体速记属性: 字体大小 字体(无衬线) */
     font: 15px Helvetica, sans-serif;
-    /* 外边框圆角. */
+    /* 边框圆角. */
     border-radius: 5px;
-    /* 元素高度. */
+    /* 内容高度. */
     height: 50px;
     /* 外边距. */
     margin: 10px;
-    /* 元素宽度. */
+    /* 内容宽度. */
     width: 350px;
 }
 
 /* 处理login-input表单输入元素获得焦点时的效果. */
 .login-input:focus {
-    /* 外边框速记属性: 边框宽度 边框样式 边框颜色 */
+    /* 边框速记属性: 边框宽度 边框样式 边框颜色 */
     border: 1px solid #F9F9F933;
     /* 轮廓. */
     outline: none;
@@ -44,38 +44,10 @@ h1 {
 
 /* 处理login-input表单输入错误时的效果. */
 .login-input.error {
-    /* 外边框速记属性: 边框宽度 边框样式 边框颜色 */
+    /* 边框速记属性: 边框宽度 边框样式 边框颜色 */
     border: 1px solid #FF554C;
     /* 轮廓. */
     outline: none;
-}
-
-/* 处理login-button按钮元素. */
-.login-button {
-    /* 背景颜色. */
-    background-color: #0682F0;
-    /* 外边框. */
-    border: none;
-    /* 外边框圆角. */
-    border-radius: 5px;
-    /* 文本颜色值. */
-    color: #F9F9F9;
-    /* 字体速记属性: 字体粗细 字体大小 字体(无衬线) */
-    font: bold 18px Helvetica, sans-serif;
-    /* 元素高度. */
-    height: 50px;
-    /* 文本字符间距. */
-    letter-spacing: 5px;
-    /* 外边距. */
-    margin: 10px;
-    /* 元素宽度. */
-    width: 350px;
-}
-
-/* 处理用户悬停login-button按钮时的效果. */
-.login-button:hover {
-    /* 滤镜: 110%亮度. */
-    filter: brightness(110%);
 }
 
 /* 处理登录错误信息. */
@@ -86,4 +58,32 @@ h1 {
     font: 12px Helvetica, sans-serif;
     /* 左外边距. */
     margin-left: 10px;
+}
+
+/* 处理login-button按钮元素. */
+.login-button {
+    /* 背景颜色. */
+    background-color: #0682F0;
+    /* 边框. */
+    border: none;
+    /* 边框圆角. */
+    border-radius: 5px;
+    /* 文本颜色值. */
+    color: #F9F9F9;
+    /* 字体速记属性: 字体粗细 字体大小 字体(无衬线) */
+    font: bold 18px Helvetica, sans-serif;
+    /* 内容高度. */
+    height: 50px;
+    /* 文本字符间距. */
+    letter-spacing: 5px;
+    /* 外边距. */
+    margin: 10px;
+    /* 内容宽度. */
+    width: 350px;
+}
+
+/* 处理用户悬停login-button按钮时的效果. */
+.login-button:hover {
+    /* 滤镜: 110%亮度. */
+    filter: brightness(110%);
 }
