@@ -14,6 +14,14 @@ h1 {
     margin: 10px;
 }
 
+/* 处理login元素. */
+.login {
+    /* 网格布局. */
+    display: grid;
+    /* 居中排列. */
+    justify-content: center;
+}
+
 /* 处理login-input表单输入元素. */
 .login-input {
     /* 背景颜色. */
