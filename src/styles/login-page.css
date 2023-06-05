@@ -1,97 +1,87 @@
-/* 处理基本元素样式. */
+/* 处理基本元素样式, 使背景颜色为#1A1D29. */
 html {
-    /* 背景颜色. */
     background-color: #1A1D29;
 }
 
-/* 处理标题元素样式. */
+/*
+ 使一级标题文本颜色值为#F9F9F9;
+ 使用border, 24px, Helvetica(无衬线)的字体; 外边距为10px.
+ */
 h1 {
-    /* 文本颜色值. */
     color: #F9F9F9;
-    /* 字体速记属性: 字体粗细 字体大小 字体(无衬线) */
     font: bolder 24px Helvetica, sans-serif;
-    /* 外边距. */
     margin: 10px;
 }
 
-/* 处理login元素. */
+/* login类使用网格布局并居中排列. */
 .login {
-    /* 网格布局. */
     display: grid;
-    /* 居中排列. */
     justify-content: center;
 }
 
-/* 处理login-input表单输入元素. */
+/*
+ login-input表单背景颜色为rgba(249, 249, 249, 0.1);
+ 无样式5px圆角边框; 文本颜色值为#F9F9F9;
+ 使用15px, Helvetica(无衬线)的字体;
+ 内容高宽分别是50px, 350px; 外边距为10px.
+ */
 .login-input {
-    /* 背景颜色. */
     background-color: rgba(249, 249, 249, 0.1);
-    /* 边框. */
     border: none;
-    /* 文本颜色值. */
-    color: #F9F9F9;
-    /* 字体速记属性: 字体大小 字体(无衬线) */
-    font: 15px Helvetica, sans-serif;
-    /* 边框圆角. */
     border-radius: 5px;
-    /* 内容高度. */
+    color: #F9F9F9;
+    font: 15px Helvetica, sans-serif;
     height: 50px;
-    /* 外边距. */
     margin: 10px;
-    /* 内容宽度. */
     width: 350px;
 }
 
-/* 处理login-input表单输入元素获得焦点时的效果. */
+/*
+ login-input表单获得焦点时:
+ 一个宽度为1px, 实线的, 颜色为#F9F9F933的边框; 没有轮廓.
+ */
 .login-input:focus {
-    /* 边框速记属性: 边框宽度 边框样式 边框颜色 */
     border: 1px solid #F9F9F933;
-    /* 轮廓. */
     outline: none;
 }
 
-/* 处理login-input表单输入错误时的效果. */
+/*
+ login-input表单输入错误时:
+ 一个宽度为1px, 实线的, 颜色为#FF554C的边框; 没有轮廓.
+ */
 .login-input.error {
-    /* 边框速记属性: 边框宽度 边框样式 边框颜色 */
     border: 1px solid #FF554C;
-    /* 轮廓. */
     outline: none;
 }
 
-/* 处理登录错误信息. */
+/*
+ 登录错误信息文本颜色值为#F9F9F9;
+ 使用12px, Helvetica(无衬线)的字体; 左外边距为10px.
+ */
 .login-error-message {
-    /* 文本颜色值. */
     color: #FF554C;
-    /* 字体速记属性: 字体大小 字体(无衬线) */
     font: 12px Helvetica, sans-serif;
-    /* 左外边距. */
     margin-left: 10px;
 }
 
-/* 处理login-button按钮元素. */
+/*
+ login-button按钮背景颜色为#0682F0; 无样式5px圆角边框;
+ 文本颜色值为#F9F9F9; 使用bold, 18px, Helvetica(无衬线)的字体;
+ 内容高宽分别是50px, 350px; 文本字符间距为5px; 外边距为10px.
+ */
 .login-button {
-    /* 背景颜色. */
     background-color: #0682F0;
-    /* 边框. */
     border: none;
-    /* 边框圆角. */
     border-radius: 5px;
-    /* 文本颜色值. */
     color: #F9F9F9;
-    /* 字体速记属性: 字体粗细 字体大小 字体(无衬线) */
     font: bold 18px Helvetica, sans-serif;
-    /* 内容高度. */
     height: 50px;
-    /* 文本字符间距. */
     letter-spacing: 5px;
-    /* 外边距. */
     margin: 10px;
-    /* 内容宽度. */
     width: 350px;
 }
 
-/* 处理用户悬停login-button按钮时的效果. */
+/* 用户悬停login-button按钮时: 使用110%亮度的滤镜. */
 .login-button:hover {
-    /* 滤镜: 110%亮度. */
     filter: brightness(110%);
 }
