@@ -5,6 +5,8 @@ import {useImmer} from 'use-immer';
 import {UserContext} from '../contexts.js';
 import WebSocketClient from '../websocket.js';
 
+import '../styles/chat-room.css';
+
 /**
  * ChatRoom组件, 显示, 发送和接收用户聊天内容.
  * @param {WebSocketClient} websocket - WebSocket客户端.
@@ -67,12 +69,16 @@ export default function ChatRoom({websocket}) {
                     </li>
                 )}
             </ol>
-            <form onSubmit={handleSubmit}>
+            <form
+                className='chat-form'
+                onSubmit={handleSubmit}
+            >
                 <input
+                    className='chat-input'
                     value={inputContent.content}
                     onChange={handleChatContentChange}
                 />
-                <button>发送</button>
+                <button className='send-button'>发送</button>
             </form>
         </div>
     );

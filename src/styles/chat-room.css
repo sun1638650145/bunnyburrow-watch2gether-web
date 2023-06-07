@@ -1,0 +1,63 @@
+/* 处理基本元素样式. */
+html {
+    /* 文本颜色值. */
+    color: #F9F9F9;
+}
+
+/* 处理chat-form表单元素. */
+.chat-form {
+    /* 弹性布局. */
+    display: flex;
+    /* 沿容器的右侧放置. */
+    float: right;
+    /* 外边距. */
+    margin: 0 5px 25px 0;
+}
+
+/* 处理chat-input表单输入元素. */
+.chat-input {
+    /* 背景颜色. */
+    background-color: rgba(249, 249, 249, 0.1);
+    /* 边框. */
+    border: none;
+    /* 边框圆角. */
+    border-radius: 4px;
+    /* 文本颜色值. */
+    color: #F9F9F9;
+    /* 字体速记属性: 字体大小 字体(无衬线) */
+    font: 15px Helvetica, sans-serif;
+    /* 内容高度. */
+    height: 35px;
+    /* 右外边距. */
+    margin-right: 5px;
+    /* 轮廓. */
+    outline: none;
+    /* 内边距. */
+    padding: 1px;
+    /* 内容宽度. */
+    width: 400px;
+}
+
+/* 处理send-button按钮元素. */
+.send-button {
+    /* 背景颜色. */
+    background-color: #0682F0;
+    /* 边框. */
+    border: none;
+    /* 边框圆角. */
+    border-radius: 4px;
+    /* 文本颜色值. */
+    color: #F9F9F9;
+    /* 字体速记属性: 字体粗细 字体大小 字体(无衬线) */
+    font: bold 15px Helvetica, sans-serif;
+    /* 内容高度. */
+    height: 35px;
+    /* 文本字符间距. */
+    letter-spacing: 5px;
+    /* 内边距. */
+    padding: 1px;
+    /* 左外边距. */
+    margin-left: 5px;
+    /* 内容宽度. */
+    width: 100px;
+}
