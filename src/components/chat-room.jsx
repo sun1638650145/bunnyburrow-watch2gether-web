@@ -62,9 +62,15 @@ export default function ChatRoom({websocket}) {
 
     return (
         <div className='chat-room'>
-            <ol>
+            <ol className='message-list'>
                 {chatList.map((inputContent, idx) =>
-                    <li key={idx}>
+                    <li
+                        key={idx}
+                        className={
+                            inputContent.user.name === user.name ?
+                                'my-message' : 'other-message'
+                        }
+                    >
                         {inputContent.user.name}: {inputContent.content}
                     </li>
                 )}

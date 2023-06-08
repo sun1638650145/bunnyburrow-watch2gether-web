@@ -1,7 +1,31 @@
 /* 处理基本元素样式. */
 html {
     /* 文本颜色值. */
-    color: #F9F9F9;
+    color: #E5E7EB;
+}
+
+/* 处理整个message-list消息列表. */
+.message-list {
+    /* 列表元素的marker. */
+    list-style-type: none;
+    /* 字体速记属性: 字体大小 字体(无衬线) */
+    font: 16px Helvetica, sans-serif;
+    /* 内边距. */
+    padding: 1px;
+}
+
+/* 处理当前用户发送的消息my-message. */
+.my-message {
+    /* 弹性布局. */
+    display: flex;
+    /* 沿容器的右侧放置. */
+    justify-content: right;
+}
+
+/* 处理其他用户发送的消息other-message. */
+.other-message {
+    /* 弹性布局. */
+    display: flex;
 }
 
 /* 处理chat-form表单元素. */
@@ -9,7 +33,7 @@ html {
     /* 弹性布局. */
     display: flex;
     /* 沿容器的右侧放置. */
-    float: right;
+    justify-content: right;
     /* 外边距. */
     margin: 0 5px 25px 0;
 }
@@ -21,9 +45,9 @@ html {
     /* 边框. */
     border: none;
     /* 边框圆角. */
-    border-radius: 4px;
+    border-radius: 8px;
     /* 文本颜色值. */
-    color: #F9F9F9;
+    color: #E5E7EB;
     /* 字体速记属性: 字体大小 字体(无衬线) */
     font: 15px Helvetica, sans-serif;
     /* 内容高度. */
@@ -34,6 +58,8 @@ html {
     outline: none;
     /* 内边距. */
     padding: 1px;
+    /* 首行文本缩进量. */
+    text-indent: 5px;
     /* 内容宽度. */
     width: 400px;
 }
@@ -41,13 +67,15 @@ html {
 /* 处理send-button按钮元素. */
 .send-button {
     /* 背景颜色. */
-    background-color: #0682F0;
+    background-color: rgba(0, 0, 0, 0);
+    /* 背景图像. */
+    background-image: linear-gradient(93.87deg, #095AE6, #062794);
     /* 边框. */
     border: none;
     /* 边框圆角. */
-    border-radius: 4px;
+    border-radius: 8px;
     /* 文本颜色值. */
-    color: #F9F9F9;
+    color: #E5E7EB;
     /* 字体速记属性: 字体粗细 字体大小 字体(无衬线) */
     font: bold 15px Helvetica, sans-serif;
     /* 内容高度. */

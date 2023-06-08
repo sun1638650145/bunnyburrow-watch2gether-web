@@ -23,7 +23,7 @@ h1 {
  login-input表单背景颜色为rgba(249, 249, 249, 0.1);
  无样式5px圆角边框; 文本颜色值为#F9F9F9;
  使用15px, Helvetica(无衬线)的字体;
- 内容高宽分别是50px, 350px; 外边距为10px.
+ 内容高宽分别是50px, 350px; 外边距为10px, 首行文本缩进为5px.
  */
 .login-input {
     background-color: rgba(249, 249, 249, 0.1);
@@ -33,6 +33,7 @@ h1 {
     font: 15px Helvetica, sans-serif;
     height: 50px;
     margin: 10px;
+    text-indent: 5px;
     width: 350px;
 }
 
