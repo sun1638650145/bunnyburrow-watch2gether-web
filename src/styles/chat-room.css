@@ -20,12 +20,44 @@ html {
     display: flex;
     /* 沿容器的右侧放置. */
     justify-content: right;
+    /* 外边距. */
+    margin: 0 3px 8px 0;
+}
+
+/* 处理当前用户发送的消息my-message的内容. */
+.my-message > .content {
+    /* 背景颜色. */
+    background-color: #29B560;
+    /* 边框圆角. */
+    border-radius: 8px;
+    /* 文本颜色值. */
+    color: black;
+    /* 内容最大宽度值. */
+    max-width: 60%; /* 超过最大宽度即自动换行. */
+    /* 内边距. */
+    padding: 8px;
 }
 
 /* 处理其他用户发送的消息other-message. */
 .other-message {
     /* 弹性布局. */
     display: flex;
+    /* 外边距. */
+    margin: 8px 0 0 3px;
+}
+
+/* 处理其他用户发送的消息other-message的内容. */
+.other-message > .content {
+    /* 背景颜色. */
+    background-color: #2C2C2C;
+    /* 边框圆角. */
+    border-radius: 8px;
+    /* 文本颜色值. */
+    color: #E5E7EB;
+    /* 内容最大宽度值. */
+    max-width: 60%; /* 超过最大宽度即自动换行. */
+    /* 内边距. */
+    padding: 8px;
 }
 
 /* 处理chat-form表单元素. */

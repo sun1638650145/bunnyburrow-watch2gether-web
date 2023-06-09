@@ -71,7 +71,9 @@ export default function ChatRoom({websocket}) {
                                 'my-message' : 'other-message'
                         }
                     >
-                        {inputContent.user.name}: {inputContent.content}
+                        <div className='content'>
+                            {inputContent.user.name}: {inputContent.content}
+                        </div>
                     </li>
                 )}
             </ol>
