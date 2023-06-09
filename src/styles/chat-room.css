@@ -38,6 +38,20 @@ html {
     padding: 8px;
 }
 
+/* 在当前用户发送的消息my-message上生成箭头. */
+.my-message::after {
+    /* 边框. */
+    border: 5px solid transparent; /* 颜色设置为完全透明. */
+    /* 左边框颜色. */
+    border-left-color: #29B560;
+    /* ::after伪元素中内容. */
+    content: "";
+    /* 内容高度. */
+    height: 0;
+    /* 顶部外边距. */
+    margin-top: 10px;
+}
+
 /* 处理其他用户发送的消息other-message. */
 .other-message {
     /* 弹性布局. */
@@ -58,6 +72,20 @@ html {
     max-width: 60%; /* 超过最大宽度即自动换行. */
     /* 内边距. */
     padding: 8px;
+}
+
+/* 在其他用户发送的消息other-message上生成箭头. */
+.other-message::before {
+    /* 边框. */
+    border: 5px solid transparent; /* 颜色设置为完全透明. */
+    /* 右边框颜色. */
+    border-right-color: #2C2C2C;
+    /* ::after伪元素中内容. */
+    content: "";
+    /* 内容高度. */
+    height: 0;
+    /* 顶部外边距. */
+    margin-top: 10px;
 }
 
 /* 处理chat-form表单元素. */
