@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 // 使用的相关组件.
 import ChatRoom from './components/chat-room.jsx';
@@ -9,6 +9,7 @@ import {UserContext} from './contexts.js';
 import WebSocketClient from './websocket.js';
 
 export default function App() {
+    const websocketRef = useRef(null);
     // 登录用户信息.
     const [user, setUser] = useState({name: ''});
     // 是否登录信息.
@@ -18,7 +19,13 @@ export default function App() {
         src: 'http://192.168.31.147:8000/video/我们亲爱的Steve/',
         type: 'application/x-mpegURL'
     };
-    const websocket = new WebSocketClient('ws://192.168.31.147:8000/ws/');
+
+    useEffect(() => {
+        // 确保只创建一个WebSocket连接.
+        websocketRef.current = new WebSocketClient(
+            'ws://192.168.31.147:8000/ws/'
+        );
+    }, []);
 
     /**
      * 处理登录用户信息的变化.
@@ -41,8 +48,11 @@ export default function App() {
         <div>
             {isLoggedIn ? (
                 <UserContext.Provider value={user}>
-                    <VideoPlayer sources={sources} websocket={websocket}/>
-                    <ChatRoom websocket={websocket}/>
+                    <VideoPlayer
+                        sources={sources}
+                        websocket={websocketRef.current}
+                    />
+                    <ChatRoom websocket={websocketRef.current}/>
                 </UserContext.Provider>
             ): (
                 <LoginPage
