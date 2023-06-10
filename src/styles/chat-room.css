@@ -66,8 +66,6 @@ html {
     background-color: #2C2C2C;
     /* 边框圆角. */
     border-radius: 8px;
-    /* 文本颜色值. */
-    color: #E5E7EB;
     /* 内容最大宽度值. */
     max-width: 60%; /* 超过最大宽度即自动换行. */
     /* 内边距. */
@@ -80,7 +78,7 @@ html {
     border: 5px solid transparent; /* 颜色设置为完全透明. */
     /* 右边框颜色. */
     border-right-color: #2C2C2C;
-    /* ::after伪元素中内容. */
+    /* ::before伪元素中内容. */
     content: "";
     /* 内容高度. */
     height: 0;
