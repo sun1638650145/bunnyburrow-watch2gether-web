@@ -88,12 +88,16 @@ html {
 
 /* 处理chat-form表单元素. */
 .chat-form {
+    /* 与下边界之间的偏移量. */
+    bottom: 0;
     /* 弹性布局. */
     display: flex;
     /* 沿容器的右侧放置. */
     justify-content: right;
     /* 外边距. */
     margin: 0 5px 25px 0;
+    /* 定位方式. */
+    position: absolute;
 }
 
 /* 处理chat-input表单输入元素. */
@@ -118,8 +122,8 @@ html {
     padding: 1px;
     /* 首行文本缩进量. */
     text-indent: 5px;
-    /* 内容宽度. */
-    width: 400px;
+    /* TODO(Steve): 内容宽度重新调整. */
+    /*width: 400px;*/
 }
 
 /* 处理send-button按钮元素. */

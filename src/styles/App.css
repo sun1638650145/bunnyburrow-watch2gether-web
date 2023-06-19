@@ -1,0 +1,23 @@
+/* 处理整个播放器和ChatRoom容器的样式. */
+.video-chat-container {
+    /* 弹性布局. */
+    display: flex;
+}
+
+/* 处理播放器的容器. */
+.video-player-container {
+    /* 右外边距. */
+    margin-right: 5px;
+    /* 内容宽度. */
+    width: 70%;
+}
+
+/* 处理ChatRoom的容器. */
+.chat-room-container {
+    /* 内容高度. */
+    height: 100vh;
+    /* 左外边距. */
+    margin-left: 5px;
+    /* 内容宽度. */
+    width: 30%;
+}
