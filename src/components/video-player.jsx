@@ -49,7 +49,7 @@ function VideoJSWrapper() {
     }, []);
 
     return (
-        <div ref={videoRef}/>
+        <div className='video-player' ref={videoRef}/>
     );
 }
 

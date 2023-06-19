@@ -90,14 +90,12 @@ html {
 .chat-form {
     /* 与下边界之间的偏移量. */
     bottom: 0;
-    /* 弹性布局. */
-    display: flex;
-    /* 沿容器的右侧放置. */
-    justify-content: right;
     /* 外边距. */
-    margin: 0 5px 25px 0;
+    margin: 0 10px 25px 0;
     /* 定位方式. */
     position: absolute;
+    /* 与右边界之间的偏移量. */
+    right: 0;
 }
 
 /* 处理chat-input表单输入元素. */

@@ -51,15 +51,11 @@ export default function App() {
             {isLoggedIn ? (
                 <div className='video-chat-container'>
                     <UserContext.Provider value={user}>
-                        <div className='video-player-container'>
-                            <VideoPlayer
-                                sources={sources}
-                                websocket={websocketRef.current}
-                            />
-                        </div>
-                        <div className='chat-room-container'>
-                            <ChatRoom websocket={websocketRef.current}/>
-                        </div>
+                        <VideoPlayer
+                            sources={sources}
+                            websocket={websocketRef.current}
+                        />
+                        <ChatRoom websocket={websocketRef.current}/>
                     </UserContext.Provider>
                 </div>
             ): (
