@@ -1,0 +1,7 @@
+/* 处理VideoPlayer组件. */
+.video-player {
+    /* 右外边距. */
+    margin-right: 5px;
+    /* 内容宽度. */
+    width: 70%;
+}

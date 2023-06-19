@@ -4,6 +4,16 @@ html {
     color: #E5E7EB;
 }
 
+/* 处理ChatRoom组件. */
+.chat-room {
+    /* 内容高度. */
+    height: 100vh;
+    /* 左外边距. */
+    margin-left: 5px;
+    /* 内容宽度. */
+    width: 30%;
+}
+
 /* 处理整个message-list消息列表. */
 .message-list {
     /* 列表元素的marker. */

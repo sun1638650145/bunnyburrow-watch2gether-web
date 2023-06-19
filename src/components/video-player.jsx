@@ -6,6 +6,7 @@ import {ReadyContext, SourcesContext, UserContext} from '../contexts.js';
 import WebSocketClient from '../websocket.js';
 
 import 'video.js/dist/video-js.css';
+import '../styles/video-player.css';
 
 /**
  * 封装VideoJS播放器.
