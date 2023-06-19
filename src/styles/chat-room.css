@@ -10,6 +10,8 @@ html {
     height: 100vh;
     /* 左外边距. */
     margin-left: 5px;
+    /* 定位方式. */
+    position: relative;
     /* 内容宽度. */
     width: 30%;
 }
@@ -104,8 +106,8 @@ html {
     margin: 0 10px 25px 0;
     /* 定位方式. */
     position: absolute;
-    /* 与右边界之间的偏移量. */
-    right: 0;
+    /* 内容宽度. */
+    width: 100%;
 }
 
 /* 处理chat-input表单输入元素. */
@@ -130,8 +132,8 @@ html {
     padding: 1px;
     /* 首行文本缩进量. */
     text-indent: 5px;
-    /* TODO(Steve): 内容宽度重新调整. */
-    /*width: 400px;*/
+    /* 内容宽度: calc(100% - 按钮宽度). */
+    width: calc(100% - 112px);
 }
 
 /* 处理send-button按钮元素. */
