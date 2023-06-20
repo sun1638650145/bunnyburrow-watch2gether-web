@@ -29,12 +29,16 @@ html {
 
 /* 处理整个message-list消息列表. */
 .message-list {
+    /* 内容高度: calc(当前组件 - 95px). */
+    height: calc(100% - 95px);
     /* 列表元素的marker. */
     list-style-type: none;
     /* 字体速记属性: 字体大小 字体(无衬线) */
     font: 16px Helvetica, sans-serif;
     /* 内边距. */
     padding: 1px;
+    /* 溢出. */
+    overflow: auto;
 }
 
 /* 处理当前用户发送的消息my-message. */
@@ -144,7 +148,7 @@ html {
     /* 首行文本缩进量. */
     text-indent: 5px;
     /* 内容宽度: calc(100% - 按钮宽度). */
-    width: calc(100% - 112px);
+    width: calc(100% - 117px);
 }
 
 /* 处理send-button按钮元素. */
@@ -167,8 +171,8 @@ html {
     letter-spacing: 5px;
     /* 内边距. */
     padding: 1px;
-    /* 左外边距. */
-    margin-left: 5px;
+    /* 外边距速记属性: 上下 左右. */
+    margin: 0 5px;
     /* 内容宽度. */
     width: 100px;
 }
