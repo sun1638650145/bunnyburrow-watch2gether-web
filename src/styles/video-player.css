@@ -5,3 +5,12 @@
     /* 内容宽度. */
     width: 70%;
 }
+
+/* 设置屏幕处于纵向时的样式. */
+@media (orientation: portrait) {
+    /* 处理VideoPlayer组件. */
+    .video-player {
+        /* 内容宽度. */
+        width: 100%;
+    }
+}
