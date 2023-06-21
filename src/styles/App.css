@@ -8,7 +8,7 @@
 @media (orientation: portrait) {
     /* 处理整个播放器和ChatRoom容器的样式. */
     .video-chat-container {
-        /* flex容器的布局方式. */
+        /* 内部元素按照垂直方向排列. */
         flex-direction: column;
     }
 }

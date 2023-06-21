@@ -13,9 +13,14 @@ h1 {
     margin: 10px;
 }
 
-/* login类使用网格布局并居中排列. */
+/*
+ login类使用弹性布局,; 垂直和水平方向居中排列;
+ 内部元素按照垂直方向排列.
+ */
 .login {
-    display: grid;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 

@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import '../styles/avatar-upload.css';
+
 /**
  * 用户头像组件, 用于上传并渲染用户头像.
  * @param {string} avatar - 用户头像的URL.
@@ -17,7 +19,11 @@ export default function AvatarUpload({avatar, onAvatarChange}) {
     return (
         <div>
             {avatar ? (
-                <img alt='avatar' src={avatar}/>
+                <img
+                    className='avatar'
+                    src={avatar}
+                    alt='avatar'
+                />
             ): (
                 <form>
                     <input
