@@ -34,7 +34,7 @@ export default function LoginPage({user, onUserChange, onIsLoggedInClick}) {
 
     return (
         <div className='login'>
-            <h1>加入一起看电影</h1>
+            <h1>一起看电影</h1>
             <input
                 className={`login-input ${loginError? 'error': ''}`}
                 value={user.name}
