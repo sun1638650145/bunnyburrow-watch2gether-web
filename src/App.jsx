@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {useImmer} from 'use-immer';
 
 // 使用的相关组件.
 import ChatRoom from './components/chat-room.jsx';
@@ -13,7 +14,10 @@ import './styles/App.css';
 export default function App() {
     const websocketRef = useRef(null);
     // 登录用户信息.
-    const [user, setUser] = useState({name: ''});
+    const [user, updateUser] = useImmer({
+        name: '', // 用户名.
+        avatar: '' // 用户头像的URL.
+    });
     // 是否登录信息.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -30,12 +34,12 @@ export default function App() {
     }, []);
 
     /**
-     * 处理登录用户信息的变化.
+     * 处理登录用户名的变化.
      * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
      */
-    function handleUserChange(e) {
-        setUser({
-            name: e.target.value
+    function handleUserNameChange(e) {
+        updateUser(draft => {
+            draft.name = e.target.value;
         });
     }
 
@@ -61,7 +65,7 @@ export default function App() {
             ): (
                 <LoginPage
                     user={user}
-                    onUserChange={handleUserChange}
+                    onUserChange={handleUserNameChange}
                     onIsLoggedInClick={handleIsLoggedInClick}
                 />
             )}
