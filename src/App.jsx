@@ -15,8 +15,8 @@ export default function App() {
     const websocketRef = useRef(null);
     // 登录用户信息.
     const [user, updateUser] = useImmer({
-        name: '', // 用户名.
-        avatar: '' // 用户头像的URL.
+        avatar: '', // 用户头像的URL.
+        name: '' // 用户昵称.
     });
     // 是否登录信息.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,7 +34,24 @@ export default function App() {
     }, []);
 
     /**
-     * 处理登录用户名的变化.
+     * 处理登录用户头像URL的变化.
+     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
+     */
+    function handleUserAvatarChange(e) {
+        // 将图片文件转换成URL.
+        const reader = new FileReader();
+        reader.onload = () => {
+            updateUser(draft => {
+                draft.avatar = reader.result;
+            });
+        };
+
+        const file = e.target.files[0];
+        reader.readAsDataURL(file);
+    }
+
+    /**
+     * 处理登录用户昵称的变化.
      * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
      */
     function handleUserNameChange(e) {
@@ -65,7 +82,8 @@ export default function App() {
             ): (
                 <LoginPage
                     user={user}
-                    onUserChange={handleUserNameChange}
+                    onUserAvatarChange={handleUserAvatarChange}
+                    onUserNameChange={handleUserNameChange}
                     onIsLoggedInClick={handleIsLoggedInClick}
                 />
             )}
