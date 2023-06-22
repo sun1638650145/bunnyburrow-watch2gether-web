@@ -6,6 +6,37 @@
     border-radius: 50%;
     /* 内容高度. */
     height: 100px;
+    /* 外边距. */
+    margin: 3px;
+    /* 内容宽度. */
+    width: 100px;
+}
+
+/* 隐藏avatar-input中原生的file-input表单. */
+.avatar-input > input[type="file"] {
+    display: none;
+}
+
+/* 处理avatar-input中自定义的表单. */
+.avatar-input > .custom-file-input {
+    /* 垂直方向居中排列. */
+    align-items: center;
+    /* 背景颜色. */
+    background-color: rgba(249, 249, 249, 0.1);
+    /* 边框圆角. */
+    border-radius: 50%;
+    /* 光标类型. */
+    cursor: pointer;
+    /* 弹性布局. */
+    display: flex;
+    /* 字体速记属性: 字体大小 字体(无衬线) */
+    font: 40px Helvetica, sans-serif;
+    /* 内容高度. */
+    height: 100px;
+    /* 水平方向居中排列 */
+    justify-content: center;
+    /* 外边距. */
+    margin: 5px;
     /* 内容宽度. */
     width: 100px;
 }
