@@ -3,6 +3,8 @@ import React, {useContext} from 'react';
 
 import {UserContext} from '../contexts.js';
 
+import '../styles/message-list.css';
+
 /**
  * MessageList组件, 显示用户聊天内容.
  * @param {Object[]} chatList - 聊天内容列表.

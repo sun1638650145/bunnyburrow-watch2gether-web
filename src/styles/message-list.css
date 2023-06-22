@@ -1,0 +1,85 @@
+/* 处理MessageList组件. */
+.message-list {
+    /* 内容高度: calc(当前组件 - 95px). */
+    height: calc(100% - 95px);
+    /* 列表元素的marker. */
+    list-style-type: none;
+    /* 字体速记属性: 字体大小 字体(无衬线) */
+    font: 16px Helvetica, sans-serif;
+    /* 内边距. */
+    padding: 1px;
+    /* 溢出. */
+    overflow: auto;
+}
+
+/* 处理当前用户发送的消息my-message. */
+.my-message {
+    /* 弹性布局. */
+    display: flex;
+    /* 沿容器的右侧放置. */
+    justify-content: right;
+    /* 外边距. */
+    margin: 0 3px 8px 0;
+}
+
+/* 处理当前用户发送的消息my-message的内容. */
+.my-message > .content {
+    /* 背景颜色. */
+    background-color: #29B560;
+    /* 边框圆角. */
+    border-radius: 8px;
+    /* 文本颜色值. */
+    color: black;
+    /* 内容最大宽度值. */
+    max-width: 60%; /* 超过最大宽度即自动换行. */
+    /* 内边距. */
+    padding: 8px;
+}
+
+/* 在当前用户发送的消息my-message上生成箭头. */
+.my-message::after {
+    /* 边框. */
+    border: 5px solid transparent; /* 颜色设置为完全透明. */
+    /* 左边框颜色. */
+    border-left-color: #29B560;
+    /* ::after伪元素中内容. */
+    content: "";
+    /* 内容高度. */
+    height: 0;
+    /* 顶部外边距. */
+    margin-top: 10px;
+}
+
+/* 处理其他用户发送的消息other-message. */
+.other-message {
+    /* 弹性布局. */
+    display: flex;
+    /* 外边距. */
+    margin: 8px 0 0 3px;
+}
+
+/* 处理其他用户发送的消息other-message的内容. */
+.other-message > .content {
+    /* 背景颜色. */
+    background-color: #2C2C2C;
+    /* 边框圆角. */
+    border-radius: 8px;
+    /* 内容最大宽度值. */
+    max-width: 60%; /* 超过最大宽度即自动换行. */
+    /* 内边距. */
+    padding: 8px;
+}
+
+/* 在其他用户发送的消息other-message上生成箭头. */
+.other-message::before {
+    /* 边框. */
+    border: 5px solid transparent; /* 颜色设置为完全透明. */
+    /* 右边框颜色. */
+    border-right-color: #2C2C2C;
+    /* ::before伪元素中内容. */
+    content: "";
+    /* 内容高度. */
+    height: 0;
+    /* 顶部外边距. */
+    margin-top: 10px;
+}

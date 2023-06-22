@@ -1,14 +1,12 @@
-/* 处理用户头像. */
+/*
+ 用户头像为2px, 实线, 颜色为#E5E7EB的边框;
+ 边框为圆形; 内容高宽均为100px; 外边距为3px.
+ */
 .avatar {
-    /* 边框. */
     border: 2px solid #E5E7EB;
-    /* 边框圆角. */
     border-radius: 50%;
-    /* 内容高度. */
     height: 100px;
-    /* 外边距. */
     margin: 3px;
-    /* 内容宽度. */
     width: 100px;
 }
 
@@ -17,26 +15,21 @@
     display: none;
 }
 
-/* 处理avatar-input中自定义的表单. */
+/*
+ avatar-input中自定义的表单使用弹性布局;
+ 垂直和水平方向居中排列; 使背景颜色为rgba(249, 249, 249, 0.1);
+ 边框为圆形; 手形光标; 使用40px, Helvetica(无衬线)字体;
+ 内容高宽均为100px; 外边距为5px.
+ */
 .avatar-input > .custom-file-input {
-    /* 垂直方向居中排列. */
     align-items: center;
-    /* 背景颜色. */
     background-color: rgba(249, 249, 249, 0.1);
-    /* 边框圆角. */
     border-radius: 50%;
-    /* 光标类型. */
     cursor: pointer;
-    /* 弹性布局. */
     display: flex;
-    /* 字体速记属性: 字体大小 字体(无衬线) */
     font: 40px Helvetica, sans-serif;
-    /* 内容高度. */
     height: 100px;
-    /* 水平方向居中排列 */
     justify-content: center;
-    /* 外边距. */
     margin: 5px;
-    /* 内容宽度. */
     width: 100px;
 }
