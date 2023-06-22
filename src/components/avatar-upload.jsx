@@ -6,7 +6,7 @@ import '../styles/avatar-upload.css';
 /**
  * 用户头像组件, 用于上传并渲染用户头像.
  * @param {string} avatar - 用户头像的URL.
- * @param onAvatarChange - 用户头像URL的变化事件函数.
+ * @param {function} onAvatarChange - 用户头像URL的变化事件函数.
  * @returns {JSX.Element}
  * @constructor
  * @example

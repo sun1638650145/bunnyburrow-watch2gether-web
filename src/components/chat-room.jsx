@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, {useContext, useEffect} from 'react';
 import {useImmer} from 'use-immer';
 
+import MessageList from './message-list.jsx';
 import {UserContext} from '../contexts.js';
 import WebSocketClient from '../websocket.js';
 
@@ -62,21 +63,7 @@ export default function ChatRoom({websocket}) {
 
     return (
         <div className='chat-room'>
-            <ol className='message-list'>
-                {chatList.map((inputContent, idx) =>
-                    <li
-                        key={idx}
-                        className={
-                            inputContent.user.name === user.name ?
-                                'my-message' : 'other-message'
-                        }
-                    >
-                        <div className='content'>
-                            {inputContent.user.name}: {inputContent.content}
-                        </div>
-                    </li>
-                )}
-            </ol>
+            <MessageList chatList={chatList}/>
             <form
                 className='chat-form'
                 onSubmit={handleSubmit}
