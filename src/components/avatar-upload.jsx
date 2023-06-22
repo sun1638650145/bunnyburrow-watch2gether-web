@@ -25,12 +25,7 @@ export default function AvatarUpload({avatar, onAvatarChange}) {
                     alt='avatar'
                 />
             ): (
-                <form>
-                    <input
-                        type='file'
-                        onChange={onAvatarChange}
-                    />
-                </form>
+                <input type='file' onChange={onAvatarChange}/>
             )}
         </div>
     );

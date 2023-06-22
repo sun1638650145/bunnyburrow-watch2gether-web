@@ -14,14 +14,13 @@ h1 {
 }
 
 /*
- login类使用弹性布局,; 垂直和水平方向居中排列;
+ login类使用弹性布局; 垂直方向居中排列;
  内部元素按照垂直方向排列.
  */
 .login {
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 /*

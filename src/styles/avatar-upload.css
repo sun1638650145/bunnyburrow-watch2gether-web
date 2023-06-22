@@ -1,5 +1,7 @@
 /* 处理用户头像. */
 .avatar {
+    /* 边框. */
+    border: 2px solid #E5E7EB;
     /* 边框圆角. */
     border-radius: 50%;
     /* 内容高度. */
