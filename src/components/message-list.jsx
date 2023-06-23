@@ -15,13 +15,13 @@ import '../styles/message-list.css';
  */
 function MyMessage({messageObject}) {
     const name = messageObject.user.name;
+    const avatar = messageObject.user.avatar;
     const content = messageObject.content;
 
     return (
         <li className='my-message'>
-            <div className='content'>
-                {name}: {content}
-            </div>
+            <div className='content'>{content}</div>
+            <img className='avatar' src={avatar} alt={name}/>
         </li>
     );
 }

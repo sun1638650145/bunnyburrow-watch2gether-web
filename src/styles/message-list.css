@@ -14,6 +14,8 @@
 
 /* 处理当前用户发送的消息my-message. */
 .my-message {
+    /* 垂直方向居中排列. */
+    align-items: center;
     /* 弹性布局. */
     display: flex;
     /* 沿容器的右侧放置. */
@@ -22,7 +24,7 @@
     margin: 0 3px 8px 0;
 }
 
-/* 处理当前用户发送的消息my-message的内容. */
+/* 处理当前用户发送的内容content. */
 .my-message > .content {
     /* 背景颜色. */
     background-color: #29B560;
@@ -30,24 +32,38 @@
     border-radius: 8px;
     /* 文本颜色值. */
     color: black;
+    /* 外边距. */
+    margin: 8px;
     /* 内容最大宽度值. */
     max-width: 60%; /* 超过最大宽度即自动换行. */
     /* 内边距. */
     padding: 8px;
+    /* 定位方式. */
+    position: relative;
 }
 
-/* 在当前用户发送的消息my-message上生成箭头. */
-.my-message::after {
+/* 在当前用户发送的内容content上生成箭头. */
+.my-message > .content::after {
     /* 边框. */
     border: 5px solid transparent; /* 颜色设置为完全透明. */
     /* 左边框颜色. */
     border-left-color: #29B560;
     /* ::after伪元素中内容. */
     content: "";
+    /* 相对于容器的向右偏移量. */
+    left: 100%;
+    /* 定位方式. */
+    position: absolute;
+    /* 相对于容器的向下偏移量. */
+    top: 25%;
+}
+
+/* 处理当前用户的头像. */
+.my-message > .avatar {
     /* 内容高度. */
-    height: 0;
-    /* 顶部外边距. */
-    margin-top: 10px;
+    height: 50px;
+    /* 内容宽度. */
+    width: 50px;
 }
 
 /* 处理其他用户发送的消息other-message. */
