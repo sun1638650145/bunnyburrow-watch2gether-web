@@ -36,12 +36,15 @@ function MyMessage({messageObject}) {
  */
 function OtherMessage({messageObject}) {
     const name = messageObject.user.name;
+    const avatar = messageObject.user.avatar;
     const content = messageObject.content;
 
     return (
         <li className='other-message'>
-            <div className='content'>
-                {name}: {content}
+            <img className='avatar' src={avatar} alt={name}/>
+            <div className='name-content-container'>
+                <div className='name'>{name}</div>
+                <div className='content'>{content}</div>
             </div>
         </li>
     );

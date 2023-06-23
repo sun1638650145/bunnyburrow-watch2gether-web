@@ -12,6 +12,14 @@
     overflow: auto;
 }
 
+/* 处理用户的头像. */
+.message-list .avatar {
+    /* 内容高度. */
+    height: 50px;
+    /* 内容宽度. */
+    width: 50px;
+}
+
 /* 处理当前用户发送的消息my-message. */
 .my-message {
     /* 垂直方向居中排列. */
@@ -50,20 +58,12 @@
     border-left-color: #29B560;
     /* ::after伪元素中内容. */
     content: "";
-    /* 相对于容器的向右偏移量. */
+    /* 相对于容器向右偏移量. */
     left: 100%;
     /* 定位方式. */
     position: absolute;
-    /* 相对于容器的向下偏移量. */
+    /* 相对于容器向下偏移量. */
     top: 25%;
-}
-
-/* 处理当前用户的头像. */
-.my-message > .avatar {
-    /* 内容高度. */
-    height: 50px;
-    /* 内容宽度. */
-    width: 50px;
 }
 
 /* 处理其他用户发送的消息other-message. */
@@ -74,28 +74,50 @@
     margin: 8px 0 0 3px;
 }
 
-/* 处理其他用户发送的消息other-message的内容. */
-.other-message > .content {
+/* 处理其他用户昵称和发送的内容容器的样式. */
+.other-message > .name-content-container {
+    /* 弹性布局. */
+    display: flex;
+    /* 内部元素按照垂直方向排列. */
+    flex-direction: column;
+}
+
+/* 处理其他用户昵称name. */
+.other-message .name {
+    /* 字体速记属性: 字体大小 字体(无衬线) */
+    font: 13px Helvetica, sans-serif;
+    /* 左外边距. */
+    margin-left: 8px;
+}
+
+/* 处理其他用户发送的内容content. */
+.other-message .content {
     /* 背景颜色. */
     background-color: #2C2C2C;
     /* 边框圆角. */
     border-radius: 8px;
+    /* 外边距. */
+    margin: 1px 8px 8px 8px;
     /* 内容最大宽度值. */
     max-width: 60%; /* 超过最大宽度即自动换行. */
     /* 内边距. */
     padding: 8px;
+    /* 定位方式. */
+    position: relative;
 }
 
-/* 在其他用户发送的消息other-message上生成箭头. */
-.other-message::before {
+/* 在其他用户发送的内容content上生成箭头. */
+.other-message .content::before {
     /* 边框. */
     border: 5px solid transparent; /* 颜色设置为完全透明. */
     /* 右边框颜色. */
     border-right-color: #2C2C2C;
     /* ::before伪元素中内容. */
     content: "";
-    /* 内容高度. */
-    height: 0;
-    /* 顶部外边距. */
-    margin-top: 10px;
+    /* 定位方式. */
+    position: absolute;
+    /* 相对于容器向左偏移量. */
+    right: 100%;
+    /* 相对于容器向下偏移量. */
+    top: 25%;
 }
