@@ -90,3 +90,11 @@ html {
     /* 内容宽度. */
     width: 100px;
 }
+
+/* 处理send-button按钮元素被禁用时的样式. */
+.send-button[disabled] {
+    /* 光标. */
+    cursor: not-allowed;
+    /* 滤镜: 使用30%灰度. */
+    filter: grayscale(30%);
+}
