@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 
 import {UserContext} from '../contexts.js';
 
@@ -59,11 +59,17 @@ function OtherMessage({messageObject}) {
  * <MessageList chatList={chatList}/>
  */
 export default function MessageList({chatList}) {
+    const chatListRef = useRef(null);
     // 用户信息.
     const user = useContext(UserContext);
 
+    // 有新消息时, 始终将滚动条保持在底部.
+    useEffect(() => {
+        chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
+    }, [chatList]);
+
     return (
-        <ol className='message-list'>
+        <ol className='message-list' ref={chatListRef}>
             {chatList.map((messageObject, idx) =>
                 messageObject.user.name === user.name ? (
                     <MyMessage key={idx} messageObject={messageObject}/>
