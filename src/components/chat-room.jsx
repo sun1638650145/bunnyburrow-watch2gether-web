@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useImmer} from 'use-immer';
 
 import MessageList from './message-list.jsx';
@@ -19,6 +19,8 @@ import '../styles/chat-room.css';
 export default function ChatRoom({websocket}) {
     // 聊天内容列表.
     const [chatList, updateChatList] = useImmer([]);
+    // 聊天内容为空时禁用发送.
+    const [isDisabled, setIsDisabled] = useState(true);
     // 聊天输入框内容.
     const user = useContext(UserContext);
     const [inputContent, updateInputContent] = useImmer({
@@ -31,8 +33,11 @@ export default function ChatRoom({websocket}) {
      * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
      */
     function handleChatContentChange(e) {
+        const content = e.target.value;
+
+        setIsDisabled(content.trim() === ''); // 聊天内容不为空时, 启用发送按钮.
         updateInputContent(draft => {
-            draft.content = e.target.value;
+            draft.content = content;
         });
     }
 
@@ -50,6 +55,8 @@ export default function ChatRoom({websocket}) {
         updateChatList(draft => {
             draft.push(inputContent); // 同时在本侧显示.
         });
+
+        setIsDisabled(true); // 提交表单后立刻禁用发送按钮.
     }
 
     // 将新消息添加到聊天内容列表chatList中.
@@ -73,7 +80,10 @@ export default function ChatRoom({websocket}) {
                     value={inputContent.content}
                     onChange={handleChatContentChange}
                 />
-                <button className='send-button'>发送</button>
+                <button
+                    className='send-button'
+                    disabled={isDisabled}
+                >发送</button>
             </form>
         </div>
     );
