@@ -19,10 +19,9 @@ export default function AvatarUpload({avatar, onAvatarChange}) {
     return (
         <div>
             {avatar ? (
-                <img
+                <div
                     className='avatar'
-                    src={avatar}
-                    alt='avatar'
+                    style={{ backgroundImage: `url(${avatar})` }}
                 />
             ): (
                 <div className='avatar-input'>

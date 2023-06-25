@@ -1,8 +1,11 @@
 /*
- 用户头像为2px, 实线, 颜色为#E5E7EB的边框;
+ 用户头像背景颜色为#E5E7EB; 以cover方式缩放;
+ 使用2px, 实线, 颜色为#E5E7EB的边框;
  边框为圆形; 内容高宽均为100px; 外边距为3px.
  */
 .avatar {
+    background-color: #E5E7EB;
+    background-size: cover;
     border: 2px solid #E5E7EB;
     border-radius: 50%;
     height: 100px;

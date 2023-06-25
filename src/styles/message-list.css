@@ -14,11 +14,6 @@
 
 /* 处理用户的头像. */
 .message-list .avatar {
-    /* TODO(Steve): <img>标签src失效时有一个默认边框. */
-    /* 背景颜色. */
-    background-color: #C0C0C0;
-    /* 文本颜色值. */
-    color: #C0C0C0;
     /* 内容高度. */
     height: 50px;
     /* 内容宽度. */
