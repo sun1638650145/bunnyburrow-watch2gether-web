@@ -7,7 +7,9 @@ import '../styles/login-page.css';
 
 /**
  * LoginPage组件, 用于渲染登录页面.
+ * @param {Object} sources - 流媒体视频源(包括URL和媒体类型(MIME types)).
  * @param {Object} user - 登录用户信息.
+ * @param {function} onSourcesSrcChange - 流媒体视频源的变化事件函数.
  * @param {function} onUserAvatarChange - 登录用户头像URL的变化事件函数.
  * @param {function} onUserNameChange - 登录用户昵称的变化事件函数.
  * @param {function} onIsLoggedInClick - 点击登录按钮的事件函数.
@@ -15,14 +17,18 @@ import '../styles/login-page.css';
  * @constructor
  * @example
  * <LoginPage
+ *     sources={sources}
  *     user={user}
+ *     onSourcesSrcChange={handleSourcesSrcChange}
  *     onUserAvatarChange={handleUserAvatarChange}
  *     onUserNameChange={handleUserNameChange}
  *     onIsLoggedInClick={handleIsLoggedInClick}
  * />
  */
 export default function LoginPage({
+    sources,
     user,
+    onSourcesSrcChange,
     onUserAvatarChange,
     onUserNameChange,
     onIsLoggedInClick
@@ -57,6 +63,11 @@ export default function LoginPage({
             {loginError && <div className='login-error-message'>
                 昵称不能为空, 请输入昵称并重试.
             </div>}
+            <input
+                value={sources.src}
+                onChange={onSourcesSrcChange}
+                placeholder='请输入流媒体服务器地址'
+            />
             <button
                 className='login-button'
                 onClick={handleClick}
@@ -68,7 +79,9 @@ export default function LoginPage({
 }
 
 LoginPage.propTypes = {
+    sources: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
+    onSourcesSrcChange: PropTypes.func.isRequired,
     onUserAvatarChange: PropTypes.func.isRequired,
     onUserNameChange: PropTypes.func.isRequired,
     onIsLoggedInClick: PropTypes.func.isRequired

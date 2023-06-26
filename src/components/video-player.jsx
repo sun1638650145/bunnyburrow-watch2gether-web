@@ -56,7 +56,7 @@ function VideoJSWrapper() {
 
 /**
  * VideoPlayer组件, 播放流媒体视频, 与其他用户同步视频播放状态.
- * @param {Object} sources - 流媒体视频的URL和媒体类型(MIME types).
+ * @param {Object} sources - 流媒体视频源(包括URL和媒体类型(MIME types)).
  * @param {WebSocketClient} websocket - WebSocket客户端.
  * @returns {JSX.Element}
  * @constructor

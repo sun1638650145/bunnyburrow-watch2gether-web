@@ -18,13 +18,13 @@ export default function App() {
         avatar: '', // 用户头像的URL.
         name: '' // 用户昵称.
     });
+    // 流媒体视频源.
+    const [sources, updateSources] = useImmer({
+        src: '',
+        type: 'application/x-mpegURL' // 暂不可自定义媒体类型.
+    });
     // 是否登录信息.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    const sources = {
-        src: 'http://192.168.31.62:8000/video/我们亲爱的Steve/',
-        type: 'application/x-mpegURL'
-    };
 
     useEffect(() => {
         // 确保只创建一个WebSocket连接.
@@ -32,6 +32,16 @@ export default function App() {
             'ws://192.168.31.62:8000/ws/'
         );
     }, []);
+
+    /**
+     * 处理流媒体视频源的变化.
+     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
+     */
+    function handleSourcesSrcChange(e) {
+        updateSources(draft => {
+            draft.src = e.target.value;
+        });
+    }
 
     /**
      * 处理登录用户头像URL的变化.
@@ -81,7 +91,9 @@ export default function App() {
                 </div>
             ): (
                 <LoginPage
+                    sources={sources}
                     user={user}
+                    onSourcesSrcChange={handleSourcesSrcChange}
                     onUserAvatarChange={handleUserAvatarChange}
                     onUserNameChange={handleUserNameChange}
                     onIsLoggedInClick={handleIsLoggedInClick}
