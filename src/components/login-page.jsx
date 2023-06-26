@@ -35,13 +35,29 @@ export default function LoginPage({
 }) {
     // 登录错误.
     const [loginError, setLoginError] = useState(false);
+    // 流媒体地址错误.
+    const [streamError, setStreamError] = useState(false);
 
     /**
-     * 处理登录事件, 判断用户信息是否合法.
+     * 判断是不是合法的http(s)地址.
+     * @param {string} url - 输入的URL.
+     * @returns {boolean}
+     */
+    function isValidHttp(url) {
+        // TODO(Steve): 这里只检查了协议类型, 应该做更加完整地址检查.
+        const pattern = new RegExp('^https?:\\/\\/');
+
+        return pattern.test(url);
+    }
+
+    /**
+     * 处理登录事件, 判断用户昵称和流媒体地址是否合法.
      */
     function handleClick() {
         if (user.name.trim() === '') {
             setLoginError(true);
+        } else if (!isValidHttp(sources.src.trim())) {
+            setStreamError(true);
         } else {
             onIsLoggedInClick();
         }
@@ -64,10 +80,14 @@ export default function LoginPage({
                 昵称不能为空, 请输入昵称并重试.
             </div>}
             <input
+                className={`stream-input ${streamError? 'error': ''}`}
                 value={sources.src}
                 onChange={onSourcesSrcChange}
                 placeholder='请输入流媒体服务器地址'
             />
+            {streamError && <div className='stream-error-message'>
+                流媒体服务器地址为空或者不合法, 请重新输入地址并重试.
+            </div>}
             <button
                 className='login-button'
                 onClick={handleClick}

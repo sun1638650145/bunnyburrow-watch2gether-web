@@ -24,12 +24,12 @@ h1 {
 }
 
 /*
- login-input表单背景颜色为rgba(249, 249, 249, 0.1);
+ login-input和stream-input表单背景颜色为rgba(249, 249, 249, 0.1);
  无样式5px圆角边框; 文本颜色值为#F9F9F9;
  使用15px, Helvetica(无衬线)的字体;
  内容高宽分别是50px, 350px; 外边距为10px, 首行文本缩进为5px.
  */
-.login-input {
+.login-input, .stream-input {
     background-color: rgba(249, 249, 249, 0.1);
     border: none;
     border-radius: 5px;
@@ -42,28 +42,28 @@ h1 {
 }
 
 /*
- login-input表单获得焦点时:
+ login-input和stream-input表单获得焦点时:
  一个宽度为1px, 实线的, 颜色为#F9F9F933的边框; 没有轮廓.
  */
-.login-input:focus {
+.login-input:focus, .stream-input:focus {
     border: 1px solid #F9F9F933;
     outline: none;
 }
 
 /*
- login-input表单输入错误时:
+ login-input和stream-input表单输入错误时:
  一个宽度为1px, 实线的, 颜色为#FF554C的边框; 没有轮廓.
  */
-.login-input.error {
+.login-input.error, .stream-input.error {
     border: 1px solid #FF554C;
     outline: none;
 }
 
 /*
- 登录错误信息文本颜色值为#FF554C;
+ 登录和流媒体错误信息文本颜色值为#FF554C;
  使用12px, Helvetica(无衬线)的字体; 左外边距为10px.
  */
-.login-error-message {
+.login-error-message, .stream-error-message {
     color: #FF554C;
     font: 12px Helvetica, sans-serif;
     margin-left: 10px;
