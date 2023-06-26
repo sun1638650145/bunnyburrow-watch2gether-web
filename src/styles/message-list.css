@@ -1,123 +1,106 @@
-/* 处理MessageList组件. */
+/*
+ message-list类的内容高度为calc(当前组件 - 95px);
+ 不显示列表项的标记; 使用16px, Helvetica(无衬线)的字体;
+ 内边距为1px; 设置auto的元素溢出行为.
+ */
 .message-list {
-    /* 内容高度: calc(当前组件 - 95px). */
     height: calc(100% - 95px);
-    /* 列表元素的marker. */
     list-style-type: none;
-    /* 字体速记属性: 字体大小 字体(无衬线) */
     font: 16px Helvetica, sans-serif;
-    /* 内边距. */
     padding: 1px;
-    /* 溢出. */
     overflow: auto;
 }
 
-/* 处理用户的头像. */
+/* 用户头像的内容高宽均为50px. */
 .message-list .avatar {
-    /* 内容高度. */
     height: 50px;
-    /* 内容宽度. */
     width: 50px;
 }
 
-/* 处理当前用户发送的消息my-message. */
+/*
+ 当前用户发送的消息my-message使用弹性布局;
+ 垂直方向居中排列; 沿容器的右侧放置; 外边距为0 3px 8px 0.
+ */
 .my-message {
-    /* 垂直方向居中排列. */
     align-items: center;
-    /* 弹性布局. */
     display: flex;
-    /* 沿容器的右侧放置. */
     justify-content: right;
-    /* 外边距. */
     margin: 0 3px 8px 0;
 }
 
-/* 处理当前用户发送的内容content. */
+/*
+ 当前用户发送的内容content背景颜色为#29B560;
+ 边框为圆形; 文本颜色值为黑色; 外边距为8px;
+ 内容最大宽度为父容器的60%; 内边距为8px; 使用相对定位方式.
+ */
 .my-message > .content {
-    /* 背景颜色. */
     background-color: #29B560;
-    /* 边框圆角. */
     border-radius: 8px;
-    /* 文本颜色值. */
     color: black;
-    /* 外边距. */
     margin: 8px;
-    /* 内容最大宽度值. */
     max-width: 60%; /* 超过最大宽度即自动换行. */
-    /* 内边距. */
     padding: 8px;
-    /* 定位方式. */
     position: relative;
 }
 
-/* 在当前用户发送的内容content上生成箭头. */
+/*
+ 当前用户发送的内容content上的箭头:
+ 使用5px, 实线, 透明的边框; 左边框颜色为#29B560;
+ 伪元素中无内容; 相对于容器向右偏移100%;
+ 使用绝对定位方式; 相对于容器向下偏移25%;
+ */
 .my-message > .content::after {
-    /* 边框. */
     border: 5px solid transparent; /* 颜色设置为完全透明. */
-    /* 左边框颜色. */
     border-left-color: #29B560;
-    /* ::after伪元素中内容. */
     content: "";
-    /* 相对于容器向右偏移量. */
     left: 100%;
-    /* 定位方式. */
     position: absolute;
-    /* 相对于容器向下偏移量. */
     top: 25%;
 }
 
-/* 处理其他用户发送的消息other-message. */
+/* 其他用户发送的消息other-message使用弹性布局; 外边距为8px 0 0 3px. */
 .other-message {
-    /* 弹性布局. */
     display: flex;
-    /* 外边距. */
     margin: 8px 0 0 3px;
 }
 
-/* 处理其他用户昵称和发送的内容容器的样式. */
+/* 其他用户昵称和发送的内容容器使用弹性布局; 内部元素按照垂直方向排列. */
 .other-message > .name-content-container {
-    /* 弹性布局. */
     display: flex;
-    /* 内部元素按照垂直方向排列. */
     flex-direction: column;
 }
 
-/* 处理其他用户昵称name. */
+/* 其他用户昵称name使用13px, Helvetica(无衬线)的字体; 左外边距为8px. */
 .other-message .name {
-    /* 字体速记属性: 字体大小 字体(无衬线) */
     font: 13px Helvetica, sans-serif;
-    /* 左外边距. */
     margin-left: 8px;
 }
 
-/* 处理其他用户发送的内容content. */
+/*
+ 其他用户发送的内容content背景颜色为#2C2C2C;
+ 边框为圆形; 外边距为1px 8px 8px 8px;
+ 内容最大宽度为父容器的60%; 内边距为8px; 使用相对定位方式.
+ */
 .other-message .content {
-    /* 背景颜色. */
     background-color: #2C2C2C;
-    /* 边框圆角. */
     border-radius: 8px;
-    /* 外边距. */
     margin: 1px 8px 8px 8px;
-    /* 内容最大宽度值. */
     max-width: 60%; /* 超过最大宽度即自动换行. */
-    /* 内边距. */
     padding: 8px;
-    /* 定位方式. */
     position: relative;
 }
 
-/* 在其他用户发送的内容content上生成箭头. */
+/*
+ 其他用户发送的内容content上的箭头:
+ 使用5px, 实线, 透明的边框; 右边框颜色为#2C2C2C;
+ 伪元素中无内容; 使用绝对定位方式;
+ 相对于容器向左偏移100%; 相对于容器向下偏移25%;
+ */
 .other-message .content::before {
-    /* 边框. */
     border: 5px solid transparent; /* 颜色设置为完全透明. */
-    /* 右边框颜色. */
     border-right-color: #2C2C2C;
-    /* ::before伪元素中内容. */
     content: "";
-    /* 定位方式. */
     position: absolute;
-    /* 相对于容器向左偏移量. */
     right: 100%;
-    /* 相对于容器向下偏移量. */
     top: 25%;
 }
