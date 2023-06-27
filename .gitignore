@@ -3,3 +3,5 @@
 # 忽略模块.
 node_modules/
 package-lock.json
+# 忽略打包.
+build/
