@@ -24,13 +24,14 @@ h1 {
 }
 
 /*
- login-input和stream-input表单背景颜色为rgba(249, 249, 249, 0.1);
+ login-input, stream-input和.websocket-input表单
+ 背景颜色为rgba(249, 249, 249, 0.1);
  使用替代(IE)盒模型(即边框和内边距包含在宽度内);
  无样式5px圆角边框; 文本颜色值为#F9F9F9;
  使用15px, Helvetica(无衬线)的字体;
  内容高宽分别是50px, 350px; 外边距为10px, 首行文本缩进为5px.
  */
-.login-input, .stream-input {
+.login-input, .stream-input, .websocket-input {
     background-color: rgba(249, 249, 249, 0.1);
     border: none;
     border-radius: 5px;
@@ -44,10 +45,10 @@ h1 {
 }
 
 /*
- login-input和stream-input表单获得焦点时:
- 一个宽度为1px, 实线的, 颜色为#F9F9F933的边框; 没有轮廓.
+ login-input, stream-input和.websocket-input表单
+ 获得焦点时: 一个宽度为1px, 实线的, 颜色为#F9F9F933的边框; 没有轮廓.
  */
-.login-input:focus, .stream-input:focus {
+.login-input:focus, .stream-input:focus, .websocket-input:focus {
     border: 1px solid #F9F9F933;
     outline: none;
 }

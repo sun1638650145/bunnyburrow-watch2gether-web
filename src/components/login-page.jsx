@@ -90,14 +90,17 @@ export default function LoginPage({
                 value={sources.src}
                 onChange={onSourcesSrcChange}
                 placeholder='请输入流媒体服务器地址'
+                type='url'
             />
             {streamError && <div className='stream-error-message'>
                 流媒体服务器地址为空或者不合法, 请重新输入地址并重试.
             </div>}
             <input
+                className='websocket-input'
                 value={webSocketUrl}
                 onChange={onWebSocketUrlChange}
                 placeholder='请输入WebSocket服务器地址'
+                type='url'
             />
             <button
                 className='login-button'
