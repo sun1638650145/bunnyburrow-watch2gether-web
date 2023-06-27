@@ -9,9 +9,11 @@ import '../styles/login-page.css';
  * LoginPage组件, 用于渲染登录页面.
  * @param {Object} user - 登录用户信息.
  * @param {Object} sources - 流媒体视频源(包括URL和媒体类型(MIME types)).
+ * @param {string} webSocketUrl - WebSocket服务器的URL.
  * @param {function} onUserAvatarChange - 登录用户头像URL的变化事件函数.
  * @param {function} onUserNameChange - 登录用户昵称的变化事件函数.
  * @param {function} onSourcesSrcChange - 流媒体视频源的变化事件函数.
+ * @param {function} onWebSocketUrlChange - WebSocket服务器URL的变化事件函数.
  * @param {function} onIsLoggedInClick - 点击登录按钮的事件函数.
  * @returns {JSX.Element}
  * @constructor
@@ -19,18 +21,22 @@ import '../styles/login-page.css';
  * <LoginPage
  *     user={user}
  *     sources={sources}
+ *     webSocketUrl={webSocketUrl}
  *     onUserAvatarChange={handleUserAvatarChange}
  *     onUserNameChange={handleUserNameChange}
  *     onSourcesSrcChange={handleSourcesSrcChange}
+ *     onWebSocketUrlChange={handleWebSocketUrlChange}
  *     onIsLoggedInClick={handleIsLoggedInClick}
  * />
  */
 export default function LoginPage({
     user,
     sources,
+    webSocketUrl,
     onUserAvatarChange,
     onUserNameChange,
     onSourcesSrcChange,
+    onWebSocketUrlChange,
     onIsLoggedInClick
 }) {
     // 登录错误.
@@ -88,6 +94,11 @@ export default function LoginPage({
             {streamError && <div className='stream-error-message'>
                 流媒体服务器地址为空或者不合法, 请重新输入地址并重试.
             </div>}
+            <input
+                value={webSocketUrl}
+                onChange={onWebSocketUrlChange}
+                placeholder='请输入WebSocket服务器地址'
+            />
             <button
                 className='login-button'
                 onClick={handleClick}
@@ -101,8 +112,10 @@ export default function LoginPage({
 LoginPage.propTypes = {
     user: PropTypes.object.isRequired,
     sources: PropTypes.object.isRequired,
-    onSourcesSrcChange: PropTypes.func.isRequired,
+    webSocketUrl: PropTypes.string.isRequired,
     onUserAvatarChange: PropTypes.func.isRequired,
     onUserNameChange: PropTypes.func.isRequired,
+    onSourcesSrcChange: PropTypes.func.isRequired,
+    onWebSocketUrlChange: PropTypes.func.isRequired,
     onIsLoggedInClick: PropTypes.func.isRequired
 };

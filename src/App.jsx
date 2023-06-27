@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {useImmer} from 'use-immer';
 
 // 使用的相关组件.
@@ -23,25 +23,10 @@ export default function App() {
         src: '',
         type: 'application/x-mpegURL' // 暂不可自定义媒体类型.
     });
+    // WebSocket服务器的URL.
+    const [webSocketUrl, setWebSocketUrl] = useState('');
     // 是否登录信息.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        // 确保只创建一个WebSocket连接.
-        websocketRef.current = new WebSocketClient(
-            'ws://192.168.31.62:8000/ws/'
-        );
-    }, []);
-
-    /**
-     * 处理流媒体视频源的变化.
-     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
-     */
-    function handleSourcesSrcChange(e) {
-        updateSources(draft => {
-            draft.src = e.target.value;
-        });
-    }
 
     /**
      * 处理登录用户头像URL的变化.
@@ -71,9 +56,30 @@ export default function App() {
     }
 
     /**
+     * 处理流媒体视频源的变化.
+     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
+     */
+    function handleSourcesSrcChange(e) {
+        updateSources(draft => {
+            draft.src = e.target.value;
+        });
+    }
+
+    /**
+     * 处理WebSocket服务器URL的变化.
+     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
+     */
+    function handleWebSocketUrlChange(e) {
+        setWebSocketUrl(e.target.value);
+    }
+
+    /**
      * 提交登录事件.
      */
     function handleIsLoggedInClick() {
+        // 创建一个WebSocket连接.
+        websocketRef.current = new WebSocketClient(webSocketUrl);
+
         setIsLoggedIn(true);
     }
 
@@ -93,9 +99,11 @@ export default function App() {
                 <LoginPage
                     user={user}
                     sources={sources}
+                    webSocketUrl={webSocketUrl}
                     onUserAvatarChange={handleUserAvatarChange}
                     onUserNameChange={handleUserNameChange}
                     onSourcesSrcChange={handleSourcesSrcChange}
+                    onWebSocketUrlChange={handleWebSocketUrlChange}
                     onIsLoggedInClick={handleIsLoggedInClick}
                 />
             )}
