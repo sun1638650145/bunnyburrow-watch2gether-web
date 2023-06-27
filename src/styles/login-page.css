@@ -54,19 +54,19 @@ h1 {
 }
 
 /*
- login-input和stream-input表单输入错误时:
- 一个宽度为1px, 实线的, 颜色为#FF554C的边框; 没有轮廓.
+ login-input, stream-input和.websocket-input
+ 输入错误时: 一个宽度为1px, 实线的, 颜色为#FF554C的边框; 没有轮廓.
  */
-.login-input.error, .stream-input.error {
+.login-input.error, .stream-input.error, .websocket-input.error {
     border: 1px solid #FF554C;
     outline: none;
 }
 
 /*
- 登录和流媒体错误信息文本颜色值为#FF554C;
+ 登录, 流媒体和WebSocket错误信息文本颜色值为#FF554C;
  使用12px, Helvetica(无衬线)的字体; 左外边距为10px.
  */
-.login-error-message, .stream-error-message {
+.login-error-message, .stream-error-message, .websocket-error-message {
     color: #FF554C;
     font: 12px Helvetica, sans-serif;
     margin-left: 10px;

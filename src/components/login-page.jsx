@@ -43,6 +43,8 @@ export default function LoginPage({
     const [loginError, setLoginError] = useState(false);
     // 流媒体地址错误.
     const [streamError, setStreamError] = useState(false);
+    // WebSocket服务器地址错误.
+    const [webSocketError, setWebSocketError] = useState(false);
 
     /**
      * 判断是不是合法的http(s)地址.
@@ -57,13 +59,28 @@ export default function LoginPage({
     }
 
     /**
-     * 处理登录事件, 判断用户昵称和流媒体地址是否合法.
+     * 判断是不是合法的ws(s)地址.
+     * @param {string} url - 输入的URL.
+     * @returns {boolean}
+     */
+    function isValidWs(url) {
+        // TODO(Steve): 这里只检查了协议类型, 应该做更加完整地址检查.
+        const pattern = new RegExp('^wss?:\\/\\/');
+
+        return pattern.test(url);
+    }
+
+    /**
+     * 处理登录事件, 用于判断用户昵称,
+     * 流媒体地址和WebSocket服务器地址是否合法.
      */
     function handleClick() {
         if (user.name.trim() === '') {
             setLoginError(true);
         } else if (!isValidHttp(sources.src.trim())) {
             setStreamError(true);
+        } else if (!isValidWs(webSocketUrl.trim())) {
+            setWebSocketError(true);
         } else {
             onIsLoggedInClick();
         }
@@ -96,12 +113,15 @@ export default function LoginPage({
                 流媒体服务器地址为空或者不合法, 请重新输入地址并重试.
             </div>}
             <input
-                className='websocket-input'
+                className={`websocket-input ${webSocketError? 'error': ''}`}
                 value={webSocketUrl}
                 onChange={onWebSocketUrlChange}
                 placeholder='请输入WebSocket服务器地址'
                 type='url'
             />
+            {webSocketError && <div className='websocket-error-message'>
+                WebSocket服务器地址为空或者不合法, 请重新输入地址并重试.
+            </div>}
             <button
                 className='login-button'
                 onClick={handleClick}
