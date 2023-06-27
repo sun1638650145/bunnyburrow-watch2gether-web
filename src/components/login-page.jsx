@@ -7,30 +7,30 @@ import '../styles/login-page.css';
 
 /**
  * LoginPage组件, 用于渲染登录页面.
- * @param {Object} sources - 流媒体视频源(包括URL和媒体类型(MIME types)).
  * @param {Object} user - 登录用户信息.
- * @param {function} onSourcesSrcChange - 流媒体视频源的变化事件函数.
+ * @param {Object} sources - 流媒体视频源(包括URL和媒体类型(MIME types)).
  * @param {function} onUserAvatarChange - 登录用户头像URL的变化事件函数.
  * @param {function} onUserNameChange - 登录用户昵称的变化事件函数.
+ * @param {function} onSourcesSrcChange - 流媒体视频源的变化事件函数.
  * @param {function} onIsLoggedInClick - 点击登录按钮的事件函数.
  * @returns {JSX.Element}
  * @constructor
  * @example
  * <LoginPage
- *     sources={sources}
  *     user={user}
- *     onSourcesSrcChange={handleSourcesSrcChange}
+ *     sources={sources}
  *     onUserAvatarChange={handleUserAvatarChange}
  *     onUserNameChange={handleUserNameChange}
+ *     onSourcesSrcChange={handleSourcesSrcChange}
  *     onIsLoggedInClick={handleIsLoggedInClick}
  * />
  */
 export default function LoginPage({
-    sources,
     user,
-    onSourcesSrcChange,
+    sources,
     onUserAvatarChange,
     onUserNameChange,
+    onSourcesSrcChange,
     onIsLoggedInClick
 }) {
     // 登录错误.
@@ -99,8 +99,8 @@ export default function LoginPage({
 }
 
 LoginPage.propTypes = {
-    sources: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
+    sources: PropTypes.object.isRequired,
     onSourcesSrcChange: PropTypes.func.isRequired,
     onUserAvatarChange: PropTypes.func.isRequired,
     onUserNameChange: PropTypes.func.isRequired,

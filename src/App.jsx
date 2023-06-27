@@ -91,11 +91,11 @@ export default function App() {
                 </div>
             ): (
                 <LoginPage
-                    sources={sources}
                     user={user}
-                    onSourcesSrcChange={handleSourcesSrcChange}
+                    sources={sources}
                     onUserAvatarChange={handleUserAvatarChange}
                     onUserNameChange={handleUserNameChange}
+                    onSourcesSrcChange={handleSourcesSrcChange}
                     onIsLoggedInClick={handleIsLoggedInClick}
                 />
             )}
