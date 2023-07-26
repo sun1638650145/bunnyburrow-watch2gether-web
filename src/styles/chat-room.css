@@ -44,7 +44,7 @@ html {
     /* 背景颜色. */
     background-color: rgba(249, 249, 249, 0.1);
     /* 边框. */
-    border: none;
+    border: 0;
     /* 边框圆角. */
     border-radius: 8px;
     /* 文本颜色值. */
@@ -56,7 +56,7 @@ html {
     /* 右外边距. */
     margin-right: 5px;
     /* 轮廓. */
-    outline: none;
+    outline: 0;
     /* 内边距. */
     padding: 1px;
     /* 首行文本缩进量. */
@@ -72,7 +72,7 @@ html {
     /* 背景图像. */
     background-image: linear-gradient(93.87deg, #095AE6, #062794);
     /* 边框. */
-    border: none;
+    border: 0;
     /* 边框圆角. */
     border-radius: 8px;
     /* 文本颜色值. */

@@ -21,8 +21,8 @@
         "video.js": "8.3.0"
     },
     "devDependencies": {
-        "eslint": "8.42.0",
-        "eslint-plugin-react": "7.32.2"
+        "eslint": "8.45.0",
+        "eslint-plugin-react": "7.33.0"
     },
     "browserslist": [
         "defaults and supports es6-module"
