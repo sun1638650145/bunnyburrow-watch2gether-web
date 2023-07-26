@@ -6,6 +6,8 @@ html {
 
 /* 处理ChatRoom组件. */
 .chat-room {
+    /* 背景区域滤镜: 使用110%亮度. */
+    backdrop-filter: brightness(110%);
     /* 内容高度. */
     height: 100dvh;
     /* 左外边距. */
@@ -32,7 +34,7 @@ html {
     /* 与下边界之间的偏移量. */
     bottom: 0;
     /* 外边距. */
-    margin: 0 10px 25px 0;
+    margin: 0 10px 25px 3px;
     /* 定位方式. */
     position: absolute;
     /* 内容宽度. */
