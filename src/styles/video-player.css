@@ -14,3 +14,21 @@
         width: 100%;
     }
 }
+
+/* 处理VideoPlayer组件的大播放按钮. */
+.video-player .vjs-big-play-button {
+    /* 边框. */
+    border: 0;
+    /* 边框圆角. */
+    border-radius: 30%;
+    /* 内容高度. */
+    height: 75px;
+    /* 内容宽度. */
+    width: 75px;
+}
+
+/* 处理VideoPlayer组件的大播放按钮上的三角. */
+.video-player .vjs-big-play-button > .vjs-icon-placeholder:before {
+    /* 定位方式. */
+    position: relative;
+}
