@@ -17,10 +17,12 @@
 
 /* 处理VideoPlayer组件的大播放按钮. */
 .video-player .vjs-big-play-button {
+    /* 背景颜色. */
+    background-color: #F9F9F9;
     /* 边框. */
     border: 0;
     /* 边框圆角. */
-    border-radius: 30%;
+    border-radius: 50%;
     /* 内容高度. */
     height: 75px;
     /* 内容宽度. */
@@ -29,6 +31,22 @@
 
 /* 处理VideoPlayer组件的大播放按钮上的三角. */
 .video-player .vjs-big-play-button > .vjs-icon-placeholder:before {
+    /* 边框. */
+    border: 17px solid transparent; /* 颜色设置为完全透明. */
+    /* 左边框. */
+    border-left: 29px solid #1A1D29; /* border * sqrt(3) */
+    /* 边框圆角. */
+    border-radius: 9%; /* 用于调整三角形的圆角. */
+    /* ::before伪元素中内容. */
+    content: '';
+    /* 内容高度. */
+    height: 36px; /* 用于调整三角形的圆角. */
+    /* 相对于容器向右偏移量. */
+    left: 34%;
     /* 定位方式. */
-    position: relative;
+    position: absolute;
+    /* 相对于容器向下偏移量. */
+    top: 27%;
+    /* 内容宽度. */
+    width: 0;
 }
