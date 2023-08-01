@@ -83,6 +83,7 @@ export default function VideoPlayer({sources, websocket}) {
         websocket.setPlayer(player); // WebSocket客户端设置Video.js播放器.
 
         // 初次加载视频时的大播放按钮.
+        player.bigPlayButton.controlText('播放视频');
         player.bigPlayButton.on(['click', 'touchend'], () => {
             websocket.sendMessage({
                 user: user,

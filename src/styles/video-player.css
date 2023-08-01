@@ -29,6 +29,12 @@
     width: 75px;
 }
 
+/* 用于禁用VideoPlayer组件的大播放按钮的原始特效. */
+.video-player:hover .vjs-big-play-button,
+.video-player .vjs-big-play-button:focus {
+    background-color: #F9F9F9;
+}
+
 /* 处理VideoPlayer组件的大播放按钮上的三角. */
 .video-player .vjs-big-play-button > .vjs-icon-placeholder:before {
     /* 边框. */
