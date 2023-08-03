@@ -33,7 +33,7 @@ function VideoJSWrapper() {
             const player = playerRef.current = videojs(videoElement, {
                 controls: true,
                 fluid: true,
-                playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 2, 3],
+                playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 2],
                 preload: 'auto', // 移动设备可能收到带宽影响.
                 sources: sources
             }, () => {
