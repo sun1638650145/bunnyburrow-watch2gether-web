@@ -5,6 +5,8 @@ import videojs from 'video.js';
 import {ReadyContext, SourcesContext, UserContext} from '../contexts.js';
 import WebSocketClient from '../websocket.js';
 
+import zh from 'video.js/dist/lang/zh-CN.json';
+
 import 'video.js/dist/video-js.css';
 import '../styles/video-player.css';
 
@@ -25,10 +27,13 @@ function VideoJSWrapper() {
             const videoElement = document.createElement('video-js');
             videoRef.current.appendChild(videoElement);
 
+            // 添加中文语言包.
+            videojs.addLanguage('zh-CN', zh);
+
             const player = playerRef.current = videojs(videoElement, {
                 controls: true,
                 fluid: true,
-                playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 2],
+                playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 2, 3],
                 preload: 'auto', // 移动设备可能收到带宽影响.
                 sources: sources
             }, () => {
@@ -83,7 +88,6 @@ export default function VideoPlayer({sources, websocket}) {
         websocket.setPlayer(player); // WebSocket客户端设置Video.js播放器.
 
         // 初次加载视频时的大播放按钮.
-        player.bigPlayButton.controlText('播放视频');
         player.bigPlayButton.on(['click', 'touchend'], () => {
             websocket.sendMessage({
                 user: user,

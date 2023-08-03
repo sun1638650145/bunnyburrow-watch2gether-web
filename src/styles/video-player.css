@@ -17,8 +17,9 @@
 
 /* 处理VideoPlayer组件的大播放按钮. */
 .video-player .vjs-big-play-button {
-    /* 背景颜色. */
-    background-color: #F9F9F9;
+    background-color: black;
+    /* 背景图像. */
+    background-image: linear-gradient(93.87deg, #095AE6, #062794);
     /* 边框. */
     border: 0;
     /* 边框圆角. */
@@ -32,7 +33,7 @@
 /* 用于禁用VideoPlayer组件的大播放按钮的原始特效. */
 .video-player:hover .vjs-big-play-button,
 .video-player .vjs-big-play-button:focus {
-    background-color: #F9F9F9;
+    background-color: inherit;
 }
 
 /* 处理VideoPlayer组件的大播放按钮上的三角. */
@@ -40,7 +41,7 @@
     /* 边框. */
     border: 17px solid transparent; /* 颜色设置为完全透明. */
     /* 左边框. */
-    border-left: 29px solid #1A1D29; /* border * sqrt(3) */
+    border-left: 29px solid #F9F9F9; /* border * sqrt(3) */
     /* 边框圆角. */
     border-radius: 9%; /* 用于调整三角形的圆角. */
     /* ::before伪元素中内容. */
@@ -55,4 +56,24 @@
     top: 27%;
     /* 内容宽度. */
     width: 0;
+}
+
+/* 处理VideoPlayer组件的控制栏. */
+.video-player .vjs-control-bar {
+    /* 背景图像. */
+    background-image: linear-gradient(to right, #095AE6 15%, #062794);
+    /* 边框圆角. */
+    border-radius: 10px;
+    /* 文本颜色值. */
+    color: #F9F9F9;
+    /* 内容高度. */
+    height: 35px;
+    /* 相对于容器向右偏移量. */
+    left: 50%;
+    /* 底外边距. */
+    margin-bottom: 1%;
+    /* 平移元素: 横坐标移动-50%. */
+    transform: translate(-50%);
+    /* 内容宽度. */
+    width: 98%;
 }
