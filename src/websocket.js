@@ -14,6 +14,7 @@ export default class WebSocketClient {
         this.websocket.onmessage = this.onMessage.bind(this);
 
         this.chatListHandler = null;
+        this.modalMessageHandler = null;
         this.player = null;
     }
 
@@ -29,16 +30,24 @@ export default class WebSocketClient {
             // 处理控制命令.
             if (data.command === 'play') {
                 this.player.play().then();
+                this.modalMessageHandler(`用户${data.user.name}播放了当前内容.`);
+
                 console.log(`%c收到用户${data.user.name}: 开始`, 'color: red');
             } else if (data.command === 'pause') {
                 this.player.pause();
+                this.modalMessageHandler(`用户${data.user.name}暂停了当前内容.`);
+
                 console.log(`%c收到用户${data.user.name}: 暂停`, 'color: red');
             } else if (data.command.playbackRate) {
                 this.player.playbackRate(data.command.playbackRate);
+                this.modalMessageHandler(`用户${data.user.name}修改了播放速度.`);
+
                 console.log(`%c收到用户${data.user.name}: ` +
                     `${data.command.playbackRate}x 倍速`, 'color: red');
             } else if (data.command.newProgress) {
                 this.player.currentTime(data.command.newProgress);
+                this.modalMessageHandler(`用户${data.user.name}更新了播放进度.`);
+
                 console.log(`%c收到用户${data.user.name}: ` +
                     `更新进度到 ${data.command.newProgress.toFixed()} 秒`,
                 'color: red');
@@ -89,6 +98,14 @@ export default class WebSocketClient {
      */
     setChatListHandler(handler) {
         this.chatListHandler = handler;
+    }
+
+    /**
+     * 设置播放器模态框内容处理函数.
+     * @param {function} handler - 播放器模态框内容处理函数.
+     */
+    setVideoPlayerModalMessageHandler(handler) {
+        this.modalMessageHandler = handler;
     }
 
     /**

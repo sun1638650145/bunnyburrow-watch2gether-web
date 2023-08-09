@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import videojs from 'video.js';
 
+import VideoPlayerModal from './video-player-modal.jsx';
 import {ReadyContext, SourcesContext, UserContext} from '../contexts.js';
 import WebSocketClient from '../websocket.js';
 
@@ -78,6 +79,9 @@ export default function VideoPlayer({sources, websocket}) {
     const playerRef = useRef(null);
     // 用户信息.
     const user = useContext(UserContext);
+    // 播放器模态框控制开关和内容.
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
 
     /**
      * 当播放器初始化完成, 用于处理播放器事件回调函数: 播放/暂停操作, 修改播放倍速和播放进度.
@@ -129,10 +133,30 @@ export default function VideoPlayer({sources, websocket}) {
         });
     }
 
+    // 打开播放器模态框和添加内容.
+    useEffect(() => {
+        websocket.setVideoPlayerModalMessageHandler(modalMessage => {
+            setModalIsOpen(true);
+            setModalMessage(modalMessage);
+        });
+    }, []);
+
+    // 设置播放器模态框1000ms后自动关闭.
+    useEffect(() => {
+        if (modalIsOpen) {
+            const timerID = setTimeout(() => {
+                setModalIsOpen(false);
+            }, 1000);
+
+            return () => clearTimeout(timerID); // 清除定时器以防止内存泄漏.
+        }
+    }, [modalIsOpen]);
+
     return (
         <SourcesContext.Provider value={sources}>
             <ReadyContext.Provider value={handlePlayerReady}>
                 <VideoJSWrapper/>
+                <VideoPlayerModal isOpen={modalIsOpen} message={modalMessage}/>
             </ReadyContext.Provider>
         </SourcesContext.Provider>
     );
