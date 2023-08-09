@@ -1,6 +1,6 @@
 {
     "name": "watch2gether",
-    "version": "0.0.1-alpha.5",
+    "version": "0.0.1-alpha.6",
     "description": "一起看电影",
     "license": "GPL-2.0-only",
     "author": {
@@ -16,13 +16,14 @@
         "prop-types": "15.8.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
+        "react-modal": "3.16.1",
         "react-scripts": "5.0.1",
         "use-immer": "0.9.0",
         "video.js": "8.3.0"
     },
     "devDependencies": {
-        "eslint": "8.45.0",
-        "eslint-plugin-react": "7.33.0"
+        "eslint": "8.46.0",
+        "eslint-plugin-react": "7.33.1"
     },
     "browserslist": [
         "defaults and supports es6-module"
