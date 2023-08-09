@@ -49,6 +49,8 @@ html {
     border: 0;
     /* 边框圆角. */
     border-radius: 8px;
+    /* 使用替代(IE)盒模型. */
+    box-sizing: border-box;
     /* 文本颜色值. */
     color: #E5E7EB;
     /* 字体速记属性: 字体大小 字体(无衬线) */
@@ -56,7 +58,7 @@ html {
     /* 内容高度. */
     height: 35px;
     /* 右外边距. */
-    margin-right: 5px;
+    margin-right: 2px;
     /* 轮廓. */
     outline: 0;
     /* 内边距. */
