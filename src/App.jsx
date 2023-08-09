@@ -20,11 +20,11 @@ export default function App() {
     });
     // 流媒体视频源.
     const [sources, updateSources] = useImmer({
-        src: '',
+        src: 'http://192.168.31.62/video/我们亲爱的Steve/',
         type: 'application/x-mpegURL' // 暂不可自定义媒体类型.
     });
     // WebSocket服务器的URL.
-    const [webSocketUrl, setWebSocketUrl] = useState('');
+    const [webSocketUrl, setWebSocketUrl] = useState('ws://192.168.31.62/ws/');
     // 是否登录信息.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
