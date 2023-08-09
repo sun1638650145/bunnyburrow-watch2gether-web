@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Modal from 'react-modal';
 
+import '../styles/video-player-modal.css';
+
 /**
  * VideoPlayerModal组件, 为播放器创建模态框.
  * @param {boolean} isOpen - 控制模态框开关.
@@ -17,7 +19,7 @@ export default function VideoPlayerModal({isOpen, message}) {
             className='video-player-modal'
             isOpen={isOpen}
         >
-            <div>{message}</div>
+            {message}
         </Modal>
     );
 }
