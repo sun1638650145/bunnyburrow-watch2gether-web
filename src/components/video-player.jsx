@@ -6,7 +6,7 @@ import VideoPlayerModal from './video-player-modal.jsx';
 import {ReadyContext, SourcesContext, UserContext} from '../contexts.js';
 import WebSocketClient from '../websocket.js';
 
-import zh from 'video.js/dist/lang/zh-CN.json';
+import zh from 'video.js/dist/lang/zh-Hans.json';
 
 import 'video.js/dist/video-js.css';
 import '../styles/video-player.css';
@@ -28,8 +28,8 @@ function VideoJSWrapper() {
             const videoElement = document.createElement('video-js');
             videoRef.current.appendChild(videoElement);
 
-            // 添加中文语言包.
-            videojs.addLanguage('zh-CN', zh);
+            // 添加简体中文语言包.
+            videojs.addLanguage('zh-Hans', zh);
 
             const player = playerRef.current = videojs(videoElement, {
                 controls: true,
