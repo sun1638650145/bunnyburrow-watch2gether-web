@@ -1,9 +1,3 @@
-/* 用于禁用原始半透明背景样式. */
-.ReactModal__Overlay--after-open {
-    /* 背景颜色. */
-    background-color: transparent !important;
-}
-
 /* 处理VideoPlayerModal组件. */
 .video-player-modal {
     /* 背景颜色. */
