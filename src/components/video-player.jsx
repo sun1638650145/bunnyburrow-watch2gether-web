@@ -112,16 +112,23 @@ export default function VideoPlayer({sources, websocket}) {
                 }, 'command');
             }
         });
-        // 倍速按钮.
-        // TODO(Steve): 通过事件触发修改播放倍速会导致发送两次信息.
-        player.on('ratechange', () => {
-            websocket.sendMessage({
-                user: user,
-                command: {
-                    playbackRate: player.playbackRate()
-                }
-            }, 'command');
-        });
+        // 倍速菜单的全部按钮.
+        const menuItems =
+            player.controlBar.playbackRateMenuButton.menu.children();
+        const playbackRates = [0.5, 0.75, 1, 1.25, 1.5, 2];
+        // 遍历全部按钮.
+        for (let i = 0; i < menuItems.length; i++) {
+            const menuItem = menuItems[i];
+
+            menuItem.on('click', () => {
+                websocket.sendMessage({
+                    user: user,
+                    command: {
+                        playbackRate: playbackRates[menuItems.length - i - 1]
+                    }
+                }, 'command');
+            });
+        }
         // 进度条.
         player.controlBar.progressControl.seekBar.on('click', () => {
             websocket.sendMessage({
