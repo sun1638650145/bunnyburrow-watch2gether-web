@@ -115,16 +115,15 @@ export default function VideoPlayer({sources, websocket}) {
         // 倍速菜单的全部按钮.
         const menuItems =
             player.controlBar.playbackRateMenuButton.menu.children();
-        const playbackRates = [0.5, 0.75, 1, 1.25, 1.5, 2];
-        // 遍历全部按钮.
         for (let i = 0; i < menuItems.length; i++) {
+            // 遍历全部按钮获取每个倍速的按钮.
             const menuItem = menuItems[i];
 
-            menuItem.on('click', () => {
+            menuItem.on(['click', 'touchend'], () => {
                 websocket.sendMessage({
                     user: user,
                     command: {
-                        playbackRate: playbackRates[menuItems.length - i - 1]
+                        playbackRate: menuItem.rate
                     }
                 }, 'command');
             });
