@@ -21,7 +21,7 @@
 /*
  avatar-input中自定义的表单使用弹性布局;
  垂直和水平方向居中排列; 使背景颜色为rgba(249, 249, 249, 0.1);
- 边框为圆形; 手形光标; 使用40px, Helvetica(无衬线)字体;
+ 边框为圆形; 手形光标; 使用40px, 优先使用Helvetica字体;
  内容高宽均为100px; 外边距为5px.
  */
 .avatar-input > .custom-file-input {
@@ -30,7 +30,7 @@
     border-radius: 50%;
     cursor: pointer;
     display: flex;
-    font: 40px Helvetica, sans-serif;
+    font: 40px Helvetica, Arial, sans-serif;
     height: 100px;
     justify-content: center;
     margin: 5px;

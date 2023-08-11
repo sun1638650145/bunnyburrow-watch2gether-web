@@ -23,8 +23,8 @@
     border: 0;
     /* 边框圆角. */
     border-radius: 50%;
-    /* 字体名. */
-    font-family: Helvetica, sans-serif;
+    /* 字体. */
+    font-family: Helvetica, Arial, sans-serif;
     /* 内容高度. */
     height: 75px;
     /* 内容宽度. */
@@ -67,8 +67,8 @@
     border-radius: 18px;
     /* 文本颜色值. */
     color: #F9F9F9;
-    /* 字体名. */
-    font-family: Helvetica, sans-serif;
+    /* 字体. */
+    font-family: Helvetica, Arial, sans-serif;
     /* 内容高度. */
     height: 40px;
     /* 相对于容器向右偏移量. */
@@ -85,8 +85,8 @@
 .video-player .vjs-control-bar .vjs-button,
 .video-player .vjs-control-bar .vjs-volume-control,
 .video-player .vjs-control-bar .vjs-remaining-time {
-    /* 字体名. */
-    font-family: Helvetica, sans-serif;
+    /* 字体. */
+    font-family: Helvetica, Arial, sans-serif;
     /* 相对于容器向下偏移量. */
     top: 15%;
     /* 修改元素大小. */
@@ -100,6 +100,6 @@
     background-color: rgba(6, 39, 148, 35%);
     /* 文本颜色值. */
     color: #F9F9F9;
-    /* 字体名. */
-    font-family: Helvetica, sans-serif;
+    /* 字体. */
+    font-family: Helvetica, Arial, sans-serif;
 }

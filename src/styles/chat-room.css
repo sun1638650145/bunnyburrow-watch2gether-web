@@ -53,8 +53,8 @@ html {
     box-sizing: border-box;
     /* 文本颜色值. */
     color: #E5E7EB;
-    /* 字体速记属性: 字体大小 字体(无衬线) */
-    font: 15px Helvetica, sans-serif;
+    /* 字体速记属性: 字体大小 字体 */
+    font: 15px Helvetica, Arial, sans-serif;
     /* 内容高度. */
     height: 35px;
     /* 右外边距. */
@@ -81,8 +81,8 @@ html {
     border-radius: 8px;
     /* 文本颜色值. */
     color: #E5E7EB;
-    /* 字体速记属性: 字体粗细 字体大小 字体(无衬线) */
-    font: bold 15px Helvetica, sans-serif;
+    /* 字体速记属性: 字体粗细 字体大小 字体 */
+    font: bold 15px Helvetica, Arial, sans-serif;
     /* 内容高度. */
     height: 35px;
     /* 文本字符间距. */

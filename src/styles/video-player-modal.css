@@ -4,8 +4,8 @@
     background-color: rgba(44, 44, 44, 80%);
     /* 边框圆角. */
     border-radius: 8px;
-    /* 字体速记属性: 字体大小 字体(无衬线) */
-    font: 12px Helvetica, sans-serif;
+    /* 字体速记属性: 字体大小 字体 */
+    font: 12px Helvetica, Arial, sans-serif;
     /* 相对于容器向右偏移量. TODO(Steve): 50%不是正中间, 使用视口宽度也不行. */
     left: 42%;
     /* 内边距. */

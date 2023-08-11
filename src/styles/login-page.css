@@ -5,11 +5,11 @@ html {
 
 /*
  使一级标题文本颜色值为#F9F9F9;
- 使用border, 24px, Helvetica(无衬线)的字体; 外边距为10px.
+ 使用border, 24px, 优先使用Helvetica字体; 外边距为10px.
  */
 h1 {
     color: #F9F9F9;
-    font: bolder 24px Helvetica, sans-serif;
+    font: bolder 24px Helvetica, Arial, sans-serif;
     margin: 10px;
 }
 
@@ -28,7 +28,7 @@ h1 {
  背景颜色为rgba(249, 249, 249, 0.1);
  使用替代(IE)盒模型(即边框和内边距包含在宽度内);
  无样式5px圆角边框; 文本颜色值为#F9F9F9;
- 使用15px, Helvetica(无衬线)的字体;
+ 使用15px, 优先使用Helvetica字体;
  内容高宽分别是50px, 350px; 外边距为10px, 首行文本缩进为5px.
  */
 .login-input,
@@ -39,7 +39,7 @@ h1 {
     border-radius: 5px;
     box-sizing: border-box;
     color: #F9F9F9;
-    font: 15px Helvetica, sans-serif;
+    font: 15px Helvetica, Arial, sans-serif;
     height: 50px;
     margin: 10px;
     text-indent: 5px;
@@ -70,19 +70,19 @@ h1 {
 
 /*
  登录, 流媒体和WebSocket错误信息文本颜色值为#FF554C;
- 使用12px, Helvetica(无衬线)的字体; 左外边距为10px.
+ 使用12px, 优先使用Helvetica字体; 左外边距为10px.
  */
 .login-error-message,
 .stream-error-message,
 .websocket-error-message {
     color: #FF554C;
-    font: 12px Helvetica, sans-serif;
+    font: 12px Helvetica, Arial, sans-serif;
     margin-left: 10px;
 }
 
 /*
  login-button按钮背景颜色为#0682F0; 无样式5px圆角边框;
- 文本颜色值为#F9F9F9; 使用bold, 18px, Helvetica(无衬线)的字体;
+ 文本颜色值为#F9F9F9; 使用bold, 18px, 优先使用Helvetica字体;
  内容高宽分别是50px, 350px; 文本字符间距为5px; 外边距为10px.
  */
 .login-button {
@@ -90,7 +90,7 @@ h1 {
     border: 0;
     border-radius: 5px;
     color: #F9F9F9;
-    font: bold 18px Helvetica, sans-serif;
+    font: bold 18px Helvetica, Arial, sans-serif;
     height: 50px;
     letter-spacing: 5px;
     margin: 10px;
