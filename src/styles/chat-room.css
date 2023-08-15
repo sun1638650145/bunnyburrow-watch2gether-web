@@ -1,104 +1,92 @@
-/* 处理基本元素样式. */
+/* 处理基本元素样式, 使文本颜色为#E5E7EB. */
 html {
-    /* 文本颜色值. */
     color: #E5E7EB;
 }
 
-/* 处理ChatRoom组件. */
+/*
+ ChatRoom组件的背景增加110%亮度滤镜;
+ 内容高宽分别为100动态视口高度和30%;
+ 左外边距为5px; 使用相对定位方式.
+ */
 .chat-room {
-    /* 背景区域滤镜: 使用110%亮度. */
     backdrop-filter: brightness(110%);
-    /* 内容高度. */
     height: 100dvh;
-    /* 左外边距. */
     margin-left: 5px;
-    /* 定位方式. */
     position: relative;
-    /* 内容宽度. */
     width: 30%;
 }
 
-/* 设置屏幕处于纵向时的样式. */
+/*
+ 设置屏幕处于纵向时的样式:
+ ChatRoom组件的内容高度为calc(100dvh - 100dvw * 9/16);
+ 内容宽度为100%.
+ */
 @media (orientation: portrait) {
-    /* 处理ChatRoom组件. */
     .chat-room {
         /* TODO(Steve): 内容高度: calc(100dvh - 播放器(假设16:9)的高度). */
         height: calc(100dvh - 100dvw * 9/16);
-        /* 内容宽度. */
         width: 100%;
     }
 }
 
-/* 处理chat-form表单元素. */
+/*
+ chat-form表单元素与下边界之间的偏移量为0;
+ 外边距分别为0 10px 25px 3px; 使用绝对定位方式;
+ 内容宽度为100%.
+ */
 .chat-form {
-    /* 与下边界之间的偏移量. */
     bottom: 0;
-    /* 外边距. */
     margin: 0 10px 25px 3px;
-    /* 定位方式. */
     position: absolute;
-    /* 内容宽度. */
     width: 100%;
 }
 
-/* 处理chat-input表单输入元素. */
+/*
+ chat-input表单背景颜色为rgba(249, 249, 249, 0.1);
+ 无样式8px圆角边框; 使用替代(IE)盒模型(即边框和内边距包含在宽度内);
+ 文本颜色值为#E5E7EB; 使用15px, 优先使用Helvetica字体;
+ 内容高宽分别是35px, calc(100% - 按钮宽度);
+ 右外边距为2px; 没有轮廓; 内边距为1px; 首行文本缩进为5px.
+ */
 .chat-input {
-    /* 背景颜色. */
     background-color: rgba(249, 249, 249, 0.1);
-    /* 边框. */
     border: 0;
-    /* 边框圆角. */
     border-radius: 8px;
-    /* 使用替代(IE)盒模型. */
     box-sizing: border-box;
-    /* 文本颜色值. */
     color: #E5E7EB;
-    /* 字体速记属性: 字体大小 字体 */
     font: 15px Helvetica, Arial, sans-serif;
-    /* 内容高度. */
     height: 35px;
-    /* 右外边距. */
     margin-right: 2px;
-    /* 轮廓. */
     outline: 0;
-    /* 内边距. */
     padding: 1px;
-    /* 首行文本缩进量. */
     text-indent: 5px;
-    /* 内容宽度: calc(100% - 按钮宽度). */
     width: calc(100% - 117px);
 }
 
-/* 处理send-button按钮元素. */
+/*
+ send-button按钮背景颜色为rgba(0, 0, 0, 0);
+ 背景图像为linear-gradient(93.87deg, #095AE6, #062794);
+ 无样式5px圆角边框; 文本颜色值为#E5E7EB;
+ 使用bold, 15px, 优先使用Helvetica字体;
+ 内容高宽分别是35px, 100px; 文本字符间距为5px; 内边距为1px;
+ 上下外边距为0, 左右外边距为5px.
+ */
 .send-button {
-    /* 背景颜色. */
     background-color: rgba(0, 0, 0, 0);
-    /* 背景图像. */
     background-image: linear-gradient(93.87deg, #095AE6, #062794);
-    /* 边框. */
     border: 0;
-    /* 边框圆角. */
     border-radius: 8px;
-    /* 文本颜色值. */
     color: #E5E7EB;
-    /* 字体速记属性: 字体粗细 字体大小 字体 */
     font: bold 15px Helvetica, Arial, sans-serif;
-    /* 内容高度. */
     height: 35px;
-    /* 文本字符间距. */
     letter-spacing: 5px;
-    /* 内边距. */
     padding: 1px;
-    /* 外边距速记属性: 上下 左右. */
     margin: 0 5px;
-    /* 内容宽度. */
     width: 100px;
 }
 
-/* 处理send-button按钮元素被禁用时的样式. */
+/* send-button按钮被禁用时: 光标为不能执行; 使用30%灰度的滤镜. */
 .send-button[disabled] {
-    /* 光标. */
     cursor: not-allowed;
-    /* 滤镜: 使用30%灰度. */
     filter: grayscale(30%);
 }
