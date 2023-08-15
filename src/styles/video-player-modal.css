@@ -1,17 +1,15 @@
-/* 处理VideoPlayerModal组件. */
+/*
+ VideoPlayerModal组件的背景颜色为rgba(44, 44, 44, 80%);
+ 8px圆角边框; 使用12px, 优先使用Helvetica字体;
+ 相对于容器向右偏移42%; 内边距为12px;
+ 使用绝对定位方式; 相对于容器向下偏移40%.
+ */
 .video-player-modal {
-    /* 背景颜色. */
     background-color: rgba(44, 44, 44, 80%);
-    /* 边框圆角. */
     border-radius: 8px;
-    /* 字体速记属性: 字体大小 字体 */
     font: 12px Helvetica, Arial, sans-serif;
-    /* 相对于容器向右偏移量. TODO(Steve): 50%不是正中间, 使用视口宽度也不行. */
-    left: 42%;
-    /* 内边距. */
+    left: 42%; /* TODO(Steve): 50%不是正中间, 使用视口宽度也不行. */
     padding: 12px;
-    /* 定位方式. */
     position: absolute;
-    /* 相对于容器向下偏移量. */
     top: 40%;
 }

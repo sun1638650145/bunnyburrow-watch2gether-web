@@ -23,8 +23,7 @@ html {
  */
 @media (orientation: portrait) {
     .chat-room {
-        /* TODO(Steve): 内容高度: calc(100dvh - 播放器(假设16:9)的高度). */
-        height: calc(100dvh - 100dvw * 9/16);
+        height: calc(100dvh - 100dvw * 9/16); /* TODO(Steve): 内容高度: calc(100dvh - 播放器(假设16:9)的高度). */
         width: 100%;
     }
 }
