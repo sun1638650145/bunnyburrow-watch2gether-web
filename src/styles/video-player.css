@@ -1,33 +1,30 @@
-/* 处理VideoPlayer组件. */
+/* VideoPlayer组件的右外边距为5px, 内容宽度为70%. */
 .video-player {
-    /* 右外边距. */
     margin-right: 5px;
-    /* 内容宽度. */
     width: 70%;
 }
 
-/* 设置屏幕处于纵向时的样式. */
+/*
+ 设置屏幕处于纵向时的样式: 内容宽度为100%.
+ */
 @media (orientation: portrait) {
-    /* 处理VideoPlayer组件. */
     .video-player {
-        /* 内容宽度. */
         width: 100%;
     }
 }
 
-/* 处理VideoPlayer组件的大播放按钮. */
+/*
+ VideoPlayer组件的大播放按钮背景图像为
+ linear-gradient(93.87deg, #095AE6, #062794);
+ 无样式50%圆角边框; 优先使用Helvetica字体;
+ 内容高宽均是75px.
+ */
 .video-player .vjs-big-play-button {
-    /* 背景图像. */
     background-image: linear-gradient(93.87deg, #095AE6, #062794);
-    /* 边框. */
     border: 0;
-    /* 边框圆角. */
     border-radius: 50%;
-    /* 字体. */
     font-family: Helvetica, Arial, sans-serif;
-    /* 内容高度. */
     height: 75px;
-    /* 内容宽度. */
     width: 75px;
 }
 
@@ -37,69 +34,62 @@
     background-color: inherit;
 }
 
-/* 处理VideoPlayer组件的大播放按钮上的三角. */
+/*
+ VideoPlayer组件的大播放按钮上的三角:
+ 使用17px, 实线, 透明的边框; 29px, 实线, 颜色为#F9F9F9的左边框;
+ 9%圆角边框; 伪元素中无内容; 内容高宽分别为36px和0;
+ 相对于容器向右偏移34%; 使用绝对定位方式; 相对于容器向下偏移27%.
+ */
 .video-player .vjs-big-play-button > .vjs-icon-placeholder:before {
-    /* 边框. */
     border: 17px solid transparent; /* 颜色设置为完全透明. */
-    /* 左边框. */
     border-left: 29px solid #F9F9F9; /* border * sqrt(3) */
-    /* 边框圆角. */
     border-radius: 9%; /* 用于调整三角形的圆角. */
-    /* ::before伪元素中内容. */
     content: '';
-    /* 内容高度. */
     height: 36px; /* 用于调整三角形的圆角. */
-    /* 相对于容器向右偏移量. */
     left: 34%;
-    /* 定位方式. */
     position: absolute;
-    /* 相对于容器向下偏移量. */
     top: 27%;
-    /* 内容宽度. */
     width: 0;
 }
 
-/* 处理VideoPlayer组件的控制栏. */
+/*
+ VideoPlayer组件的控制栏背景图像为
+ linear-gradient(to right, #095AE6 15%, #062794);
+ 18%圆角边框; 文本颜色值为#F9F9F9; 优先使用Helvetica字体;
+ 内容高宽分别为40px和80%; 相对于容器向右偏移50%;
+ 底外边距为2%; 横坐标平移-50%.
+ */
 .video-player .vjs-control-bar {
-    /* 背景图像. */
     background-image: linear-gradient(to right, #095AE6 15%, #062794);
-    /* 边框圆角. */
     border-radius: 18px;
-    /* 文本颜色值. */
     color: #F9F9F9;
-    /* 字体. */
     font-family: Helvetica, Arial, sans-serif;
-    /* 内容高度. */
     height: 40px;
-    /* 相对于容器向右偏移量. */
     left: 50%;
-    /* 底外边距. */
     margin-bottom: 2%; /* iOS设备全屏时屏幕指示器(Home Indicator)会有遮挡. */
-    /* 平移元素: 横坐标移动-50%. */
     transform: translate(-50%);
-    /* 内容宽度. */
     width: 80%;
 }
 
-/* 处理VideoPlayer组件控制栏上的按钮, 音量控制条和剩余时间. */
+/*
+ VideoPlayer组件控制栏上的按钮, 音量控制条和剩余时间
+ 优先使用Helvetica字体; 相对于容器向下偏移15%; 元素放大到115%.
+ */
 .video-player .vjs-control-bar .vjs-button,
 .video-player .vjs-control-bar .vjs-volume-control,
 .video-player .vjs-control-bar .vjs-remaining-time {
-    /* 字体. */
     font-family: Helvetica, Arial, sans-serif;
-    /* 相对于容器向下偏移量. */
     top: 15%;
-    /* 修改元素大小. */
-    transform: scale(1.15);
+    transform: scale(115%);
 }
 
-/* 处理VideoPlayer组件控制栏上的进度条和倍速按钮. */
+/*
+ VideoPlayer组件控制栏上的进度条和倍速按钮背景图像为rgba(6, 39, 148, 35%);
+ 文本颜色值为#F9F9F9; 优先使用Helvetica字体.
+ */
 .video-player .vjs-control-bar .vjs-load-progress,
 .video-player .vjs-control-bar .vjs-menu-item {
-    /* 背景颜色. */
     background-color: rgba(6, 39, 148, 35%);
-    /* 文本颜色值. */
     color: #F9F9F9;
-    /* 字体. */
     font-family: Helvetica, Arial, sans-serif;
 }
