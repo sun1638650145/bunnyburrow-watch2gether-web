@@ -13,7 +13,8 @@
     // 环境选项.
     "env": {
         "browser": true,
-        "es6": true // 使用ES6语法.
+        "es6": true, // 使用ES6语法.
+        "jest": true // 使用Jest.
     },
     // 解析器选项.
     "parserOptions": {
