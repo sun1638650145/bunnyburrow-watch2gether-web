@@ -1,14 +1,14 @@
-/* 处理整个播放器和ChatRoom容器的样式. */
+/* 处理整个播放器和ChatRoom容器的样式, 使用弹性布局. */
 .video-chat-container {
-    /* 弹性布局. */
     display: flex;
 }
 
-/* 设置屏幕处于纵向时的样式. */
+/*
+ 设置屏幕处于纵向时的样式:
+ 处理整个播放器和ChatRoom容器的样式, 内部元素按照垂直方向排列.
+ */
 @media (orientation: portrait) {
-    /* 处理整个播放器和ChatRoom容器的样式. */
     .video-chat-container {
-        /* 内部元素按照垂直方向排列. */
         flex-direction: column;
     }
 }
