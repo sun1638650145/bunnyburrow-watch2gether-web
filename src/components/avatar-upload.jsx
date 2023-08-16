@@ -21,6 +21,7 @@ export default function AvatarUpload({avatar, onAvatarChange}) {
             {avatar ? (
                 <div
                     className='avatar'
+                    role='img'
                     style={{ backgroundImage: `url(${avatar})` }}
                 />
             ): (
