@@ -10,6 +10,7 @@
     "scripts": {
         "build": "react-scripts build",
         "lint": "npx eslint src",
+        "pre-commit": "husky install",
         "start": "react-scripts start",
         "test": "react-scripts test --watchAll=false"
     },
