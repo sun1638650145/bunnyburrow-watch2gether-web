@@ -5,3 +5,5 @@ node_modules/
 package-lock.json
 # 忽略打包.
 build/
+# 忽略测试覆盖.
+coverage/
