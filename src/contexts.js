@@ -9,5 +9,6 @@ export const SourcesContext = createContext({
 });
 // 传递登录的用户信息.
 export const UserContext = createContext({
+    avatar: '',
     name: ''
 });
