@@ -32,7 +32,7 @@
  当前用户发送的内容content背景颜色为#29B560;
  边框为圆形; 文本颜色值为黑色; 外边距为8px;
  内容最大宽度为父容器的60%, 最小宽度为16px;
- 内边距为8px; 使用相对定位方式.
+ 内边距为8px; 使用相对定位方式, 保留连续空白字符.
  */
 .my-message > .content {
     background-color: #29B560;
@@ -43,6 +43,7 @@
     min-width: 16px;
     padding: 8px;
     position: relative;
+    white-space: pre-wrap;
 }
 
 /*
@@ -82,7 +83,7 @@
  其他用户发送的内容content背景颜色为#2C2C2C;
  边框为圆形; 外边距为1px 8px 8px 8px;
  内容最大宽度为父容器的60%, 最小宽度为16px;
- 内边距为8px; 使用相对定位方式.
+ 内边距为8px; 使用相对定位方式, 保留连续空白字符.
  */
 .other-message .content {
     background-color: #2C2C2C;
@@ -92,6 +93,7 @@
     min-width: 16px;
     padding: 8px;
     position: relative;
+    white-space: pre-wrap;
 }
 
 /*
