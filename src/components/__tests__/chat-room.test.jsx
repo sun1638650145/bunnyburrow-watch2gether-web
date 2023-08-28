@@ -8,10 +8,11 @@ import WebSocketClient from '../../websocket.js';
 
 // 模拟WebSocketClient模块.
 jest.mock('../../websocket.js');
+// 模拟WebSocket客户端.
+const mockWebSocketClient = new WebSocketClient('ws://example.com/ws/');
 
 describe('ChatRoom', () => {
     test('聊天内容为空或仅为空格时', () => {
-        const mockWebSocketClient = new WebSocketClient('ws://example.com/ws/');
         const {container} = render(<ChatRoom websocket={mockWebSocketClient}/>);
 
         const chatInput = container.querySelector('.chat-input');
@@ -27,7 +28,6 @@ describe('ChatRoom', () => {
     });
 
     test('聊天内容不为空', () => {
-        const mockWebSocketClient = new WebSocketClient('ws://example.com/ws/');
         const {container} = render(<ChatRoom websocket={mockWebSocketClient}/>);
 
         const chatInput = container.querySelector('.chat-input');
@@ -42,7 +42,6 @@ describe('ChatRoom', () => {
     });
 
     test('显示用户聊天内容', () => {
-        const mockWebSocketClient = new WebSocketClient('ws://example.com/ws/');
         const {container} = render(<ChatRoom websocket={mockWebSocketClient}/>);
 
         const chatInput = container.querySelector('.chat-input');
