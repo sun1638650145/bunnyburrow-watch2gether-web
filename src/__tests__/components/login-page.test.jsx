@@ -3,7 +3,7 @@ import {describe, expect, jest, test} from '@jest/globals';
 import '@testing-library/jest-dom/jest-globals';
 import {fireEvent, render, screen} from '@testing-library/react';
 
-import LoginPage from '../login-page.jsx';
+import LoginPage from '../../components/login-page.jsx';
 
 // 模拟函数.
 const mockOnUserAvatarChange = jest.fn();
