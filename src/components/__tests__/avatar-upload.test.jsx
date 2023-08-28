@@ -3,7 +3,7 @@ import {describe, expect, jest, test} from '@jest/globals';
 import '@testing-library/jest-dom/jest-globals';
 import {fireEvent, render, screen} from '@testing-library/react';
 
-import AvatarUpload from '../../components/avatar-upload.jsx';
+import AvatarUpload from '../../avatar-upload.jsx';
 
 describe('AvatarUpload', () => {
     test('未上传用户头像', () => {

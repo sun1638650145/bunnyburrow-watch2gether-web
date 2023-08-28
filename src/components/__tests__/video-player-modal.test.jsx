@@ -3,7 +3,7 @@ import {describe, expect, test} from '@jest/globals';
 import '@testing-library/jest-dom/jest-globals';
 import {render, screen} from '@testing-library/react';
 
-import VideoPlayerModal from '../../components/video-player-modal.jsx';
+import VideoPlayerModal from '../../video-player-modal.jsx';
 
 describe('VideoPlayerModal', () => {
     test('显示模态框', () => {

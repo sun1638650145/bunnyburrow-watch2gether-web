@@ -3,8 +3,8 @@ import {describe, expect, jest, test} from '@jest/globals';
 import '@testing-library/jest-dom/jest-globals';
 import {render} from '@testing-library/react';
 
-import VideoPlayer from '../../components/video-player.jsx';
-import WebSocketClient from '../../websocket';
+import VideoPlayer from '../../video-player.jsx';
+import WebSocketClient from '../../../websocket';
 
 // 模拟WebSocketClient模块.
 jest.mock('../../websocket.js');
