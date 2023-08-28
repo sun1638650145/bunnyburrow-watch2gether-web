@@ -3,8 +3,8 @@ import {describe, expect, jest, test} from '@jest/globals';
 import '@testing-library/jest-dom/jest-globals';
 import {fireEvent, render, screen} from '@testing-library/react';
 
-import ChatRoom from '../../chat-room.jsx';
-import WebSocketClient from '../../../websocket.js';
+import ChatRoom from '../chat-room.jsx';
+import WebSocketClient from '../../websocket.js';
 
 // 模拟WebSocketClient模块.
 jest.mock('../../websocket.js');
