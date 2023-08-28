@@ -9,7 +9,7 @@
     },
     "scripts": {
         "build": "react-scripts build",
-        "lint": "npx eslint src",
+        "lint": "eslint src",
         "pre-commit": "husky install",
         "start": "react-scripts start",
         "test": "react-scripts test --coverage --watchAll=false"
