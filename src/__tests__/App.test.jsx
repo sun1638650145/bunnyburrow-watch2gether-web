@@ -10,7 +10,7 @@ describe('App', () => {
         const {container} = render(<App/>);
 
         const loginButton = screen.getByText('加入');
-        // eslint-disable-next-line
+        // eslint-disable-next-line max-len
         const videoChatContainer = container.querySelector('.video-chat-container');
 
         expect(loginButton).toBeInTheDocument();
@@ -20,11 +20,17 @@ describe('App', () => {
     test('正确渲染播放器和ChatRoom容器', () => {
         const {container} = render(<App/>);
 
+        const avatarInput = screen.getByLabelText('+');
         const loginInput = container.querySelector('.login-input');
         const streamInput = container.querySelector('.stream-input');
         const websocketInput = container.querySelector('.websocket-input');
         const loginButton = screen.getByText('加入');
 
+        fireEvent.change(avatarInput, {
+            target: {
+                files: [new File([''], 'example.png', {type: 'image/png'})]
+            }
+        });
         fireEvent.change(loginInput, {
             target: {value: 'Steve'}
         });
@@ -40,7 +46,7 @@ describe('App', () => {
         });
         fireEvent.click(loginButton);
 
-        // eslint-disable-next-line
+        // eslint-disable-next-line max-len
         const videoChatContainer = container.querySelector('.video-chat-container');
         expect(videoChatContainer).toBeInTheDocument();
     });
