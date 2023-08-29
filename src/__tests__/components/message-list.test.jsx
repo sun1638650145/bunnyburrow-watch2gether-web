@@ -3,7 +3,7 @@ import {describe, expect, test} from '@jest/globals';
 import '@testing-library/jest-dom/jest-globals';
 import {render, screen} from '@testing-library/react';
 
-import MessageList from '../message-list.jsx';
+import MessageList from '../../components/message-list.jsx';
 
 describe('MessageList', () => {
     test('正确渲染聊天内容', () => {
