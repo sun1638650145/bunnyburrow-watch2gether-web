@@ -1,6 +1,6 @@
 import {describe, expect, test} from '@jest/globals';
 
-import WebSocketClient from './websocket.js';
+import WebSocketClient from '../websocket.js';
 
 describe('WebSocketClient', () => {
     test('发送和处理聊天内容', () => {
