@@ -1,18 +1,26 @@
 import React from 'react';
-import {describe, expect, jest, test} from '@jest/globals';
+import {beforeEach, describe, expect, jest, test} from '@jest/globals';
 import '@testing-library/jest-dom/jest-globals';
 import {fireEvent, render, screen} from '@testing-library/react';
 
 import LoginPage from '../login-page.jsx';
 
-// 模拟函数.
-const mockOnUserAvatarChange = jest.fn();
-const mockOnUserNameChange = jest.fn();
-const mockOnSourcesSrcChange = jest.fn();
-const mockOnWebSocketUrlChange = jest.fn();
-const mockOnIsLoggedInClick = jest.fn();
-
 describe('LoginPage', () => {
+    // 模拟函数.
+    let mockOnUserAvatarChange;
+    let mockOnUserNameChange;
+    let mockOnSourcesSrcChange;
+    let mockOnWebSocketUrlChange;
+    let mockOnIsLoggedInClick;
+
+    beforeEach(() => {
+        mockOnUserAvatarChange = jest.fn();
+        mockOnUserNameChange = jest.fn();
+        mockOnSourcesSrcChange = jest.fn();
+        mockOnWebSocketUrlChange = jest.fn();
+        mockOnIsLoggedInClick = jest.fn();
+    });
+
     test('昵称为空时', () => {
         const user = {
             avatar: 'https://example.com/example.png',

@@ -1,5 +1,5 @@
 import React from 'react';
-import {describe, expect, jest, test} from '@jest/globals';
+import {beforeEach, describe, expect, jest, test} from '@jest/globals';
 import '@testing-library/jest-dom/jest-globals';
 import {fireEvent, render, screen} from '@testing-library/react';
 
@@ -8,10 +8,15 @@ import WebSocketClient from '../../websocket.js';
 
 // 模拟WebSocketClient模块.
 jest.mock('../../websocket.js');
-// 模拟WebSocket客户端.
-const mockWebSocketClient = new WebSocketClient('ws://example.com/ws/');
 
 describe('ChatRoom', () => {
+    // 模拟WebSocket客户端.
+    let mockWebSocketClient;
+
+    beforeEach(() => {
+        mockWebSocketClient = new WebSocketClient('ws://example.com/ws/');
+    });
+
     test('聊天内容为空或仅为空格时', () => {
         const {container} = render(<ChatRoom websocket={mockWebSocketClient}/>);
 
