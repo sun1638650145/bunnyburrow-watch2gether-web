@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest # ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.6.0
       - name: Set up Node.js
         uses: actions/setup-node@v3.8.1
         with:
