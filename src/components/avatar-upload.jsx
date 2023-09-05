@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import avatarUpload from '../assets/avatar_upload.png';
 import '../styles/avatar-upload.css';
 
 /**
@@ -33,7 +34,8 @@ export default function AvatarUpload({avatar, onAvatarChange}) {
                     <label
                         className='custom-file-input'
                         htmlFor='file-input'
-                    >+</label>
+                        style={{ backgroundImage: `url(${avatarUpload})` }}
+                    />
                 </div>
             )}
         </div>

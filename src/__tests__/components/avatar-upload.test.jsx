@@ -1,7 +1,7 @@
 import React from 'react';
 import {describe, expect, jest, test} from '@jest/globals';
 import '@testing-library/jest-dom/jest-globals';
-import {fireEvent, render, screen} from '@testing-library/react';
+import {fireEvent, render} from '@testing-library/react';
 
 import AvatarUpload from '../../components/avatar-upload.jsx';
 
@@ -12,18 +12,20 @@ describe('AvatarUpload', () => {
         );
 
         const avatarImage = container.querySelector('.avatar');
-        const avatarInput = screen.getByLabelText('+');
+        const fileInput = container.querySelector('#file-input');
 
         expect(avatarImage).toBe(null); // 不存在用户头像元素.
-        expect(avatarInput).toBeInTheDocument(); // 上传用户头像元素.
+        expect(fileInput).toBeInTheDocument(); // 上传用户头像元素.
     });
 
     test('上传用户头像时', () => {
         const mockOnAvatarChange = jest.fn();
-        render(<AvatarUpload avatar='' onAvatarChange={mockOnAvatarChange}/>);
+        const {container} = render(
+            <AvatarUpload avatar='' onAvatarChange={mockOnAvatarChange}/>
+        );
 
-        const avatarInput = screen.getByLabelText('+');
-        fireEvent.change(avatarInput, {
+        const fileInput = container.querySelector('#file-input');
+        fireEvent.change(fileInput, {
             target: {
                 files: [new File([''], 'example.png', {type: 'image/png'})]
             }
@@ -41,9 +43,9 @@ describe('AvatarUpload', () => {
         );
 
         const avatarImage = container.querySelector('.avatar');
-        const avatarInput = screen.queryByLabelText('+');
+        const fileInput = container.querySelector('#file-input');
 
         expect(avatarImage).toBeInTheDocument(); // 渲染用户头像元素.
-        expect(avatarInput).toBe(null); // 不存在上传用户头像元素.
+        expect(fileInput).toBe(null); // 不存在上传用户头像元素.
     });
 });

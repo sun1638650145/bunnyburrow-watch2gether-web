@@ -20,13 +20,13 @@ describe('App', () => {
     test('正确渲染播放器和ChatRoom容器', () => {
         const {container} = render(<App/>);
 
-        const avatarInput = screen.getByLabelText('+');
+        const fileInput = container.querySelector('#file-input');
         const loginInput = container.querySelector('.login-input');
         const streamInput = container.querySelector('.stream-input');
         const websocketInput = container.querySelector('.websocket-input');
         const loginButton = screen.getByText('加入');
 
-        fireEvent.change(avatarInput, {
+        fireEvent.change(fileInput, {
             target: {
                 files: [new File([''], 'example.png', {type: 'image/png'})]
             }
