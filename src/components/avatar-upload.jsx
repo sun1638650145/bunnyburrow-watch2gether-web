@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import avatarUpload from '../assets/avatar_upload.png';
+import avatarUpload from '../assets/avatar-upload.png';
 import '../styles/avatar-upload.css';
 
 /**

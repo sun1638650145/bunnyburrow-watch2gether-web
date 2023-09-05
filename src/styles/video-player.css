@@ -36,20 +36,17 @@
 
 /*
  VideoPlayer组件的大播放按钮上的三角:
- 使用17px, 实线, 透明的边框; 29px, 实线, 颜色为#F9F9F9的左边框;
- 9%圆角边框; 伪元素中无内容; 内容高宽分别为36px和0;
- 相对于容器向右偏移34%; 使用绝对定位方式; 相对于容器向下偏移27%.
+ 背景图像为url("../assets/big-play-button.png");
+ 居中背景图像位置; 背景图像不重复; 背景图片大小为40px;
+ 伪元素中无内容; 使用绝对定位方式.
  */
 .video-player .vjs-big-play-button > .vjs-icon-placeholder:before {
-    border: 17px solid transparent; /* 颜色设置为完全透明. */
-    border-left: 29px solid #F9F9F9; /* border * sqrt(3) */
-    border-radius: 9%; /* 用于调整三角形的圆角. */
+    background-image: url("../assets/big-play-button.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px;
     content: '';
-    height: 36px; /* 用于调整三角形的圆角. */
-    left: 34%;
     position: absolute;
-    top: 27%;
-    width: 0;
 }
 
 /*
