@@ -65,7 +65,7 @@ export default function LoginPage({
      */
     function isValidWs(url) {
         // TODO(Steve): 这里只检查了协议类型, 应该做更加完整地址检查.
-        const pattern = new RegExp('^wss?:\\/\\/');
+        const pattern = new RegExp('^(wss?:\\/\\/.*)\\/$');
 
         return pattern.test(url);
     }
