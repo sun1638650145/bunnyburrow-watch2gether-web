@@ -16,6 +16,7 @@ export default function App() {
     // 登录用户信息.
     const [user, updateUser] = useImmer({
         avatar: '', // 用户头像的URL.
+        clientID: -1, // WebSocket客户端ID.
         name: '' // 用户昵称.
     });
     // 流媒体视频源.
@@ -77,8 +78,11 @@ export default function App() {
      * 提交登录事件.
      */
     function handleIsLoggedInClick() {
-        const clientId = Date.now(); // TODO(Steve): 使用时间戳生成的客户端ID, 应该改为使用UUID.
-        const clientWebSocketUrl = `${webSocketUrl}${clientId}/`;
+        // TODO(Steve): 使用时间戳生成的客户端ID, 应该改为使用UUID.
+        updateUser(draft => {
+            draft.clientID = Date.now();
+        });
+        const clientWebSocketUrl = `${webSocketUrl}${user.clientID}/`;
 
         // 创建一个WebSocket连接.
         websocketRef.current = new WebSocketClient(clientWebSocketUrl);
