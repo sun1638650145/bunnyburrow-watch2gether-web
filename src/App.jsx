@@ -77,8 +77,11 @@ export default function App() {
      * 提交登录事件.
      */
     function handleIsLoggedInClick() {
+        const clientId = Date.now(); // TODO(Steve): 使用时间戳生成的客户端ID, 应该改为使用UUID.
+        const clientWebSocketUrl = `${webSocketUrl}${clientId}/`;
+
         // 创建一个WebSocket连接.
-        websocketRef.current = new WebSocketClient(webSocketUrl);
+        websocketRef.current = new WebSocketClient(clientWebSocketUrl);
 
         setIsLoggedIn(true);
     }
