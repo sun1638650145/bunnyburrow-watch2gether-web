@@ -7,15 +7,19 @@ export default class WebSocketClient {
     /**
      * 创建一个WebSocket客户端实例.
      * @param {string} url - WebSocket服务器的URL.
+     * @param {Object} user - 当前登录用户的信息.
      * @constructor
      */
-    constructor(url) {
+    constructor(url, user) {
         this.websocket = new WebSocket(url);
         this.websocket.onmessage = this.onMessage.bind(this);
+        this.websocket.onopen = this.onOpen.bind(this);
 
         this.chatListHandler = null;
         this.modalMessageHandler = null;
         this.player = null;
+        this.usersHandler = null;
+        this.user = user;
     }
 
     /**
@@ -57,7 +61,18 @@ export default class WebSocketClient {
             this.chatListHandler(data);
             console.log(`%c收到用户${data.user.name}: '${data.content}'.`,
                 'color: blue');
+        } else if (this.usersHandler && type === 'system') {
+            // 添加其他用户的信息.
+            this.usersHandler(data.user);
+            console.log(`%c用户${data.user.name}登录.`, 'color: red');
         }
+    }
+
+    /**
+     * 与WebSocket服务器连接成功后, 广播用户登录消息.
+     */
+    onOpen() {
+        this.sendMessage({user: this.user}, 'system');
     }
 
     /**
@@ -98,6 +113,14 @@ export default class WebSocketClient {
      */
     setChatListHandler(handler) {
         this.chatListHandler = handler;
+    }
+
+    /**
+     * 设置更新全部登录用户列表处理函数.
+     * @param {function} handler - 全部登录用户列表处理函数.
+     */
+    setUsersHandler(handler) {
+        this.usersHandler = handler;
     }
 
     /**

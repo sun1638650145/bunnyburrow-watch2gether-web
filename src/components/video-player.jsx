@@ -72,7 +72,7 @@ function VideoJSWrapper() {
  *         src: 'https://example.com/video/video_name/',
  *         type: 'application/x-mpegURL'
  *     }}
- *     websocket={new WebSocketClient('wss://example.com/ws/')}
+ *     websocket={new WebSocketClient('wss://example.com/ws/', user)}
  * />
  */
 export default function VideoPlayer({sources, websocket}) {

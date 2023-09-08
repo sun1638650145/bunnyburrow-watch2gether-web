@@ -14,7 +14,7 @@ import '../styles/chat-room.css';
  * @returns {JSX.Element}
  * @constructor
  * @example
- * <ChatRoom websocket={new WebSocketClient('wss://example.com/ws/')}/>
+ * <ChatRoom websocket={new WebSocketClient('wss://example.com/ws/', user)}/>
  */
 export default function ChatRoom({websocket}) {
     // 聊天内容列表.

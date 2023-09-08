@@ -1,0 +1,20 @@
+/* UsersPanel组件, 使用16px, 优先使用Helvetica字体. */
+.users-panel {
+    font: 16px Helvetica, Arial, sans-serif;
+}
+
+/*
+ users-list类使用弹性布局; 不显示列表项的标记;
+ 设置auto的元素溢出行为.
+ */
+.users-list {
+    display: flex;
+    list-style-type: none;
+    overflow: auto;
+}
+
+/* 用户头像的内容高宽均为50px. */
+.users-list .avatar {
+    height: 50px;
+    width: 50px;
+}

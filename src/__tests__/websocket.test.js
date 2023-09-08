@@ -5,11 +5,12 @@ import WebSocketClient from '../websocket.js';
 describe('WebSocketClient', () => {
     test('发送和处理聊天内容', () => {
         let receivedData;
+        const user = {name: 'Steve'};
         const data = {
-            user: {name: 'Steve'},
+            user: user,
             content: 'Hello, World!'
         };
-        const websocket = new WebSocketClient('wss://example.com/ws/');
+        const websocket = new WebSocketClient('wss://example.com/ws/', user);
 
         // 设置聊天内容处理函数.
         websocket.setChatListHandler(sendData => {

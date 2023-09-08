@@ -4,6 +4,7 @@ import {useImmer} from 'use-immer';
 // 使用的相关组件.
 import ChatRoom from './components/chat-room.jsx';
 import LoginPage from './components/login-page.jsx';
+import UsersPanel from './components/users-panel.jsx';
 import VideoPlayer from './components/video-player.jsx';
 
 import {UserContext} from './contexts.js';
@@ -80,7 +81,7 @@ export default function App() {
     function handleIsLoggedInClick() {
         // 创建一个WebSocket连接.
         const clientWebSocketUrl = `${webSocketUrl}${user.clientID}/`;
-        websocketRef.current = new WebSocketClient(clientWebSocketUrl);
+        websocketRef.current = new WebSocketClient(clientWebSocketUrl, user);
 
         setIsLoggedIn(true);
     }
@@ -94,6 +95,7 @@ export default function App() {
                             sources={sources}
                             websocket={websocketRef.current}
                         />
+                        <UsersPanel websocket={websocketRef.current}/>
                         <ChatRoom websocket={websocketRef.current}/>
                     </UserContext.Provider>
                 </div>
