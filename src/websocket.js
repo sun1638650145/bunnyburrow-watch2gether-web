@@ -64,7 +64,19 @@ export default class WebSocketClient {
         } else if (this.usersHandler && type === 'system') {
             // 添加其他用户的信息.
             this.usersHandler(data.user);
-            console.log(`%c用户${data.user.name}登录.`, 'color: red');
+
+            if (data.info === 'login') {
+                // 向其他用户回应自己的用户信息.
+                this.sendMessage({
+                    info: 'ack',
+                    to: data.user.clientID, // 进行单播.
+                    user: this.user
+                }, 'system');
+
+                console.log(`%c用户${data.user.name}登录.`, 'color: red');
+            } else if (data.info === 'ack') {
+                console.log(`%c用户${data.user.name}已确认你的登录.`, 'color: red');
+            }
         }
     }
 
@@ -72,7 +84,10 @@ export default class WebSocketClient {
      * 与WebSocket服务器连接成功后, 广播用户登录消息.
      */
     onOpen() {
-        this.sendMessage({user: this.user}, 'system');
+        this.sendMessage({
+            info: 'login',
+            user: this.user,
+        }, 'system');
     }
 
     /**
