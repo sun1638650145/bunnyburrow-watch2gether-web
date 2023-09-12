@@ -28,50 +28,52 @@ export default class WebSocketClient {
      */
     onMessage(event) {
         const data = JSON.parse(event.data)['data'];
-        const type = JSON.parse(event.data)['type'];
+        const meta = JSON.parse(event.data)['meta'];
 
-        if (this.player && type === 'command') { // 判断Video.js播放器是否设置.
+        if (this.player && meta.type === 'player_control') { // 判断播放器是否设置.
             // 处理控制命令.
-            if (data.command === 'play') {
+            if (data.msg === 'play') {
                 this.player.play().then();
                 this.modalMessageHandler(`用户${data.user.name}播放了当前内容.`);
 
                 console.log(`%c收到用户${data.user.name}: 开始`, 'color: red');
-            } else if (data.command === 'pause') {
+            } else if (data.msg === 'pause') {
                 this.player.pause();
                 this.modalMessageHandler(`用户${data.user.name}暂停了当前内容.`);
 
                 console.log(`%c收到用户${data.user.name}: 暂停`, 'color: red');
-            } else if (data.command.playbackRate) {
-                this.player.playbackRate(data.command.playbackRate);
+            } else if (data.msg.playbackRate) {
+                this.player.playbackRate(data.msg.playbackRate);
                 this.modalMessageHandler(`用户${data.user.name}修改了播放速度.`);
 
                 console.log(`%c收到用户${data.user.name}: ` +
-                    `${data.command.playbackRate}x 倍速`, 'color: red');
-            } else if (data.command.newProgress) {
-                this.player.currentTime(data.command.newProgress);
+                    `${data.msg.playbackRate}x 倍速`, 'color: red');
+            } else if (data.msg.newProgress) {
+                this.player.currentTime(data.msg.newProgress);
                 this.modalMessageHandler(`用户${data.user.name}更新了播放进度.`);
 
                 console.log(`%c收到用户${data.user.name}: ` +
-                    `更新进度到 ${data.command.newProgress.toFixed()} 秒`,
+                    `更新进度到 ${data.msg.newProgress.toFixed()} 秒`,
                 'color: red');
             }
-        } else if (this.chatListHandler && type === 'chat') { // 判断聊天内容处理函数是否设置.
+        } else if (this.chatListHandler && meta.type === 'chat_message') {
             // 显示聊天内容.
             this.chatListHandler(data);
-            console.log(`%c收到用户${data.user.name}: '${data.content}'.`,
+            console.log(`%c收到用户${data.user.name}: '${data.msg}'.`,
                 'color: blue');
-        } else if (this.usersHandler && type === 'system') {
+        } else if (this.usersHandler && meta.type === 'shake_hand') {
             // 添加其他用户的信息.
             this.usersHandler(data.user);
 
             if (data.info === 'login') {
                 // 向其他用户回应自己的用户信息.
                 this.sendMessage({
-                    info: 'ack',
-                    to: data.user.clientID, // 进行单播.
+                    msg: 'ack',
                     user: this.user
-                }, 'system');
+                }, {
+                    to: data.user.clientID, // 进行单播.
+                    type: 'shake_hand'
+                });
 
                 console.log(`%c用户${data.user.name}登录.`, 'color: red');
             } else if (data.info === 'ack') {
@@ -85,40 +87,44 @@ export default class WebSocketClient {
      */
     onOpen() {
         this.sendMessage({
-            info: 'login',
-            user: this.user,
-        }, 'system');
+            msg: 'login',
+            user: this.user
+        }, {
+            type: 'shake_hand'
+        });
     }
 
     /**
-     * 向WebSocket服务器发送消息.
-     * @param {Object} data - 发送的数据.
-     * @param {string} type - 数据类型.
+     * 向WebSocket服务器发送数据包.
+     * @param {Object} data - 数据包中的数据(实际数据).
+     * @param {Object} meta - 数据包总的元数据(包括类型, 形式等).
      */
-    sendMessage(data, type) {
+    sendMessage(data, meta) {
         this.websocket.send(JSON.stringify({
             'data': data,
-            'type': type
+            'meta': meta
         }));
 
-        if (type === 'command') {
+        if (meta.type === 'player_control') {
             // 发送控制命令: 播放/暂停操作, 修改播放倍速和播放进度.
-            if (data.command === 'play') {
-                console.log(`%c用户${data.user.name}发送: 开始`, 'color: red');
-            } else if (data.command === 'pause') {
-                console.log(`%c用户${data.user.name}发送: 暂停`, 'color: red');
-            } else if (data.command.playbackRate) {
-                console.log(`%c用户${data.user.name}发送: ` +
-                    `${data.command.playbackRate}x 倍速`, 'color: red');
-            } else if (data.command.newProgress) {
-                console.log(`%c用户${data.user.name}发送: ` +
-                    `更新进度到 ${data.command.newProgress.toFixed()} 秒`,
-                'color: red');
+            if (data.msg === 'play') {
+                console.log('%c你发送: 开始', 'color: red');
+            } else if (data.msg === 'pause') {
+                console.log('%c你发送: 暂停', 'color: red');
+            } else if (data.msg.playbackRate) {
+                console.log('%c你发送: ' +
+                    `${data.msg.playbackRate}x 倍速`, 'color: red');
+            } else if (data.msg.newProgress) {
+                console.log('%c你发送: ' +
+                    `更新进度到 ${data.msg.newProgress.toFixed()} 秒`, 'color: red');
             }
-        } else if (type === 'chat') {
+        } else if (meta.type === 'chat_message') {
             // 发送聊天内容.
-            console.log(`%c用户${data.user.name}发送: '${data.content}'.`,
+            console.log(`%c你发送: '${data.msg}'.`,
                 'color: blue');
+        } else if (meta.type === 'shake_hand') {
+            // 广播用户登录消息.
+            console.log('%c你广播你登录的消息', 'color: blue');
         }
     }
 

@@ -15,11 +15,11 @@ import '../styles/message-list.css';
  */
 function MyMessage({messageObject}) {
     const avatar = messageObject.user.avatar;
-    const content = messageObject.content;
+    const msg = messageObject.msg;
 
     return (
         <li className='my-message'>
-            <div className='content'>{content}</div>
+            <div className='content'>{msg}</div>
             <div
                 className='avatar'
                 style={{ backgroundImage: `url(${avatar})` }}
@@ -39,7 +39,7 @@ function MyMessage({messageObject}) {
 function OtherMessage({messageObject}) {
     const name = messageObject.user.name;
     const avatar = messageObject.user.avatar;
-    const content = messageObject.content;
+    const msg = messageObject.msg;
 
     return (
         <li className='other-message'>
@@ -49,7 +49,7 @@ function OtherMessage({messageObject}) {
             />
             <div className='name-content-container'>
                 <div className='name'>{name}</div>
-                <div className='content'>{content}</div>
+                <div className='content'>{msg}</div>
             </div>
         </li>
     );

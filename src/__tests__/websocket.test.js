@@ -7,8 +7,8 @@ describe('WebSocketClient', () => {
         let receivedData;
         const user = {name: 'Steve'};
         const data = {
-            user: user,
-            content: 'Hello, World!'
+            msg: 'Hello, World!',
+            user: user
         };
         const websocket = new WebSocketClient('wss://example.com/ws/', user);
 
@@ -21,7 +21,9 @@ describe('WebSocketClient', () => {
         const mockEvent = {
             data: JSON.stringify({
                 data: data,
-                type: 'chat'
+                meta: {
+                    type: 'chat_message'
+                }
             })
         };
         websocket.onMessage(mockEvent);

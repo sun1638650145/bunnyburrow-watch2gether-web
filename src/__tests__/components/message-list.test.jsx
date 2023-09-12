@@ -8,11 +8,11 @@ import MessageList from '../../components/message-list.jsx';
 describe('MessageList', () => {
     test('正确渲染聊天内容', () => {
         const chatList = [{
+            msg: 'Hello!',
             user: {
                 avatar: 'https://example.com/example.png',
                 name: 'Steve'
-            },
-            content: 'Hello!'
+            }
         }];
         render(<MessageList chatList={chatList}/>);
 

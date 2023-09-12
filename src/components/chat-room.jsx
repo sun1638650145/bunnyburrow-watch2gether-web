@@ -24,8 +24,8 @@ export default function ChatRoom({websocket}) {
     // 聊天输入框内容.
     const user = useContext(UserContext);
     const [inputContent, updateInputContent] = useImmer({
-        user: user, // 直接传入用户信息.
-        content: ''
+        msg: '',
+        user: user // 直接传入用户信息.
     });
 
     /**
@@ -37,7 +37,7 @@ export default function ChatRoom({websocket}) {
 
         setIsDisabled(content.trim() === ''); // 聊天内容不为空时, 启用发送按钮.
         updateInputContent(draft => {
-            draft.content = content;
+            draft.msg = content;
         });
     }
 
@@ -48,9 +48,11 @@ export default function ChatRoom({websocket}) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        websocket.sendMessage(inputContent, 'chat');
+        websocket.sendMessage(inputContent, {
+            type: 'chat_message'
+        });
         updateInputContent(draft => {
-            draft.content = '';
+            draft.msg = '';
         });
         updateChatList(draft => {
             draft.push(inputContent); // 同时在本侧显示.
@@ -77,7 +79,7 @@ export default function ChatRoom({websocket}) {
             >
                 <input
                     className='chat-input'
-                    value={inputContent.content}
+                    value={inputContent.msg}
                     onChange={handleChatContentChange}
                 />
                 <button

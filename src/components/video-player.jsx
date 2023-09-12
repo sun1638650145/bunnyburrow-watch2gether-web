@@ -94,22 +94,28 @@ export default function VideoPlayer({sources, websocket}) {
         // 初次加载视频时的大播放按钮.
         player.bigPlayButton.on(['click', 'touchend'], () => {
             websocket.sendMessage({
-                user: user,
-                command: 'play'
-            }, 'command');
+                msg: 'play',
+                user: user
+            }, {
+                type: 'player_control'
+            });
         });
         // 播放/暂停按钮.
         player.controlBar.playToggle.on(['click', 'touchend'], () => {
             if (player.paused()) {
                 websocket.sendMessage({
-                    user: user,
-                    command: 'pause'
-                }, 'command');
+                    msg: 'pause',
+                    user: user
+                }, {
+                    type: 'player_control'
+                });
             } else {
                 websocket.sendMessage({
-                    user: user,
-                    command: 'play'
-                }, 'command');
+                    msg: 'play',
+                    user: user
+                }, {
+                    type: 'player_control'
+                });
             }
         });
         // 倍速菜单的全部按钮.
@@ -121,21 +127,21 @@ export default function VideoPlayer({sources, websocket}) {
 
             menuItem.on(['click', 'touchend'], () => {
                 websocket.sendMessage({
-                    user: user,
-                    command: {
-                        playbackRate: menuItem.rate
-                    }
-                }, 'command');
+                    msg: {playbackRate: menuItem.rate},
+                    user: user
+                }, {
+                    type: 'player_control'
+                });
             });
         }
         // 进度条.
         player.controlBar.progressControl.seekBar.on('click', () => {
             websocket.sendMessage({
-                user: user,
-                command: {
-                    newProgress: player.currentTime()
-                }
-            }, 'command');
+                msg: {newProgress: player.currentTime()},
+                user: user
+            }, {
+                type: 'player_control'
+            });
         });
     }
 
