@@ -65,7 +65,7 @@ export default class WebSocketClient {
             // 添加其他用户的信息.
             this.usersHandler(data.user);
 
-            if (data.info === 'login') {
+            if (data.msg === 'login') {
                 // 向其他用户回应自己的用户信息.
                 this.sendMessage({
                     msg: 'ack',
