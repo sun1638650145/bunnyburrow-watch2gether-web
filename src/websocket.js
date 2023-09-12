@@ -76,7 +76,7 @@ export default class WebSocketClient {
                 });
 
                 console.log(`%c用户${data.user.name}登录.`, 'color: red');
-            } else if (data.info === 'ack') {
+            } else if (data.msg === 'ack') {
                 console.log(`%c用户${data.user.name}已确认你的登录.`, 'color: red');
             }
         }
