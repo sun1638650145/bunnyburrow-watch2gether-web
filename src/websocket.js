@@ -23,6 +23,21 @@ export default class WebSocketClient {
     }
 
     /**
+     * 断开与WebSocket服务器连接.
+     */
+    close() {
+        // 与WebSocket服务器断开连接前, 广播用户退出消息.
+        this.sendMessage({
+            msg: 'logout',
+            user: this.user
+        }, {
+            type: 'shake_hand'
+        });
+
+        this.websocket.close();
+    }
+
+    /**
      * 处理WebSocket服务器的消息.
      * @param {MessageEvent} event - WebSocket的onmessage事件对象.
      */
@@ -62,8 +77,8 @@ export default class WebSocketClient {
             console.log(`%c收到用户${data.user.name}: '${data.msg}'.`,
                 'color: blue');
         } else if (this.usersHandler && meta.type === 'shake_hand') {
-            // 添加其他用户的信息.
-            this.usersHandler(data.user);
+            // 修改其他用户的信息.
+            this.usersHandler(data);
 
             if (data.msg === 'login') {
                 // 向其他用户回应自己的用户信息.
@@ -76,6 +91,8 @@ export default class WebSocketClient {
                 });
 
                 console.log(`%c用户${data.user.name}登录.`, 'color: red');
+            } else if (data.msg === 'logout') {
+                console.log(`%c用户${data.user.name}退出.`, 'color: red');
             } else if (data.msg === 'ack') {
                 console.log(`%c用户${data.user.name}已确认你的登录.`, 'color: red');
             }

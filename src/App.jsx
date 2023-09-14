@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useImmer} from 'use-immer';
 
 // 使用的相关组件.
@@ -85,6 +85,13 @@ export default function App() {
 
         setIsLoggedIn(true);
     }
+
+    // 监听当浏览器关闭或者刷新, 主动关闭WebSocket连接.
+    useEffect(() => {
+        window.addEventListener('beforeunload', () => {
+            websocketRef.current.close();
+        });
+    }, []);
 
     return (
         <div>

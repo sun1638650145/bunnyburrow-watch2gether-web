@@ -18,15 +18,37 @@ import '../styles/users-panel.css';
 export default function UsersPanel({websocket}) {
     // 登录用户信息.
     const user = useContext(UserContext);
-    // 全部登录用户信息列表.
+    // 用户列表.
     const [userList, updateUsers] = useImmer([user]); // 初始化为当前登录用户信息.
 
-    // 将新用户添加到用户信息列表users中.
+    // 在用户信息列表userList中修改其他用户信息.
     useEffect(() => {
-        websocket.setUsersHandler(user => {
+        /**
+         * 将其他用户添加到用户列表.
+         * @param {Object} user - 要添加的用户对象.
+         */
+        function handleAddUser(user) {
             updateUsers(draft => {
                 draft.push(user);
             });
+        }
+
+        /**
+         * 从用户列表中删除指定客户端ID的用户.
+         * @param {int} clientID - 客户端ID.
+         */
+        function handleDeleteUser(clientID) {
+            updateUsers(
+                userList.filter(user => user.clientID !== clientID)
+            );
+        }
+
+        websocket.setUsersHandler(data => {
+            if (data.msg === 'login' || data.msg === 'ack') {
+                handleAddUser(data.user);
+            } else if (data.msg === 'logout') {
+                handleDeleteUser(data.user.clientID);
+            }
         });
     }, [userList]);
 
