@@ -2,12 +2,9 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useImmer} from 'use-immer';
 
 // 使用的相关组件.
-import ChatRoom from './components/chat-room.jsx';
+import HomePage from './components/home-page.jsx';
 import LoginPage from './components/login-page.jsx';
-import UsersPanel from './components/users-panel.jsx';
-import VideoPlayer from './components/video-player.jsx';
 
-import {UserContext} from './contexts.js';
 import WebSocketClient from './websocket.js';
 
 import './styles/App.css';
@@ -96,16 +93,11 @@ export default function App() {
     return (
         <div>
             {isLoggedIn ? (
-                <div className='video-chat-container'>
-                    <UserContext.Provider value={user}>
-                        <VideoPlayer
-                            sources={sources}
-                            websocket={websocketRef.current}
-                        />
-                        <UsersPanel websocket={websocketRef.current}/>
-                        <ChatRoom websocket={websocketRef.current}/>
-                    </UserContext.Provider>
-                </div>
+                <HomePage
+                    user={user}
+                    sources={sources}
+                    websocket={websocketRef.current}
+                />
             ): (
                 <LoginPage
                     user={user}
