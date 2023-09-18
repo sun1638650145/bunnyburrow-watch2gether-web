@@ -1,18 +1,3 @@
-/* VideoPlayer组件的右外边距为5px, 内容宽度为70%. */
-.video-player {
-    margin-right: 5px;
-    width: 70%;
-}
-
-/*
- 设置屏幕处于纵向时的样式: 内容宽度为100%.
- */
-@media (orientation: portrait) {
-    .video-player {
-        width: 100%;
-    }
-}
-
 /*
  VideoPlayer组件的大播放按钮背景图像为
  linear-gradient(93.87deg, #095AE6, #062794);

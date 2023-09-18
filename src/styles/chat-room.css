@@ -18,12 +18,12 @@ html {
 
 /*
  设置屏幕处于纵向时的样式:
- ChatRoom组件的内容高度为calc(100dvh - 100dvw * 9/16);
+ ChatRoom组件的内容高度为calc(100dvh - 125px - 100dvw * 9/16);
  内容宽度为100%.
  */
 @media (orientation: portrait) {
     .chat-room {
-        height: calc(100dvh - 100dvw * 9/16); /* TODO(Steve): 内容高度: calc(100dvh - 播放器(假设16:9)的高度). */
+        height: calc(100dvh - 125px - 100dvw * 9/16); /* TODO(Steve): 内容高度: calc(100dvh - 用户面板的高度 - 播放器(假设16:9)的高度). */
         width: 100%;
     }
 }

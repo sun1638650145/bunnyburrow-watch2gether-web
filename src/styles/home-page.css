@@ -1,0 +1,22 @@
+/* home类使用弹性布局. */
+.home {
+    display: flex;
+}
+
+/* 处理整个播放器和用户面板容器的样式, 内容宽度为70%. */
+.player-panel-container {
+    width: 70%;
+}
+
+/* 设置屏幕处于纵向时的样式. */
+@media (orientation: portrait) {
+    /* home类的内部元素按照垂直方向排列. */
+    .home {
+        flex-direction: column;
+    }
+
+    /* 处理整个播放器和用户面板容器的样式, 内容宽度为100%. */
+    .player-panel-container {
+        width: 100%;
+    }
+}

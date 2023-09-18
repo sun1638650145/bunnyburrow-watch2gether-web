@@ -7,8 +7,6 @@ import LoginPage from './components/login-page.jsx';
 
 import WebSocketClient from './websocket.js';
 
-import './styles/App.css';
-
 export default function App() {
     const websocketRef = useRef(null);
     // 登录用户信息.

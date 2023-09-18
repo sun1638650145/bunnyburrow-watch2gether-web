@@ -10,11 +10,10 @@ describe('App', () => {
         const {container} = render(<App/>);
 
         const loginButton = screen.getByText('加入');
-        // eslint-disable-next-line max-len
-        const videoChatContainer = container.querySelector('.video-chat-container');
+        const homePage = container.querySelector('.home');
 
         expect(loginButton).toBeInTheDocument();
-        expect(videoChatContainer).toBe(null); // 不存在播放器和ChatRoom容器.
+        expect(homePage).toBe(null); // 不渲染主页.
     });
 
     test('正确渲染播放器和ChatRoom容器', () => {
@@ -46,8 +45,7 @@ describe('App', () => {
         });
         fireEvent.click(loginButton);
 
-        // eslint-disable-next-line max-len
-        const videoChatContainer = container.querySelector('.video-chat-container');
-        expect(videoChatContainer).toBeInTheDocument();
+        const homePage = container.querySelector('.home');
+        expect(homePage).toBeInTheDocument();
     });
 });

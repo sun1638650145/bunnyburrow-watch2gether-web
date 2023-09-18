@@ -3,6 +3,13 @@
     font: 16px Helvetica, Arial, sans-serif;
 }
 
+/* 设置屏幕处于纵向时的样式: 内容高度为125px. */
+@media (orientation: portrait) {
+    .users-panel {
+        height: 125px;
+    }
+}
+
 /*
  users-list类使用弹性布局; 不显示列表项的标记;
  设置auto的元素溢出行为.
