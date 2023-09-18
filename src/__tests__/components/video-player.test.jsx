@@ -4,18 +4,20 @@ import '@testing-library/jest-dom/jest-globals';
 import {render} from '@testing-library/react';
 
 import VideoPlayer from '../../components/video-player.jsx';
-import WebSocketClient from '../../websocket';
+import WebSocketClient from '../../websocket.js';
 
 // 模拟WebSocketClient模块.
 jest.mock('../../websocket.js');
 
 describe('VideoPlayer', () => {
     test('正确渲染播放器', () => {
+        const user = {name: 'Steve'};
         const sources = {
             src: 'https://example.com/video/video.m3u8',
             type: 'application/x-mpegURL'
         };
-        const mockWebSocketClient = new WebSocketClient('ws://example.com/ws/');
+        const mockWebSocketClient = new WebSocketClient(
+            'ws://example.com/ws/', user);
         const {container} = render(
             <VideoPlayer sources={sources} websocket={mockWebSocketClient}/>
         );

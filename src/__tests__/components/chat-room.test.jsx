@@ -14,7 +14,8 @@ describe('ChatRoom', () => {
     let mockWebSocketClient;
 
     beforeEach(() => {
-        mockWebSocketClient = new WebSocketClient('ws://example.com/ws/');
+        const user = {name: 'Steve'};
+        mockWebSocketClient = new WebSocketClient('ws://example.com/ws/', user);
     });
 
     test('聊天内容为空或仅为空格时', () => {
