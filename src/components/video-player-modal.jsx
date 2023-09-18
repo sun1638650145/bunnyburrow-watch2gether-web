@@ -6,8 +6,8 @@ import '../styles/video-player-modal.css';
 
 // 禁用模态框的默认样式.
 Modal.defaultStyles = {};
-// 绑定模态框到root.
-Modal.setAppElement(document.getElementById('root'));
+// 绑定模态框到video-js.
+Modal.setAppElement(document.getElementById('video-js'));
 
 /**
  * VideoPlayerModal组件, 为播放器创建模态框.
