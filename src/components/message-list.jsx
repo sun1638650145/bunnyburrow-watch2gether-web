@@ -76,7 +76,7 @@ export default function MessageList({chatList}) {
     return (
         <ol className='message-list' ref={chatListRef}>
             {chatList.map((messageObject, idx) =>
-                messageObject.user.name === user.name ? (
+                messageObject.user.clientID === user.clientID ? (
                     <MyMessage key={idx} messageObject={messageObject}/>
                 ): (
                     <OtherMessage key={idx} messageObject={messageObject}/>
