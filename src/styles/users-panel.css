@@ -10,18 +10,43 @@
     }
 }
 
+/* online-users类的外边距为10px. */
+.online-users {
+    margin: 10px;
+}
+
 /*
  users-list类使用弹性布局; 不显示列表项的标记;
- 设置auto的元素溢出行为.
+ 设置auto的元素溢出行为; 左内边距为10px.
  */
 .users-list {
     display: flex;
     list-style-type: none;
     overflow: auto;
+    padding-left: 10px;
+}
+
+/* users-list类中的列表条目的右外边距为10px. */
+.users-list li {
+    margin-right: 10px;
 }
 
 /* 用户头像的内容高宽均为50px. */
 .users-list .avatar {
     height: 50px;
     width: 50px;
+}
+
+/*
+ 用户昵称的字体大小为13px; 最大宽度为60px;
+ 设置auto的元素溢出行为; 顶部内边距为2px; 文本居中水平对齐;
+ 文本不换行.
+ */
+.users-list .name {
+    font-size: 13px;
+    max-width: 60px;
+    overflow: auto;
+    padding-top: 2px;
+    text-align: center;
+    white-space: pre;
 }

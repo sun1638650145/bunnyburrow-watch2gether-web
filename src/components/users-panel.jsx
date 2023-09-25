@@ -54,7 +54,7 @@ export default function UsersPanel({websocket}) {
 
     return (
         <div className='users-panel'>
-            <div>在线用户: {userList.length}</div>
+            <div className='online-users'>在线用户: {userList.length}</div>
             <ol className='users-list'>
                 {userList.map(user =>
                     <li key={user.clientID}>
@@ -62,7 +62,9 @@ export default function UsersPanel({websocket}) {
                             className='avatar'
                             style={{ backgroundImage: `url(${user.avatar})` }}
                         />
-                        <div className='name'>{user.name}</div>
+                        <div className='name'>
+                            {user.name}
+                        </div>
                     </li>
                 )}
             </ol>
