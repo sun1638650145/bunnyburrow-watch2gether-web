@@ -9,8 +9,8 @@
 1. 首先, 在[发布页](https://github.com/sun1638650145/bunnyburrow-watch2gether-web/releases)下载最新的稳定版`zip`并解压.
 
     ```shell
-    wget https://github.com/sun1638650145/bunnyburrow-watch2gether-web/releases/download/v0.0.1-beta.0/watch2gether-0.0.1-beta.0.zip
-    unzip watch2gether-0.0.1-beta.0.zip
+    wget https://github.com/sun1638650145/bunnyburrow-watch2gether-web/releases/download/v0.0.1-beta.1/watch2gether-0.0.1-beta.1.zip
+    unzip watch2gether-0.0.1-beta.1.zip
     ```
 
 2. 需要`Node`环境, 安装静态服务器`serve`.
@@ -24,6 +24,3 @@
     ```shell
     serve -s build -l 8080
     ```
-
-    
-
