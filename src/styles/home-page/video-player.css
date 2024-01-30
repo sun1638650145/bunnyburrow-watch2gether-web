@@ -1,0 +1,122 @@
+/*
+ 视频播放器类:
+  内容宽度为100%.
+ */
+.video-player {
+    width: 100%;
+}
+
+/*
+ 视频播放器类中的大播放按钮:
+  自定义属性--element-height-width为75px;
+  背景图像为线性渐变linear-gradient(93.87deg, #095AE6, #062794); 无样式50%圆形边框;
+  优先使用Helvetica字体; 内容高宽均为var(--element-height-width);
+  左外边距为calc(var(--element-height-width) / -2);
+  上外边距为calc(var(--element-height-width) / -2).
+ */
+.video-player .vjs-big-play-button {
+    --element-height-width: 75px;
+
+    background-image: linear-gradient(93.87deg, #095AE6, #062794);
+    border: 0;
+    border-radius: 50%;
+    font-family: Helvetica, Arial, sans-serif;
+    height: var(--element-height-width);
+    margin-left: calc(var(--element-height-width) / -2); /* 修改左上外边距使得大播放按钮在画面居中显示. */
+    margin-top: calc(var(--element-height-width) / -2);
+    width: var(--element-height-width);
+}
+
+/**
+ 视频播放器类中的大播放按钮图标:
+  背景图像为url("../../assets/big-play-button-icon.png");
+  背景图像位置居中; 背景图像不重复; 背景图像大小为40px; 伪元素内容为空.
+ */
+.video-player .vjs-big-play-button > .vjs-icon-placeholder::before {
+    background-image: url("../../assets/big-play-button-icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    content: "";
+}
+
+/*
+ 视频播放器类中的控制栏:
+  自定义属性--element-position-offset为15%;
+  背景图像为线性渐变linear-gradient(to right, #095AE6 15%, #062794); 18px圆角边框;
+  优先使用Helvetica字体; 内容高宽分别为40px和80%; 相对于容器向右偏移50%; x和y轴均平移-50%.
+ */
+.video-player .vjs-control-bar {
+    --element-position-offset: 15%;
+
+    background-image: linear-gradient(to right, #095AE6 15%, #062794);
+    border-radius: 18px;
+    color: #F9F9F9;
+    font-family: Helvetica, Arial, sans-serif;
+    height: 40px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+/*
+ 视频播放器类中的控制栏按钮, 音量控制条和剩余时间显示:
+  优先使用Helvetica字体; 相对于容器向下偏移var(--element-position-offset);
+  元素放大到calc(100% + var(--element-position-offset)).
+ */
+.video-player .vjs-control-bar .vjs-button,
+.video-player .vjs-control-bar .vjs-volume-control,
+.video-player .vjs-control-bar .vjs-remaining-time {
+    font-family: Helvetica, Arial, sans-serif;
+    top: var(--element-position-offset);
+    transform: scale(calc(100% + var(--element-position-offset)));
+}
+
+/*
+ 视频播放器类中的控制栏预加载进度条和菜单项按钮:
+  背景颜色为rgb(6 39 148 / 35%); 文本颜色为#F9F9F9; 优先使用Helvetica字体.
+ */
+.video-player .vjs-control-bar .vjs-load-progress,
+.video-player .vjs-control-bar .vjs-menu-item {
+    background-color: rgb(6 39 148 / 35%);
+    color: #F9F9F9;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/*
+ 视频播放器类中的控制栏快退按钮:
+  视觉顺序为-1.
+ */
+.video-player .vjs-control-bar > [class^='vjs-skip-backward'] {
+    order: -1;
+}
+
+/*
+ 视频播放器类中的控制栏快退按钮图标:
+  背景图像为url("../../assets/skip-backward-30-icon.png"); 背景图像位置居中;
+  背景图像不重复; 背景图像大小为18px; 伪元素内容为空;
+  相对于容器向下偏移calc(2% - var(--element-position-offset));
+ */
+.video-player .vjs-control-bar > [class^='vjs-skip-backward'] > .vjs-icon-placeholder::before {
+    background-image: url("../../assets/skip-backward-30-icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px;
+    content: "";
+    top: calc(2% - var(--element-position-offset)); /* 用于抵消控制栏按钮的相对于容器向下偏移. */
+}
+
+/*
+ 视频播放器类中的控制栏快进按钮图标:
+  背景图像为url("../../assets/skip-forward-30-icon.png"); 背景图像位置居中;
+  背景图像不重复; 背景图像大小为18px; 伪元素内容为空;
+  相对于容器向下偏移calc(2% - var(--element-position-offset));
+ */
+.video-player .vjs-control-bar > [class^='vjs-skip-forward'] > .vjs-icon-placeholder::before {
+    background-image: url("../../assets/skip-forward-30-icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px;
+    content: "";
+    top: calc(2% - var(--element-position-offset)); /* 用于抵消控制栏按钮的相对于容器向下偏移. */
+}

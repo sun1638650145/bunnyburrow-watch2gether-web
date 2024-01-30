@@ -1,113 +1,36 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useImmer} from 'use-immer';
+import React, {useState} from 'react';
 
-// 使用的相关组件.
-import HomePage from './components/home-page.jsx';
-import LoginPage from './components/login-page.jsx';
-
-import WebSocketClient from './websocket.js';
+import HomePage from './components/home-page/home-page.jsx';
+import LoginPage from './components/login-page/login-page.jsx';
+import {FriendsProvider} from './contexts/friends-context.jsx';
+import {StreamingProvider} from './contexts/streaming-context.jsx';
+import {UserProvider} from './contexts/user-context.jsx';
+import {WebSocketProvider} from './contexts/websocket-context.jsx';
 
 export default function App() {
-    const websocketRef = useRef(null);
-    // 登录用户信息.
-    const [user, updateUser] = useImmer({
-        avatar: '', // 用户头像的URL.
-        clientID: Date.now(), // TODO(Steve): 使用时间戳生成的客户端ID, 应该改为使用UUID.
-        name: '' // 用户昵称.
-    });
-    // 流媒体视频源.
-    const [sources, updateSources] = useImmer({
-        src: '',
-        type: 'application/x-mpegURL' // 暂不可自定义媒体类型.
-    });
-    // WebSocket服务器的URL.
-    const [webSocketUrl, setWebSocketUrl] = useState('');
-    // 是否登录信息.
+    // 登陆状态.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     /**
-     * 处理登录用户头像URL的变化.
-     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
+     * 点击加入按钮函数.
      */
-    function handleUserAvatarChange(e) {
-        // 将图片文件转换成URL.
-        const reader = new FileReader();
-        reader.onload = () => {
-            updateUser(draft => {
-                draft.avatar = reader.result;
-            });
-        };
-
-        const file = e.target.files[0];
-        reader.readAsDataURL(file);
-    }
-
-    /**
-     * 处理登录用户昵称的变化.
-     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
-     */
-    function handleUserNameChange(e) {
-        updateUser(draft => {
-            draft.name = e.target.value;
-        });
-    }
-
-    /**
-     * 处理流媒体视频源的变化.
-     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
-     */
-    function handleSourcesSrcChange(e) {
-        updateSources(draft => {
-            draft.src = e.target.value;
-        });
-    }
-
-    /**
-     * 处理WebSocket服务器URL的变化.
-     * @param {React.ChangeEvent<HTMLInputElement>} e - 输入框变化事件.
-     */
-    function handleWebSocketUrlChange(e) {
-        setWebSocketUrl(e.target.value);
-    }
-
-    /**
-     * 提交登录事件.
-     */
-    function handleIsLoggedInClick() {
-        // 创建一个WebSocket连接.
-        const clientWebSocketUrl = `${webSocketUrl}${user.clientID}/`;
-        websocketRef.current = new WebSocketClient(clientWebSocketUrl, user);
-
+    function handleLoginClick() {
         setIsLoggedIn(true);
     }
 
-    // 监听当浏览器关闭或者刷新, 主动关闭WebSocket连接.
-    useEffect(() => {
-        window.addEventListener('beforeunload', () => {
-            websocketRef.current.close();
-        });
-    }, []);
-
     return (
-        <div>
-            {isLoggedIn ? (
-                <HomePage
-                    user={user}
-                    sources={sources}
-                    websocket={websocketRef.current}
-                />
-            ): (
-                <LoginPage
-                    user={user}
-                    sources={sources}
-                    webSocketUrl={webSocketUrl}
-                    onUserAvatarChange={handleUserAvatarChange}
-                    onUserNameChange={handleUserNameChange}
-                    onSourcesSrcChange={handleSourcesSrcChange}
-                    onWebSocketUrlChange={handleWebSocketUrlChange}
-                    onIsLoggedInClick={handleIsLoggedInClick}
-                />
-            )}
-        </div>
+        <UserProvider>
+            <FriendsProvider>
+                <StreamingProvider>
+                    <WebSocketProvider>
+                        {isLoggedIn ? (
+                            <HomePage/>
+                        ) : (
+                            <LoginPage onLoginClick={handleLoginClick}/>
+                        )}
+                    </WebSocketProvider>
+                </StreamingProvider>
+            </FriendsProvider>
+        </UserProvider>
     );
 }

@@ -1,0 +1,135 @@
+/*
+ 聊天消息列表类:
+  内容高度为calc(100% - var(--chat-form-height));
+  不显示列表项的标记; 外边距为0; 设置元素自动溢出; 内边距为0.
+ */
+.messages-list {
+    height: calc(100% - var(--chat-form-height));
+    list-style-type: none;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+}
+
+/*
+ 用户头像类:
+  内容高宽均为50px.
+ */
+.messages-list .avatar {
+    height: 50px;
+    width: 50px;
+}
+
+/*
+ 用户自己的聊天消息类:
+  使用弹性布局; 垂直方向居中排列; 内部元素以容器右边缘为基准.
+ */
+.my-message {
+    align-items: center;
+    display: flex;
+    justify-content: right;
+}
+
+/*
+ 用户自己的聊天消息类中消息气泡:
+  自定义属性--my-message-element-color为#29B560;
+  背景颜色为var(--my-message-element-color); 8px圆角边框;
+  文本颜色为#000000; 外边距为8px; 元素最大宽度值为60%;
+  元素最小宽度值为16px; 允许在任意点将不可断的单词换行;
+  内边距8px; 使用相对定位方式; 保留连续的空白字符.
+ */
+.my-message > .message {
+    --my-message-element-color: #29B560;
+
+    background-color: var(--my-message-element-color);
+    border-radius: 8px;
+    color: #000000;
+    margin: 8px;
+    max-width: 60%; /* 超过最大宽度即自动换行. */
+    min-width: 16px;
+    overflow-wrap: break-word;
+    padding: 8px;
+    position: relative;
+    white-space: pre-wrap;
+}
+
+/*
+ 用户自己的聊天消息类中消息气泡箭头:
+  使用5px, 实线的, 透明的边框; 左边框颜色为var(--my-message-element-color);
+  伪元素内容为空; 相对于容器向右偏移100%; 使用绝对定位方式; 相对于容器向下偏移25%.
+ */
+.my-message > .message::after {
+    border: 5px solid transparent;
+    border-left-color: var(--my-message-element-color);
+    content: "";
+    left: 100%;
+    position: absolute;
+    top: 25%;
+}
+
+/*
+ 其他用户的聊天消息类:
+  使用弹性布局; 垂直方向居中排列; 内部元素以容器左边缘为基准.
+ */
+.other-message {
+    align-items: center;
+    display: flex;
+    justify-content: left;
+}
+
+/*
+ 其他用户的聊天消息类中的昵称和聊天消息容器:
+  自定义属性--name-message-margin为8px; 使用弹性布局;
+  内部元素按照垂直方向排列.
+ */
+.other-message > .name-message {
+    --name-message-margin: 8px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+ 其他用户的聊天消息类中的昵称:
+  字体大小为12px; 左外边距为var(--name-message-margin).
+ */
+.other-message .name {
+    font-size: 12px;
+    margin-left: var(--name-message-margin);
+}
+
+/*
+ 其他用户的聊天消息类中消息气泡:
+  自定义属性--other-message-element-color为#2C2C2C;
+  背景颜色为var(--other-message-element-color); 8px圆角边框;
+  外边距为1px var(--name-message-margin) var(--name-message-margin) var(--name-message-margin);
+  元素最大宽度值为60%; 元素最小宽度值为16px; 允许在任意点将不可断的单词换行;
+  内边距8px; 使用相对定位方式; 保留连续的空白字符.
+ */
+.other-message .message {
+    --other-message-element-color: #2C2C2C;
+
+    background-color: var(--other-message-element-color);
+    border-radius: 8px;
+    margin: 1px var(--name-message-margin) var(--name-message-margin) var(--name-message-margin);
+    max-width: 60%; /* 超过最大宽度即自动换行. */
+    min-width: 16px;
+    overflow-wrap: break-word;
+    padding: 8px;
+    position: relative;
+    white-space: pre-wrap;
+}
+
+/*
+ 其他用户的聊天消息类中消息气泡箭头:
+  使用5px, 实线的, 透明的边框; 右边框颜色为var(--other-message-element-color);
+  伪元素内容为空; 使用绝对定位方式; 相对于容器向左偏移100%; 相对于容器向下偏移25%.
+ */
+.other-message .message::before {
+    border: 5px solid transparent;
+    border-right-color: var(--other-message-element-color);
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 25%;
+}

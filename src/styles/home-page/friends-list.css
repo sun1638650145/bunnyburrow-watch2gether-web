@@ -1,0 +1,87 @@
+/*
+ 在线好友类:
+  内容高度为var(--online-friends-height);
+  内边距为var(--online-friends-padding).
+ */
+.online-friends {
+    height: var(--online-friends-height);
+    padding: var(--online-friends-padding);
+}
+
+/*
+ 好友列表类:
+  使用弹性布局; 内容高度为var(--friends-list-height); 不显示列表项的标记;
+  外边距为0; 设置元素自动溢出; 左内边距为10px.
+ */
+.friends-list {
+    display: flex;
+    height: var(--friends-list-height);
+    list-style-type: none;
+    margin: 0;
+    overflow: auto;
+    padding-left: 10px;
+}
+
+/*
+ 好友列表类中的列表项:
+  右外边距为10px.
+ */
+.friends-list > li {
+    margin-right: 10px;
+}
+
+/*
+ 好友列表类中的用户头像:
+  内容高宽均为50px.
+ */
+.friends-list .avatar {
+    height: 50px;
+    width: 50px;
+}
+
+/*
+ 好友列表类中的用户昵称:
+  自定义属性--name-element-width为60px; 字体大小为13px; 行高为15px;
+  设置元素自动溢出; 文本居中水平对齐; 宽度为var(--name-element-width).
+ */
+.friends-list .name {
+    --name-element-width: 60px;
+
+    font-size: 13px;
+    line-height: 15px;
+    overflow: auto;
+    text-align: center;
+    width: var(--name-element-width);
+}
+
+/*
+ 好友列表类中的用户昵称动画:
+  动画周期时长为10s; 无限循环播放动画; 动画名称为words-loop;
+  动画以匀速播放; 上内边距为2px; 最小宽度为100%; 文本不换行; 宽度为内容的宽度.
+ */
+.friends-list .name > .animation {
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: words-loop;
+    animation-timing-function: linear;
+    margin-top: 2px;
+    min-width: 100%;
+    white-space: pre;
+    width: fit-content;
+}
+
+/*
+ 关键帧(文本溢出水平滚动动画):
+  起始状态x轴平移0%; 结束状态x轴平移calc(-100% + var(--name-element-width)).
+ */
+@keyframes words-loop {
+    /* 起始和结束前稍微停顿一下. */
+    0%, 10% {
+        transform: translateX(0%);
+    }
+
+    90%, 100% {
+        /* + var(--name-element-width)使得结束状态时与容器右侧对齐. */
+        transform: translateX(calc(-100% + var(--name-element-width)));
+    }
+}

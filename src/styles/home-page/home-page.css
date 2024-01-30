@@ -1,0 +1,77 @@
+/*
+ 导入聊天室组件, 好友列表组件, 聊天消息列表组件, 视频播放器组件和视频播放器模态框组件样式规则.
+ */
+@import url("./chat-room.css");
+@import url("./friends-list.css");
+@import url("./messages-list.css");
+@import url("./video-player.css");
+@import url("./video-player-modal.css");
+
+/*
+ 文档页面:
+  自定义属性--body-margin为8px; 外边距为var(--body-margin);
+ */
+body {
+    --body-margin: 8px;
+
+    margin: var(--body-margin);
+}
+
+/*
+ 主页类:
+  自定义属性--friends-list-height为80px; 自定义属性--online-friends-height为22px;
+  自定义属性--online-friends-padding为10px; 使用弹性布局.
+ */
+.home-page {
+    --friends-list-height: 80px;
+    --online-friends-height: 22px;
+    --online-friends-padding: 10px;
+
+    display: flex;
+}
+
+/* 视口处于横向时的样式. */
+@media (orientation: landscape) {
+    /*
+     横向布局左侧容器:
+      使用弹性布局; 背景颜色为#000000; 垂直方向居中排列; 内容高度为100dvh;
+      var(--body-margin); 内容宽度为calc(70% - var(--body-margin)).
+     */
+    .landscape-left-container {
+        align-items: center;
+        background-color: #000000;
+        display: flex;
+        height: 100dvh;
+        margin-right: var(--body-margin);
+        width: calc(70% - var(--body-margin));
+    }
+
+    /*
+     横向布局右侧容器:
+      内容高宽分别为100dvh, 30%.
+     */
+    .landscape-right-container {
+        height: 100dvh;
+        width: 30%;
+    }
+}
+
+/* 视口处于纵向时的样式. */
+@media (orientation: portrait) {
+    /*
+     主页类:
+      内部元素按照垂直方向排列.
+     */
+    .home-page {
+        flex-direction: column;
+    }
+
+    /*
+     纵向布局底部容器:
+      内容高宽分别为calc(100dvh - 100dvw * 9/16), 100%.
+    */
+    .portrait-bottom-container {
+        height: calc(100dvh - 100dvw * 9/16); /* 动态视口高度 - 16:9播放器的高度. */
+        width: 100%;
+    }
+}

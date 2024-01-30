@@ -1,0 +1,16 @@
+/*
+ 视频播放器模态框类:
+  背景颜色为rgb(44 44 44 / 80%); 8px圆角边框; 字体大小为12px;
+  相对于容器向右偏移50%; 内边距12px; 使用绝对定位方式;
+  相对于容器向下偏移50%; x和y轴均平移-50%.
+ */
+.video-player-modal {
+    background-color: rgb(44 44 44 / 80%);
+    border-radius: 8px;
+    font-size: 12px;
+    left: 50%;
+    padding: 12px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

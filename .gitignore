@@ -1,4 +1,4 @@
-.DS_store
+.DS_Store
 .idea/
 # 忽略模块.
 node_modules/

@@ -1,0 +1,115 @@
+/*
+ 导入头像上传组件和上传错误模态框组件样式规则.
+ */
+@import url("./avatar-uploader.css");
+@import url("./uploader-modal.css");
+
+/*
+ 文档页面:
+  背景颜色为#1A1D29; 文本颜色为#F9F9F9; 优先使用Helvetica字体.
+ */
+body {
+    background-color: #1A1D29;
+    color: #F9F9F9;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/*
+ 登录页面类:
+  使用弹性布局; 垂直方向居中排列; 内部元素按照垂直方向排列.
+*/
+.login-page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+ 一级标题:
+  字体大小为24px; 字体粗细为bolder; 外边距为10px.
+ */
+.login-page > h1 {
+    font-size: 24px;
+    font-weight: bolder;
+    margin: 10px;
+}
+
+/*
+ 昵称, 流媒体视频源和WebSocket服务地址输入表单:
+  背景颜色为rgb(249 249 249 / 10%); 无样式5px圆角边框;
+  使用替代盒模型; 文本颜色为#F9F9F9; 字体大小为15px;
+  内容高宽分别为50px, 350px; 外边距为10px; 首行文本缩进为5px.
+ */
+.name-input,
+.streaming-url-input,
+.websocket-url-input {
+    background-color: rgb(249 249 249 / 10%);
+    border: 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #F9F9F9;
+    font-size: 15px;
+    height: 50px;
+    margin: 10px;
+    text-indent: 5px;
+    width: 350px;
+}
+
+/*
+ 昵称, 流媒体视频源和WebSocket服务地址输入表单获得焦点时:
+  1px, 实线的, 颜色为rgb(249 249 249 / 20%)的边框; 没有轮廓.
+ */
+.name-input:focus,
+.streaming-url-input:focus,
+.websocket-url-input:focus {
+    border: 1px solid rgb(249 249 249 / 20%);
+    outline: 0;
+}
+
+/*
+ 昵称, 流媒体视频源和WebSocket服务地址输入错误时:
+  1px, 实线的, 颜色为#FF554C的边框.
+*/
+.name-input.error,
+.streaming-url-input.error,
+.websocket-url-input.error {
+    border: 1px solid #FF554C;
+}
+
+/*
+ 错误信息类:
+  文本颜色为#FF554C; 字体大小为12px.
+*/
+.error-message {
+    color: #FF554C;
+    font-size: 12px;
+}
+
+/*
+ 加入按钮类:
+  背景颜色为#0682F0; 无样式5px圆角边框; 使用替代盒模型;
+  文本颜色为#F9F9F9; 字体大小为18px; 字体粗细为bold;
+  内容高宽分别为50px, 350px; 文本字符间距为5px; 外边距为10px;
+  首行文本缩进为5px.
+*/
+.login-button {
+    background-color: #0682F0;
+    border: 0;
+    border-radius: 5px;
+    color: #F9F9F9;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px;
+    letter-spacing: 5px;
+    margin: 10px;
+    text-indent: 5px;
+    width: 350px;
+}
+
+/*
+ 当用户悬停在加入按钮类时:
+  使用110%亮度的滤镜.
+*/
+.login-button:hover {
+    filter: brightness(110%);
+}

@@ -1,0 +1,34 @@
+/*
+ 用户头像类:
+  背景颜色为#E5E7EB; 背景图像完全覆盖背景区域;
+  2px, 实线的, 颜色为#E5E7EB的边框; 圆形边框; 使用替代盒模型;
+  内容高宽均为100px; 外边距为5px.
+ */
+.avatar {
+    background-color: #E5E7EB;
+    background-size: cover;
+    border: 2px solid #E5E7EB;
+    border-radius: 50%;
+    box-sizing: border-box;
+    height: 100px;
+    margin: 5px;
+    width: 100px;
+}
+
+/* 隐藏原生的文件上传表单. */
+#avatar-file-input {
+    display: none;
+}
+
+/*
+ 用户头像上传表单:
+  背景图像为url("../../assets/avatar-uploader.png"); 手形光标;
+  内容高宽均为100px; 外边距为5px.
+ */
+.custom-avatar-file-input {
+    background-image: url("../../assets/avatar-uploader.png");
+    cursor: pointer;
+    height: 100px;
+    margin: 5px;
+    width: 100px;
+}
