@@ -24,7 +24,7 @@ jobs:
       - name: Build release
         run: |
           npm run build
-          version=$(node -p "require('./package.json').version;") # 获取版本号
+          version=$(node -p "require('./package.json').version;") # 获取版本号.
           zip -r watch2gether-$version.zip build
       - name: Publish release to Releases
         uses: softprops/action-gh-release@v0.1.15

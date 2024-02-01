@@ -81,7 +81,7 @@ data: {
 ```javascript
 data: {
     action: 'connect'  
-    status: 'logout' // 登出.  
+    status: 'logout'   // 登出.  
     user: {
         clientID: 2023 // 只发送客户端ID以减小网络开销.
     }
@@ -100,7 +100,7 @@ data: {
 data: {
     action: 'player'
     // 命令字段.
-    command: 'play' // 播放.
+    command: 'play'    // 播放.
     // 用户信息字段.
     user: {
         clientID: 2023 // 只发送客户端ID以减小网络开销.
