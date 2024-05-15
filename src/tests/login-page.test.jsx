@@ -1,7 +1,7 @@
 import React from 'react';
 import {beforeEach, describe, expect, jest, test} from '@jest/globals';
 import '@testing-library/jest-dom';
-import {render, screen} from '@testing-library/react';
+import {act, render, screen} from '@testing-library/react';
 import {userEvent} from '@testing-library/user-event';
 
 import LoginPage from '../components/login-page/login-page.jsx';
@@ -32,13 +32,17 @@ describe('LoginPage', () => {
         const file = new File([''], 'file', {type: 'text/plain'});
 
         // 模拟用户上传头像, 并执行登录操作.
-        await userEvent.upload(document
-            .querySelector('#avatar-file-input'), file);
-        await userEvent.click(screen.getByText('加入'));
+        await act(async () => {
+            await userEvent.upload(document
+                .querySelector('#avatar-file-input'), file);
+            await userEvent.click(screen.getByText('加入'));
+        });
 
         // 断言.
         expect(screen.getByText('请选择图片重新上传!')).toBeInTheDocument();
-        await userEvent.click(screen.getByText('×')); // 关闭模态框.
+        await act(async () => {
+            await userEvent.click(screen.getByText('×')); // 关闭模态框.
+        });
         expect(screen.queryByText('请选择图片重新上传!')).not.toBeInTheDocument();
 
         expect(screen.getByText('昵称不能为空, 请输入昵称并重试.')).toBeInTheDocument();
@@ -53,14 +57,16 @@ describe('LoginPage', () => {
         const file = new File([''], 'avatar.png', {type: 'image/png'});
 
         // 模拟用户上传头像以及输入信息, 并执行登录操作.
-        await userEvent.upload(document
-            .querySelector('#avatar-file-input'), file);
-        await userEvent.type(screen.getByPlaceholderText('请输入昵称'), 'Bot');
-        await userEvent.type(screen
-            .getByPlaceholderText('请输入流媒体视频源'), 'https://example.com/video/');
-        await userEvent.type(screen
-            .getByPlaceholderText('请输入WebSocket服务地址'), 'ws://example.com/ws/');
-        await userEvent.click(screen.getByText('加入'));
+        await act(async () => {
+            await userEvent.upload(document
+                .querySelector('#avatar-file-input'), file);
+            await userEvent.type(screen.getByPlaceholderText('请输入昵称'), 'Bot');
+            // eslint-disable-next-line max-len
+            await userEvent.type(screen.getByPlaceholderText('请输入流媒体视频源'), 'https://example.com/video/');
+            // eslint-disable-next-line max-len
+            await userEvent.type(screen.getByPlaceholderText('请输入WebSocket服务地址'), 'ws://example.com/ws/');
+            await userEvent.click(screen.getByText('加入'));
+        });
 
         // 断言.
         expect(mockHandleLoginClick).toBeCalledTimes(1); // 加入按钮函数被调用.
