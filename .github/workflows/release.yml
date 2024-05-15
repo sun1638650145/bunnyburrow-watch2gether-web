@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest # ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4.1.5
       - name: Set up Node.js
-        uses: actions/setup-node@v4.0.1
+        uses: actions/setup-node@v4.0.2
         with:
           node-version: 18
       - name: Install dependencies
@@ -27,7 +27,7 @@ jobs:
           version=$(node -p "require('./package.json').version;") # 获取版本号.
           zip -r watch2gether-$version.zip build
       - name: Publish release to Releases
-        uses: softprops/action-gh-release@v0.1.15
+        uses: softprops/action-gh-release@v2.0.5
         with:
           files: |
             *.zip
