@@ -12,9 +12,9 @@ import WebSocketClient from '../websockets/websocket.js';
 
 const friendContextValue = {
     friends: new Map([
-        [Date.now(), {avatar: '', name: 'Bot'}],
-        [Date.now(), {avatar: '', name: 'Bar'}],
-        [Date.now(), {avatar: '', name: 'Foo'}]
+        [2024, {avatar: 'https://example.com/avatar1.png', name: 'Bar'}],
+        [2025, {avatar: 'https://example.com/avatar2.png', name: 'Bot'}],
+        [2026, {avatar: 'https://example.com/avatar3.png', name: 'Foo'}]
     ])
 };
 
@@ -47,10 +47,17 @@ describe('HomePage', () => {
         );
     });
 
-    test('获取好友列表中在线好友的数量', () => {
-        const onlineFriends = friendContextValue.friends.size;
+    test('正确渲染好友列表', () => {
+        const friends = friendContextValue.friends;
 
         // 断言.
-        expect(screen.getByText(`在线好友: ${onlineFriends}`)).toBeInTheDocument();
+        expect(screen.getByText(`在线好友: ${friends.size}`)).toBeInTheDocument();
+        friends.forEach(friend => {
+            const avatar = friend.avatar;
+            const name = screen.getByText(friend.name);
+
+            expect(name).toHaveStyle(`backgroundImage: \`url(${avatar})\``);
+            expect(name).toBeInTheDocument();
+        });
     });
 });
