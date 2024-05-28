@@ -13,7 +13,7 @@ export default [
         ignores: ['**/*.config.js'], // 排除配置文件.
         // 语言选项.
         languageOptions: {
-            ecmaVersion: 2017,
+            ecmaVersion: 2018,
             sourceType: 'module', // JavaScript源类型为ESM模块.
             // 全局变量.
             globals: {
