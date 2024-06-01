@@ -87,6 +87,7 @@ describe('HomePage', () => {
 
         // 断言(正确渲染用户自己的聊天消息).
         expect(screen.getByText('Hello, World!')).toBeInTheDocument();
+
         // 断言(发送聊天消息后禁用按钮并清空输入框).
         expect(chatInput).toHaveValue('');
         expect(sendButton).toBeDisabled();

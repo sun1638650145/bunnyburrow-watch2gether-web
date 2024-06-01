@@ -34,9 +34,9 @@ webSocketServer.on('connection', (socket) => {
 describe('WebSocketClient', () => {
     test('发送并接收聊天消息', (done) => {
         /* eslint-disable max-len */
-        const senderClient = new WebSocketClient('ws://localhost:8000/', friends[0]);
-        const receiverClient1 = new WebSocketClient('ws://localhost:8000/', friends[1]);
-        const receiverClient2 = new WebSocketClient('ws://localhost:8000/', friends[2]);
+        const senderClient = new WebSocketClient('ws://127.0.0.1:8000/ws/', friends[0]);
+        const receiverClient1 = new WebSocketClient('ws://127.0.0.1:8000/ws/', friends[1]);
+        const receiverClient2 = new WebSocketClient('ws://127.0.0.1:8000/ws/', friends[2]);
         /* eslint-enable */
 
         let sendOpen = false;
