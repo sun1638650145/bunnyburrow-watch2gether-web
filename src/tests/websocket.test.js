@@ -15,7 +15,7 @@ describe('WebSocketClient', () => {
         // 启动WebSocket服务.
         serverProcess = exec('w2g-cli launch ~/w2g');
         // 等待WebSocket服务启动.
-        setTimeout(done, 1000);
+        setTimeout(done, 2000);
     });
 
     test('发送并接收聊天消息', (done) => {
