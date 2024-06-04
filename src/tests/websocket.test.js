@@ -1,5 +1,5 @@
-import {afterAll, describe, expect, test} from '@jest/globals';
-import {WebSocketServer} from 'ws';
+import {exec} from 'child_process';
+import {afterAll, beforeAll, describe, expect, test} from '@jest/globals';
 
 import WebSocketClient from '../websockets/websocket.js';
 
@@ -8,30 +8,16 @@ const friends = [
     {avatar: 'https://example.com/avatar2.png', clientID: 2024, name: 'Foo'},
     {avatar: 'https://example.com/avatar3.png', clientID: 2025, name: 'Bar'}
 ];
-
-// 创建并启动WebSocket服务.
-const webSocketServer = new WebSocketServer({port: 8000});
-webSocketServer.on('connection', (socket) => {
-    socket.on('message', async (message) => {
-        const data = await JSON.parse(message);
-        const props = data.props;
-        const receivedClientID = props.receivedClientID || -1;
-
-        // 对工作类型进行判断.
-        if (props.type === 'websocket.unicast' && receivedClientID > 0) {
-            // TODO: 暂未实现.
-        } else {
-            webSocketServer.clients.forEach(client => {
-                // 避免广播风暴.
-                if (client !== socket && client.readyState === WebSocket.OPEN) {
-                    client.send(JSON.stringify(data));
-                }
-            });
-        }
-    });
-});
+let serverProcess;
 
 describe('WebSocketClient', () => {
+    beforeAll((done) => {
+        // 启动WebSocket服务.
+        serverProcess = exec('w2g-cli launch ~/w2g');
+        // 等待WebSocket服务启动.
+        setTimeout(done, 1000);
+    });
+
     test('发送并接收聊天消息', (done) => {
         /* eslint-disable max-len */
         const senderClient = new WebSocketClient('ws://127.0.0.1:8000/ws/', friends[0]);
@@ -109,6 +95,7 @@ describe('WebSocketClient', () => {
     });
 
     afterAll(() => {
-        webSocketServer.close();
+        // 关闭WebSocket服务.
+        serverProcess.kill();
     });
 });
