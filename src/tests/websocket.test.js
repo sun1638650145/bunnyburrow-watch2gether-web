@@ -1,4 +1,5 @@
 import {exec} from 'child_process';
+
 import {afterAll, beforeAll, describe, expect, test} from '@jest/globals';
 
 import WebSocketClient from '../websockets/websocket.js';
@@ -8,6 +9,7 @@ const friends = [
     {avatar: 'https://example.com/avatar2.png', clientID: 2024, name: 'Foo'},
     {avatar: 'https://example.com/avatar3.png', clientID: 2025, name: 'Bar'}
 ];
+
 let serverProcess;
 
 describe('WebSocketClient', () => {
