@@ -10,12 +10,12 @@ permissions:
 jobs:
   deploy:
 
-    runs-on: ubuntu-latest # ubuntu-22.04
+    runs-on: ubuntu-latest # ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4.1.6
+      - uses: actions/checkout@v4.1.7
       - name: Set up Node.js
-        uses: actions/setup-node@v4.0.2
+        uses: actions/setup-node@v4.0.3
         with:
           node-version: 18
       - name: Install dependencies
@@ -27,7 +27,7 @@ jobs:
           version=$(node -p "require('./package.json').version;") # 获取版本号.
           zip -r watch2gether-$version.zip build
       - name: Publish release to Releases
-        uses: softprops/action-gh-release@v2.0.5
+        uses: softprops/action-gh-release@v2.0.8
         with:
           files: |
             *.zip
