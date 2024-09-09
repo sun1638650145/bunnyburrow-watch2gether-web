@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 # git hooks: 配置代码静态检查和软件测试.
 # sh: npm run prepare
 npm run lint

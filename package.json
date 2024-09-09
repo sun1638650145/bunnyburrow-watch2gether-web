@@ -10,7 +10,7 @@
     "scripts": {
         "build": "react-scripts build",
         "lint": "eslint src/",
-        "prepare": "husky install",
+        "prepare": "husky",
         "start": "react-scripts start",
         "stylelint": "stylelint src/styles/",
         "test": "react-scripts test --watchAll false"
