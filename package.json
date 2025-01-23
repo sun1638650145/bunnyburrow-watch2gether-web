@@ -18,27 +18,27 @@
     "dependencies": {
         "immer": "10.1.1",
         "prop-types": "15.8.1",
-        "react": "18.3.1",
+        "react": "19.0.0",
         "react-device-detect": "2.2.3",
-        "react-dom": "18.3.1",
-        "react-modal": "3.16.1",
+        "react-dom": "19.0.0",
+        "react-modal": "3.16.3",
         "react-scripts": "5.0.1",
-        "use-immer": "0.10.0",
-        "video.js": "8.17.3"
+        "use-immer": "0.11.0",
+        "video.js": "8.21.0"
     },
     "devDependencies": {
-        "@eslint/js": "9.10.0",
+        "@eslint/js": "9.18.0",
         "@jest/globals": "29.7.0",
-        "@testing-library/jest-dom": "6.5.0",
-        "@testing-library/react": "16.0.1",
-        "@testing-library/user-event": "14.5.2",
+        "@testing-library/jest-dom": "6.6.3",
+        "@testing-library/react": "16.2.0",
+        "@testing-library/user-event": "14.6.1",
         "@types/video.js": "7.3.58",
-        "eslint": "9.10.0",
-        "eslint-plugin-react": "7.35.2",
-        "globals": "15.9.0",
-        "husky": "9.1.5",
-        "stylelint": "16.9.0",
-        "stylelint-config-standard": "36.0.1"
+        "eslint": "9.18.0",
+        "eslint-plugin-react": "7.37.4",
+        "globals": "15.14.0",
+        "husky": "9.1.7",
+        "stylelint": "16.13.2",
+        "stylelint-config-standard": "37.0.0"
     },
     "browserslist": [
         "defaults and supports es6-module"
