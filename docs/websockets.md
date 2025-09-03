@@ -139,7 +139,7 @@ data: {
 
 ### player
 
-`player`操作用于同步视频播放状态, 包括控制视频的播放/暂停, 修改播放进度和调整播放速率.
+`player`操作用于同步视频播放状态, 包括控制视频的播放/暂停, 修改播放进度, 切换视频源和调整播放速率.
 
 #### 播放
 
@@ -182,6 +182,23 @@ data: {
     action: 'player'
     command: {
         newProgress: 117.2024 // 新的播放进度时间(单位为秒).
+    }
+    user: {
+        clientID: 2023
+    }
+    version: '1.1'
+}
+```
+
+#### 切换视频源
+
+用户A广播切换视频源.
+
+```javascript
+data: {
+    action: 'player'
+    command: {
+        newVideo: '我们亲爱的Steve' // 新的视频源名称.
     }
     user: {
         clientID: 2023
