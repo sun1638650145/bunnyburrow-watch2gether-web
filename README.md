@@ -4,7 +4,7 @@
 
 <b>一起看电影</b>是[Bunnyburrow Software Project(兔窝镇软件计划)](https://github.com/sun1638650145/bunnyburrow)的第3个项目, 旨在帮助你搭建流媒体服务, 与朋友们共享观影时光. 🍿🎥
 
-<b>一起看电影(Web客户端)</b>是该项目的客户端子项目, 此外, 你也可以选择使用[iOS客户端](https://github.com/sun1638650145/bunnyburrow-watch2gether-app).
+<b>一起看电影(Web客户端)</b>是该项目的客户端子项目, 此外, 你也可以选择使用[Apple客户端](https://github.com/sun1638650145/bunnyburrow-watch2gether-app).
 
 ## 快速启动 🚀
 
